@@ -1,0 +1,34 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>Add a New Module</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from Modules";
+
+        var newModule="";
+
+        if(IsPost) {
+
+            newModule=Request["newModule"].As<string>("");
+
+            // Add field to Modules table
+            var SQLINSERT="insert into Modules (moduleName, oldModuleName) values (@0, @0)";
+            db.Execute(SQLINSERT, newModule, newModule);
+
+            Response.Redirect("~/Account/Modules.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>New Module name:&nbsp;
+                <input type="text" name="newModule" size="50"></p>
+                <p><input type="submit" value="Submit New Module"></p>
+            </div><br>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

@@ -1,0 +1,37 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>Delete Module</h1>
+    var whichModule=Request["moduleName"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from Modules where moduleName LIKE @0";
+        var query=db.QuerySingle(SQLSELECT, whichModule);
+        var response="";
+
+        if(IsPost) {
+            response=Request["deleteModule"].As<string>("");
+            if (response=="Yes") {
+                var SQLDELETE="delete from Modules where moduleName=@0";
+                db.Execute(SQLDELETE, whichModule);
+            }
+            Response.Redirect("~/Account/Modules.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>Are you sure you want to delete the module @whichModule?&nbsp;
+                <select name="deleteModule">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select>
+            </div><br>
+
+            <p><input type="submit" value="Submit Response"></p>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

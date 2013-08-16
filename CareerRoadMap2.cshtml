@@ -1,0 +1,719 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/CareerRoadMap2.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var SQLSELECT="select * from CareerRoadMap2 where Email LIKE @0";
+        var db=Database.Open("JMA");
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        // Elementary school friends
+        var ansQ1=answers.Q1;
+
+        // What did you fantasize about being
+        var ansQ2=answers.Q2;
+
+        // What excited you the most
+        var ansQ3=answers.Q3;
+
+        // What bored you
+        var ansQ4=answers.Q4;
+
+        // What hurt you the most
+        var ansQ5=answers.Q5;
+
+        // What books did you read
+        var ansQ6=answers.Q6;
+
+        // What trips did you take
+        var ansQ7=answers.Q7;
+
+        // How would you describe yourself as a child
+        var ansQ8=answers.Q8;
+
+        // What kinds of things kept me engaged for hours
+        var ansQ9=answers.Q9;
+
+        // What toys did I play with
+        var ansQ10=answers.Q10;
+
+        // How did I play with my toys
+        var ansQ11=answers.Q11;
+
+        // How did I interact with others
+        var ansQ12=answers.Q12;
+
+        // What do you enjoy doing when not working
+        var ansQ13=answers.Q13;
+
+        // What do you enjoy thinking about
+        var ansQ14=answers.Q14;
+
+        // What do you enjoy learning
+        var ansQ15=answers.Q15;
+
+        // What do you enjoy as a process
+        var ansQ16=answers.Q16;
+
+        // What do you enjoy reading
+        var ansQ17=answers.Q17;
+
+        // What do you enjoy making
+        var ansQ18=answers.Q18;
+
+        // What TV shows do you enjoy watching
+        var ansQ19=answers.Q19;
+
+        // What riles you up or energizes you
+        var ansQ20=answers.Q20;
+
+        // How do you spend your disposable income
+        var ansQ21=answers.Q21;
+
+        // What do others ask you to help them with
+        var ansQ22=answers.Q22;
+
+        // What work would you do if you were financially independent
+        var ansQ23=answers.Q23;
+
+        // What work would you do if time were not an issue
+        var ansQ24=answers.Q24;
+
+        // What were you doing when you were absorbed
+        var ansQ25=answers.Q25;
+
+        // Remember a time when you did something no one thought could be done
+        var ansQ26=answers.Q26;
+
+        // Remember a time when you were decisive
+        var ansQ27=answers.Q27;
+
+        // Remember a time when you stood up for what you believed
+        var ansQ28=answers.Q28;
+
+        // What accomplishment are you most proud of
+        var ansQ29=answers.Q29;
+        
+        // When have you been committed/passionate about something
+        var ansQ30=answers.Q30;
+
+        // What are the most exciting things you ever did
+        var ansQ31=answers.Q31;
+
+        // What legacy have you left behind
+        var ansQ32=answers.Q32;
+
+        // What do you regret
+        var ansQ33=answers.Q33;
+
+        // What do you believe are your top talents
+        var ansQ34a=answers.Q34a;
+        var ansQ34b=answers.Q34b;
+        var ansQ34c=answers.Q34c;
+        var ansQ34d=answers.Q34d;
+        var ansQ34e=answers.Q34e;
+        var ansQ34f=answers.Q34f;
+        var ansQ34g=answers.Q34g;
+        var ansQ34h=answers.Q34h;
+
+        // Aha! box
+        var ansQ35=answers.Q35;
+
+        if(IsPost) {
+            ansQ1=Request["ansQ1"].As<string>("");
+            ansQ2=Request["ansQ2"].As<string>("");
+            ansQ3=Request["ansQ3"].As<string>("");
+            ansQ4=Request["ansQ4"].As<string>("");
+            ansQ5=Request["ansQ5"].As<string>("");
+            ansQ6=Request["ansQ6"].As<string>("");
+            ansQ7=Request["ansQ7"].As<string>("");
+            ansQ8=Request["ansQ8"].As<string>("");
+            ansQ9=Request["ansQ9"].As<string>("");
+            ansQ10=Request["ansQ10"].As<string>("");
+            ansQ11=Request["ansQ11"].As<string>("");
+            ansQ12=Request["ansQ12"].As<string>("");
+            ansQ13=Request["ansQ13"].As<string>("");
+            ansQ14=Request["ansQ14"].As<string>("");
+            ansQ15=Request["ansQ15"].As<string>("");
+            ansQ16=Request["ansQ16"].As<string>("");
+            ansQ17=Request["ansQ17"].As<string>("");
+            ansQ18=Request["ansQ18"].As<string>("");
+            ansQ19=Request["ansQ19"].As<string>("");
+            ansQ20=Request["ansQ20"].As<string>("");
+            ansQ21=Request["ansQ21"].As<string>("");
+            ansQ22=Request["ansQ22"].As<string>("");
+            ansQ23=Request["ansQ23"].As<string>("");            ansQ24=Request["ansQ24"].As<string>("");            ansQ25=Request["ansQ25"].As<string>("");            ansQ26=Request["ansQ26"].As<string>("");            ansQ27=Request["ansQ27"].As<string>("");            ansQ28=Request["ansQ28"].As<string>("");            ansQ29=Request["ansQ29"].As<string>("");            ansQ30=Request["ansQ30"].As<string>("");            ansQ31=Request["ansQ31"].As<string>("");            ansQ32=Request["ansQ32"].As<string>("");            ansQ33=Request["ansQ33"].As<string>("");            ansQ34a=Request["ansQ34a"].As<string>("");            ansQ34b=Request["ansQ34b"].As<string>("");            ansQ34c=Request["ansQ34c"].As<string>("");            ansQ34d=Request["ansQ34d"].As<string>("");            ansQ34e=Request["ansQ34e"].As<string>("");            ansQ34f=Request["ansQ34f"].As<string>("");            ansQ34g=Request["ansQ34g"].As<string>("");            ansQ34h=Request["ansQ34h"].As<string>("");            ansQ35=Request["ansQ35"].As<string>("");
+
+            var SQLUPDATE="update CareerRoadMap2 set Q1=@1, Q2=@2, Q3=@3, Q4=@4, Q5=@5, Q6=@6, Q7=@7, " +
+                "Q8=@8, Q9=@9, Q10=@10, Q11=@11, Q12=@12, Q13=@13, Q14=@14, Q15=@15, Q16=@16, Q17=@17, " +
+                "Q18=@18, Q19=@19, Q20=@20, Q21=@21, Q22=@22, Q23=@23, Q24=@24, Q25=@25, Q26=@26, Q27=@27, " +
+                "Q28=@28, Q29=@29, Q30=@30, Q31=@31, Q32=@32, Q33=@33, Q34a=@34, Q34b=@35, Q34c=@36, " +
+                "Q34d=@37, Q34e=@38, Q34f=@39, Q34g=@40, Q34h=@41, Q35=@42 " +
+                "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, ansQ1, ansQ2, ansQ3, ansQ4, ansQ5, ansQ6,
+                ansQ7, ansQ8, ansQ9, ansQ10, ansQ11, ansQ12, ansQ13, ansQ14, ansQ15, ansQ16, ansQ17,
+                ansQ18, ansQ19, ansQ20, ansQ21, ansQ22, ansQ23, ansQ24, ansQ25, ansQ26, ansQ27, ansQ28, 
+                ansQ29, ansQ30, ansQ31, ansQ32, ansQ33, ansQ34a, ansQ34b, ansQ34c, ansQ34d, ansQ34e, 
+                ansQ34f, ansQ34g, ansQ34h, ansQ35);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+    <div id="page_1">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-71x1.jpg" id="img1">
+        </div>
+
+        <p class="p1 ft2">CAREER ROADMAP TWO</p>
+        <p class="p2 ft3">DISCOVERY</p>
+
+        <br><br><br><br><br><br><br><br>
+        <p class="p3 ft4">Please note: This is a proprietary document that is intended for your personal use only.</p>
+        <table cellpadding=0 cellspacing=0 class="t0">
+            <tr></tr><tr></tr>
+        </table>
+    </div>
+
+    <div id="page_2">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-72x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">2</p></td>
+                </tr>
+            </table>
+            <p class="p8 ft6">Congratulations!</p>
+            <p class="p9 ft7">The document you hold in your hands, Career RoadMap Two, shows that you have not only completed Career
+                RoadMap One, but that you are prepared to move forward. Career RoadMap One provided you with exercises that explored
+                where you currently are on your career path.</p>
+            <p class="p10 ft7">Now that you have acknowledged your fears and frustrations, it's time to concentrate on your interests
+                and talents. Somewhere in the back of your mind, you have always known what you are here to do (even if you don't
+                feel that way right now).</p>
+            <p class="p11 ft6">Reflecting on the Beginning of Your Path</p>
+            <p class="p12 ft7">Recalling your childhood may help you unlock this knowledge. Children are more readily aware of
+                "knowing" because they have yet to assume the limiting beliefs or the sense of defeat that often clouds the issue for
+                adults. Recognize that a review of your history includes both highs and lows, territory you may have pushed under
+                your consciousness in the hectic pace of daily living.</p>
+            <p class="p13 ft8">Return to elementary school. Who were your friends? What and how did you play?</p>
+            <p><input type="text" id="formColor" name="ansQ1" size="105" value="@ansQ1"></p>
+            <p class="p14 ft9">What did you fantasize about being when you grew up? Looking back, what do you think your special
+                gifts were?</p>
+            <p><input type="text" id="formColor" name="ansQ2" size="105" value="@ansQ2"></p>
+            <p class="p15 ft8">What excited you the most?</p>
+            <p><input type="text" id="formColor" name="ansQ3" size="105" value="@ansQ3"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_3">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-73x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">3</p></td>
+                </tr>
+            </table>
+            <p class="p16 ft10">"Your time is limited, so don't waste it living someone else's life. Don't be trapped by 
+                dogma—which is living with the results of other people's thinking. Don't let the noise of others'
+                opinions drown out your own inner voice. And most important, have the courage to follow your heart and intuition.
+                They somehow already know what you truly want to become. Everything else is secondary."</p>
+            <p class="p17 ft11">- Steve Jobs</p>
+            <p class="p18 ft6">Reflecting on the Beginning of Your Path (Continued)</p>
+            <p class="p19 ft8">What bored you?</p>
+            <p><input type="text" id="formColor" name="ansQ4" size="105" value="@ansQ4"></p>
+            <p class="p19 ft8">What hurt you the most? How did you respond to that?</p>
+            <p><input type="text" id="formColor" name="ansQ5" size="105" value="@ansQ5"></p>
+            <p class="p19 ft8">What books did you read? What TV shows did you watch?</p>
+            <p><input type="text" id="formColor" name="ansQ6" size="105" value="@ansQ6"></p>
+            <p class="p19 ft8">What trips did you take? What places did you visit (e.g., family vacations, grandma's house, the
+                creek down the street)? What are your memories of these places? How did these experiences impact you?</p>
+            <p><input type="text" id="formColor" name="ansQ7" size="105" value="@ansQ7"></p>
+            <p class="p19 ft8">Overall, how would you describe yourself as a child?</p>
+            <p><input type="text" id="formColor" name="ansQ8" size="105" value="@ansQ8"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_4">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-74x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+                	<td class="tr2 td4"><p class="p7 ft0">4</p></td>
+                </tr>
+            </table>
+            <p class="p8 ft6">Reflecting on the Beginning of Your Path (Continued)</p>
+            <p class="p24 ft12">Maybe you've forgotten some things from your childhood. It's helpful to ask your parents, siblings,
+                aunts and uncles the following questions. Write down any information they can give you.</p>
+            <p class="p25 ft8">When I was really young, before I started school, what kinds of things would keep me engaged for
+                hours?</p>
+            <p><input type="text" id="formColor" name="ansQ9" size="105" value="@ansQ9"></p>
+            <p class="p26 ft8">What toys was I exposed to and did I play with?</p>
+            <p><input type="text" id="formColor" name="ansQ10" size="105" value="@ansQ10"></p>
+            <p class="p27 ft12">How did I play with my toys? Did I build, destroy, create, internalize, pretend, investigate,
+                collect, line up and put them in order, etc.?</p>
+            <p><input type="text" id="formColor" name="ansQ11" size="105" value="@ansQ11"></p>
+            <p class="p28 ft8">How did I interact with others? Was I outgoing, shy, cautious, a bully, a loner, etc.?</p>
+            <p><input type="text" id="formColor" name="ansQ12" size="105" value="@ansQ12"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_5">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-75x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p29 ft0">JMA: Career RoadMap Two</p>
+                <p class="p30 ft6">The Tools You Bring With You</p>
+                <p class="p31 ft13">You may not realize it, but you already possess the tools to get to exactly where you are meant
+                    to be—these are your talents. The presence of talent frequently inﬂuences your experience of an activity.</p>
+                <p class="p32 ft14">Realize that you have a number of intrinsic talents that come as naturally as breathing in and
+                    out.</p>
+                <p class="p33 ft15">Think of your talents as:</p>
+                <p class="p34 ft8"><span class="ft8">&#8226;</span><span class="ft16">Tasks you do very well</span></p>
+                <p class="p34 ft8"><span class="ft8">&#8226;</span><span class="ft16">Tasks you perform quickly and efficiently</span></p>
+                <p class="p35 ft8"><span class="ft8">&#8226;</span><span class="ft16">Tasks you do naturally, without special effort
+                    </span></p>
+                <p class="p36 ft13">Some people have a natural ear for music and are easily able to pick out various tones and
+                    rhythms amongst a symphony, while others can visualize and rotate three-dimensional objects in their
+                    mind's eye like a blueprint or the structure of an atom. You may be the type of person or know someone who has a
+                    knack for being able to easily build a rapport with anyone he/she meets or someone who can quickly lay out all
+                    the points of a logical argument to support his/ her opinion, or deconstruct someone else's.</p>
+                <p class="p37 ft17">Some talents are easy to measure; you know you have a talent for sprinting because you are faster
+                    than everyone else on your team, or you know you have numerical talents because you always received A's on your
+                    math exams and have an easy time keeping mental track of your monthly budget. Other talents are more subtle and
+                    can be harder to readily identify, like empathy or synthesizing information and recognizing patterns.</p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p38 ft0">5</p>
+                <p class="p39 ft18">"You have skills and abilities that others do not. We often undervalue the things we know and
+                    what we can do, thinking, 'If I can do it, anyone can.' Well, 'anyone' can't."</p>
+                <p class="p40 ft19">- Cathy Stucker</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_6">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-76x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p29 ft0">JMA: Career RoadMap Two</p>
+                <p class="p30 ft6">The Tools You Bring With You (Continued)</p>
+                <p class="p41 ft17">Many times, our talents are so natural and have always been with us, that we take them for
+                    granted, thinking, "This is easy, anyone can do it!"</p>
+                <p class="p42 ft20">It's important to remember that talents can be different from skills. Skills are learned, like
+                    learning how to read music, while talents are innate, like having the natural ability to teach yourself how to
+                    play the guitar by ear. You can have a talent and not have a skill and you can have a skill that you've put
+                    effort into learning without the natural talent.</p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p38 ft0">6</p>
+                <p class="p43 ft20">What's important is that you can always develop and refine your skills around your natural
+                    talents. You are more likely to pick up on new skills, enjoy refining them and turn them into your best skills
+                    if they are tapping into your natural talents.</p>
+                <p class="p44 ft21">For more clues about what your talents may be, think about:</p>
+                <p class="p45 ft8"><span class="ft8">&#8226;</span><span class="ft16">What you enjoy doing</span></p>
+                <p class="p46 ft8"><span class="ft8">&#8226;</span><span class="ft16">What you enjoy thinking about</span></p>
+                <p class="p46 ft8"><span class="ft8">&#8226;</span><span class="ft16">What you enjoy learning about</span></p>
+                <p class="p34 ft8"><span class="ft8">&#8226;</span><span class="ft16">What you enjoy as a process</span></p>
+                <p class="p46 ft8"><span class="ft8">&#8226;</span><span class="ft16">What others ask you to help them with</span></p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_7">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.1-77x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">7</p></td>
+                </tr>
+            </table>
+            <p class="p8 ft6">This Stage of the Journey</p>
+            <p class="p47 ft12">Your interests can provide a view into what your talents may be. First, give some thought to what you
+                currently enjoy.</p>
+            <p class="p11 ft15">Doing</p>
+            <p class="p48 ft22">What do you most enjoy doing when you are not working (e.g., hobbies, volunteering, recreational
+                interests)? When you are working? When you're working around the house? When you're with others?</p>
+            <p><input type="text" id="formColor" name="ansQ13" size="105" value="@ansQ13"></p>
+            <p class="p49 ft15">Thinking</p>
+            <p class="p50 ft8">What do you enjoy thinking about?</p>
+            <p><input type="text" id="formColor" name="ansQ14" size="105" value="@ansQ14"></p>
+            <p class="p51 ft15">Learning</p>
+            <p class="p50 ft8">What do you enjoy learning about?</p>
+            <p><input type="text" id="formColor" name="ansQ15" size="105" value="@ansQ15"></p>
+            <p class="p49 ft15">Process</p>
+            <p class="p50 ft8">What do you enjoy as a process (e.g., problem solving, organizing, uncovering patterns)?</p>
+            <p><input type="text" id="formColor" name="ansQ16" size="105" value="@ansQ16"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_8">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-151x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">8</p></td>
+                </tr>
+            </table>
+            <p class="bp2 bft1">This Stage of the Journey (Continued)</p>
+            <p class="bp3 bft2">Reading</p>
+            <p class="bp4 bft3">What do you enjoy reading about?</p>
+            <p><input type="text" id="formColor" name="ansQ17" size="105" value="@ansQ17"></p>
+            <p class="bp5 bft2">Creating</p>
+            <p class="bp4 bft3">What do you enjoy making (e.g., cooking, scrapbooking, designing, envisioning)?</p>
+            <p><input type="text" id="formColor" name="ansQ18" size="105" value="@ansQ18"></p>
+            <p class="bp5 bft2">Watching</p>
+            <p class="bp4 bft3">What TV shows do you most enjoy watching? What types of movies do you tend see? Do you detect a
+                theme?</p>
+            <p><input type="text" id="formColor" name="ansQ19" size="105" value="@ansQ19"></p>
+            <p class="bp5 bft2">Energizing</p>
+            <p class="bp6 bft4">What riles you up or energizes you (e.g., politics, social justice, personal change, animal welfare,
+                environmental issues)?</p>
+            <p><input type="text" id="formColor" name="ansQ20" size="105" value="@ansQ20"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_9">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-152x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">9</p></td>
+                </tr>
+            </table>
+            <p class="bp9 bft1">This Stage of the Journey (Continued)</p>
+            <p class="bp10 bft2">Spending</p>
+            <p class="bp11 bft3">How do you spend your disposable income?</p>
+            <p><input type="text" id="formColor" name="ansQ21" size="105" value="@ansQ21"></p>
+            <p class="bp12 bft2">Helping</p>
+            <p class="bp11 bft3">What do others ask you to help them with?</p>
+            <p><input type="text" id="formColor" name="ansQ22" size="105" value="@ansQ22"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_10">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-153x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">10</p></td>
+                </tr>
+            </table>
+            <p class="bp2 bft1">A Glimpse of the Path to Come</p>
+            <p class="bp13 bft3">Projecting into the future may help you get a feeling for what it would be like to be engaged in
+                your new career.</p>
+            <p class="bp14 bft2">Freedom</p>
+            <p class="bp4 bft3">If you were financially independent and money was not a factor, what kind of work would you do?</p>
+            <p><input type="text" id="formColor" name="ansQ23" size="105" value="@ansQ23"></p>
+            <p class="bp5 bft2">Space</p>
+            <p class="bp4 bft3">If time was not an issue, what kind of work would you do?</p>
+            <p><input type="text" id="formColor" name="ansQ24" size="105" value="@ansQ24"></p>
+            <p class="bp15 bft7">"Talents are common, everyone has them—but rare is the courage to follow your talents
+                where they lead."</p>
+            <p class="bp16 bft8">- Anon</p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_11">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-154x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">11</p></td>
+                </tr>
+            </table>
+            <p class="bp2 bft1">The Well-Trodden Path</p>
+            <p class="bp17 bft9">Drawing upon your history provides clues that reveal your underlying beliefs. This is foundationally
+                important to help us gain a more complete picture with greater definition. When answering the questions below, do not
+                limit yourself to previous work experience. Draw upon your entire life experience.</p>
+            <p class="bp18 bft2">Flow</p>
+            <p class="bp19 bft4">Recall times when you were so absorbed in what you were doing that you hardly noticed time passing.
+                What were you doing?</p>
+            <p><input type="text" id="formColor" name="ansQ25" size="105" value="@ansQ25"></p>
+            <p class="bp20 bft2">Stretch</p>
+            <p class="bp21 bft4">Remember a time when you attempted something no one thought could be done. You knew you were right.
+                You did it anyway, in spite of everyone else. What was the situation? How did it feel?</p>
+            <p><input type="text" id="formColor" name="ansQ26" size="105" value="@ansQ26"></p>
+            <p class="bp20 bft2">Determined</p>
+            <p class="bp22 bft4">Recall times when you have been most decisive. These are times when you were deeply involved,
+                emotionally committed, and determined to persist in spite of all obstacles. Describe them here.</p>
+            <p><input type="text" id="formColor" name="ansQ27" size="105" value="@ansQ27"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_12">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-155x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">12</p></td>
+                </tr>
+            </table>
+            <p class="bp2 bft1">The Well-Trodden Path (Continued)</p>
+            <p class="bp23 bft2">Ideal</p>
+            <p class="bp24 bft4">Consider a situation in which you stood up for what you believed. What were you standing for? Why were
+                you adamant?</p>
+            <p><input type="text" id="formColor" name="ansQ28" size="105" value="@ansQ28"></p>
+            <p class="bp20 bft2">Accomplished</p>
+            <p class="bp4 bft3">Recall your accomplishments from a young age on. Which ones are you most proud of?</p>
+            <p><input type="text" id="formColor" name="ansQ29" size="105" value="@ansQ29"></p>
+            <p class="bp5 bft2">Committed</p>
+            <p class="bp4 bft3">When have you been deeply committed to or passionate about something?</p>
+            <p><input type="text" id="formColor" name="ansQ30" size="105" value="@ansQ30"></p>
+            <p class="bp5 bft2">Excited</p>
+            <p class="bp4 bft3">What are some of the most exciting things you've ever done? What made them so exciting?</p>
+            <p><input type="text" id="formColor" name="ansQ31" size="105" value="@ansQ31"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_13">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-156x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">13</p></td>
+                </tr>
+            </table>
+            <p class="bp9 bft1">At the End of the Journey</p>
+            <p class="bp25 bft3">In Robert Frost's poem, he is reﬂecting back upon the path he traveled. Put yourself in the same
+                position.</p>
+            <p class="bp26 bft10">Imagine that you have just passed on. You have devoted yourself to your life's work and have been
+                successful in carrying it out.</p>
+            <p class="bp27 bft11">What is the legacy that you have left behind? What contribution did you make to the world? How does
+                your epitaph read? When all is said and done, what statement did your life make? What will you be remembered for?</p>
+            <p><input type="text" id="formColor" name="ansQ32" size="105" value="@ansQ32"></p>
+            <p class="bp28 bft3">Looking back on your life, what do you regret?</p>
+            <p><input type="text" id="formColor" name="ansQ33" size="105" value="@ansQ33"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_14">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-157x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="bp29 bft0">JMA: Career RoadMap Two</p>
+                <p class="bp30 bft1">Your Suitcase</p>
+                <p class="bp31 bft12">We've been traveling down this path together and, along the way, we've been gathering tools for
+                    your suitcase. You have looked at yourself from a number of different perspectives. Now, review pages 
+                    2-13 and highlight the words or phrases that speak to your talents. Let's walk through a few sample
+                    talents:</p>
+                <p class="bp32 bft11"><span class="ft3">&#8226;</span><span class="ft13">To synthesize (e.g., a trader pulls information
+                    together in order to make a declaration to act)</span></p>
+                <p class="bp33 bft11"><span class="ft3">&#8226;</span><span class="ft13">To analyze (e.g., a doctor reviews a patient's test
+                    results and determines the best course of action)</span></p>
+                <p class="bp34 bft9"><span class="ft3">&#8226;</span><span class="ft14">To build (e.g., a carpenter cuts and assembles wood
+                    together in a specific pattern in order to create something new)</span></p>
+                <p class="bp35 bft9"><span class="ft3">&#8226;</span><span class="ft14">To adapt (e.g. a reporter stays abreast of the most
+                    current stories and must be able to switch gears at a moment's notice)</span></p>
+                <p class="bp36 bft12">With this in mind, what do you believe are some of your top talents? List as many as you can
+                    below.</p>
+                <p>1. <input type="text" id="formColor" name="ansQ34a" size="45" value="@ansQ34a"></p>
+                <p>2. <input type="text" id="formColor" name="ansQ34b" size="45" value="@ansQ34b"></p>
+                <p>3. <input type="text" id="formColor" name="ansQ34c" size="45" value="@ansQ34c"></p>
+                <p>4. <input type="text" id="formColor" name="ansQ34d" size="45" value="@ansQ34d"></p>
+                <p>5. <input type="text" id="formColor" name="ansQ34e" size="45" value="@ansQ34e"></p>
+                <p>6. <input type="text" id="formColor" name="ansQ34f" size="45" value="@ansQ34f"></p>
+                <p>7. <input type="text" id="formColor" name="ansQ34g" size="45" value="@ansQ34g"></p>
+                <p>8. <input type="text" id="formColor" name="ansQ34h" size="45" value="@ansQ34h"></p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="bp37 bft0">14</p>
+                <p class="bp38 bft15">Aha! Box</p>
+                <p class="bp39 bft10">If you are struck with any insight at this</p>
+                <p class="bp39 bft10">time, make note of it here.</p>
+                <p><input type="text" id="formColor" name="ansQ35" size="45" value="@ansQ35"></p>
+                
+                <p class="bp40 bft16">"Twenty years from now you will be more disappointed by the things that you didn't do than by the
+                    ones you did do. So throw off the bowlines. Sail away from the safe harbor. Catch the trade winds in your sails.
+                    Explore. Dream. Discover."</p>
+                <p class="bp41 bft16">- Mark Twain</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_15">
+        <div id="dimg1">
+            <img alt="A" src="~/Images/JMA_CR2.8-158x1.jpg" id="img1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap Two</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">15</p></td>
+                </tr>
+            </table>
+            <p class="bp42 bft17">This is a proprietary document that is intended for your personal use only.</p>
+            <p class="bp43 bft9">This product, the Career RoadMap series, as well as any coaching information and materials disclosed
+                and provided by Jody Michael Associates (JMA) during our work together, including, but not limited to, processes,
+                products, methods, frameworks, tools, strategies and workshops, are confidential and protected by copyright laws.</p>
+            <p class="bp44 bft9">This means that this material, and all materials received in our work together, cannot be shared with
+                others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form.
+                It is not to be used for any coaching or consultative purpose.</p>
+            <p class="bp45 bft9">Over 90 percent of our new clients are referred by current clients. If you ever want to refer us to
+                your colleagues and organizations, we would be pleased to provide you with non-confidential information to
+                help facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact
+                JMA. Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach
+                this agreement, you will be liable and will pay to JMA the reasonable attorney's fees and costs JMA incurred as a result
+                of your breach.</p>
+            <p class="bp46 bft9">If you have received this document and are not a client of Jody Michael Associates, then you are not
+                the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and
+                will be held liable. If you have received this material in error, and are not an intended recipient, please notify us
+                immediately by email or phone and delete the original material.</p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="~/Styles/StylesM.css" type="text/css">
+        <meta name="viewport" content="width=320">
+    </head>
+    <body>
+        @{
+            var db=Database.Open("JMA");
+            var SQLSELECT="select * from UserProfile where Email LIKE @0";
+            var query=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+        }
+
+        <div id="topBar">
+            @if (WebSecurity.IsAuthenticated) {
+                <p>Hello, @query.UserNameFL | 
+                <a id="regularGreen" href="~/Account/Logout.cshtml">Logout</a>
+                &nbsp;|&nbsp;
+                <a id="regularGreen" href="~/Account/NeedHelpM.cshtml">Need Help?</a></p>
+            } else {
+                <a id="regularGreen" href="~/Account/LoginM.cshtml">Login</a>
+            }
+        </div>
+        <div id="logo">
+            <p><img alt="A" src="~/Images/logo.png"></p>
+        </div>
+        
+        <div id="main">
+            @RenderBody()
+        </div>
+        <footer>
+            <p id="footer">&copy; Copyright 2013 Jody Michael Associates<br>
+            <a id="jmaLink" href="http:\\www.jodymichael.com">www.jodymichael.com</a></p>
+        </footer>
+    </body>
+</html>

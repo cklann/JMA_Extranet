@@ -1,0 +1,85 @@
+﻿@{
+    // Initialize general page variables
+    var Email="";
+    var password="";
+    var rememberMe=false;
+    var errorMessage="";
+
+    // If this is a POST request, validate and process data
+    if (IsPost) {
+        Email=Request.Form["Email"];
+        password=Request.Form["password"];
+        rememberMe = Request.Form["rememberMe"].AsBool();
+        if (Email.IsEmpty() || password.IsEmpty()) {
+            errorMessage="You must enter an email address and a password.";
+        } else {
+            // Attempt to log in using provided credentials
+            if (WebSecurity.Login(Email, password, rememberMe)) {
+                if (rememberMe) {
+                    // Clear any other tickets that are already in the response
+                    Response.Cookies.Clear();
+
+                    // Set the new expiry date to thirty days from now
+                    DateTime expiryDate=DateTime.Now.AddDays(30);
+
+                    // Create a new forms authentication ticket
+                    FormsAuthenticationTicket ticket=new FormsAuthenticationTicket(2, Email,
+                        DateTime.Now, expiryDate, true, String.Empty);
+
+                    // Encrypt the ticket
+                    string encryptedTicket=FormsAuthentication.Encrypt(ticket);
+
+                    // Create a new authentication cookie and set its expiration date
+                    HttpCookie authenticationCookie=new HttpCookie(FormsAuthentication.FormsCookieName, encryptedTicket);
+                    authenticationCookie.Expires=ticket.Expiration;
+
+                    // Add the cookie to the response
+                    Response.Cookies.Add(authenticationCookie);
+                }
+                Response.Redirect("~/Account/Welcome.cshtml");
+            } else {
+                errorMessage="Login failed.";
+            }
+        }
+    }
+
+    if (errorMessage!="") {
+        <p>@errorMessage</p>
+        <p>Please correct any errors and try again.</p>
+    }
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="~/Styles/Login.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <div id="topBar"><br></div>
+        <a href="~/Account/LoginM.cshtml"><div id="jmaLink">Go to mobile version</div></a><p>&nbsp;</p>
+        <p id="logo"><img alt="A" src="~/Images/logo.png"></p><br>
+
+        <div id="block">
+            <form method="post" action="">
+                <p>Email address<br>
+                <input type="text" name="Email" size="30"></p>
+                <p>Password<br>
+                <input type="password" name="password" size="30"></p>
+                <p><input type="checkbox" name="rememberMe" value="true" checked="@rememberMe" />
+                <label class="checkbox" for="rememberMe">Keep me logged in</label>
+                <p><input type="submit" value="Login"></p>
+            </form>
+        <a href="~/Account/Register.cshtml"><div id="jmaLink">Register as a new user</div></a><br>
+        @if (errorMessage!="") {
+            <p id="error">@errorMessage<br>
+            Please correct any errors and try again.</p>
+        }
+        </div>
+
+        <footer><br><br>
+            <p id="footer">&copy; Copyright 2013 Jody Michael Associates |
+            <a href="www.jodymichael.com" id="jmaLink">www.jodymichael.com</a></p>
+        </footer>
+    </body>
+</html>

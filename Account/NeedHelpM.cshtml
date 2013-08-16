@@ -1,0 +1,42 @@
+﻿@{
+    Layout="~/LayoutM.cshtml";
+    var thisUser=Request["UserNameFL"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var question="";
+        var sendTo="support.team@jodymichael.com";
+
+        if (IsPost) {
+
+            question=Request["question"].As<string>("");
+            var errorMessage="";
+            try {
+                WebMail.SmtpServer="server.jodymichael.com";
+                WebMail.SmtpPort=587;
+                WebMail.EnableSsl=true;
+                WebMail.UserName=sendTo;
+                WebMail.Password="st0516ST!";
+                
+                WebMail.Send(to: sendTo,
+                        subject: "A question from " + @WebSecurity.CurrentUserName + " regarding the extranet",
+                        body: @question);
+
+                Response.Redirect("~/Account/NeedHelpSuccessM.cshtml");
+
+            } catch (Exception e) {
+                errorMessage=e.Message;
+            }
+        }
+
+        <br><br><h1></h1>
+        <form method="post" action="">
+            <p>Please type your question here:</p>
+            <p><textarea cols="45" rows="5" name="question" value="@question"></textarea></p>
+            <p><input type="submit" name="submit" value="Send question"></p>
+        </form>
+
+    } else {
+        <p>Please login.</p>
+    }
+}

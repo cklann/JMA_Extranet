@@ -1,0 +1,152 @@
+﻿@{
+    // Initialize general page variables
+    var fName="";
+    var lName="";
+    var email="";
+    var password="";
+    var confirmPassword="";
+    var UserNameFL="";
+    var UserNameLF="";
+
+    // Setup validation
+    Validation.RequireField("fName", "You must specify a first name.");
+    Validation.RequireField("lName", "You must specify a last name.");
+    Validation.RequireField("email", "You must specify an email address.");
+    Validation.RequireField("password", "Password cannot be blank.");
+    Validation.Add("confirmPassword",
+        Validator.EqualsTo("password", "Password and confirmation password do not match."));
+    Validation.Add("password",
+        Validator.StringLength(
+            maxLength: Int32.MaxValue,
+            minLength: 6,
+            errorMessage: "Password must be at least 6 characters"));
+
+    // If this is a POST request, validate and process data
+    if (IsPost) {
+        AntiForgery.Validate();
+        fName=Request.Form["fName"];
+        lName=Request.Form["lName"];
+        email=Request.Form["email"];
+        password=Request.Form["password"];
+        confirmPassword=Request.Form["confirmPassword"];
+
+        // If all information is valid, create a new account
+        if (Validation.IsValid()) {
+            // Insert a new user into the database
+            var db=Database.Open("JMA");
+
+            // Check if user already exists
+            var user=db.QuerySingle("SELECT Email FROM UserProfile WHERE Email LIKE @0", email);
+            if (user==null) {
+                // Insert email into the profile table
+                db.Execute("INSERT INTO UserProfile (Email) VALUES (@0)", email);
+
+                // Create and associate a new entry in the membership database.
+                // If successful, continue processing the request
+                try {
+                    bool requireEmailConfirmation=false;
+                    var token=WebSecurity.CreateAccount(email, password, requireEmailConfirmation);
+                    // Navigate back to the homepage, add user name and exit
+                    WebSecurity.Login(email, password);
+                    UserNameFL=fName+" "+lName;
+                    UserNameLF=lName+", "+fName;
+                    var SQLUPDATE="update UserProfile set UserNameFL=@1, UserNameLF=@2, fName=@3, lName=@4, " +
+                                  "CareerRoadMap1=@5, CareerRoadMap2=@6, CareerRoadMap3=@7, CareerRoadMap4=@8, " +
+                                  "CareerRoadMap5=@9, CareerRoadMap6=@10, CareerRoadMap7=@11, CareerRoadMap8=@12, " +
+                                  "CareerRoadMap9=@13, CareerRoadMap10=@14, Module1=@15, Module2=@16, " +
+                                  "Module3=@17, Module4=@18, Module5=@19, Module6=@20, Module7=@21, " +
+                                  "Module8=@22, Module9=@23, Module10=@24, Status=@25 " +
+                                  "where Email=@0";
+                    db.Execute(SQLUPDATE, email, UserNameFL, UserNameLF, fName, lName,
+                                  "No", "No", "No", "No", "No", 
+                                  "No", "No", "No", "No", "No",
+                                  "No", "No", "No", "No", "No",
+                                  "No", "No", "No", "No", "No",
+                                  "Active");
+                    db.Execute("insert into CareerRoadMap1 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap2 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap3 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap4 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap5 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap6 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap7 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap8 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap9 (Email) values (@0)", email);
+                    db.Execute("insert into CareerRoadMap10 (Email) values (@0)", email);
+                    db.Execute("insert into JobFactors (Email) values (@0)", email);
+                    db.Execute("insert into Interviewing (Email) values (@0)", email);
+                    db.Execute("insert into Accountability (Email) values (@0)", email);
+                    Response.Redirect("~/Account/RegisterSuccessM.cshtml");
+                } catch (System.Web.Security.MembershipCreateUserException e) {
+                    ModelState.AddFormError(e.Message);
+                }
+            } else {
+                // User already exists
+                ModelState.AddFormError("Email address is already in use.");
+            }
+        }
+    }
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="~/Styles/LoginM.css">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    </head>
+    <body>
+        <header></header>
+        <p id="logo"><img alt="A" src="~/Images/logo.png"></p><br>
+
+        <div id="block">
+            <form method="post">
+                @AntiForgery.GetHtml()
+                @* If at least one validation error exists, notify the user *@
+                @Html.ValidationSummary("Account creation was unsuccessful. Please correct the errors and try again.", excludeFieldErrors: true, htmlAttributes: null)
+
+                <p>Registration Form</p>
+
+                <form method="post" action="">
+                    <p>First name<br>
+                    <input type="text" name="fName" size="30" value="@fName" @Validation.For("fName") />                        
+                    @* Write any fName validation errors to the page *@
+                    @Html.ValidationMessage("fName")
+                    </p>
+
+                    <p>Last name<br>
+                    <input type="text" name="lName" size="30" value="@lName" @Validation.For("lName") />
+                    @* Write any lName validation errors to the page *@
+                    @Html.ValidationMessage("lName")
+                    </p>
+
+                    <p>Email address<br>
+                    <input type="text" name="email" size="30" value="@email" @Validation.For("email") />
+                    @* Write any email validation errors to the page *@
+                    @Html.ValidationMessage("email")
+                    </p>
+
+                    <p>Password<br>
+                    <input type="password" size="30" name="password" @Validation.For("password") />
+                    @* Write any password validation errors to the page *@
+                    <br>@Html.ValidationMessage("password")
+                    </p>
+
+                    <p>Confirm password<br>
+                    <input type="password" size="30" name="confirmPassword" @Validation.For("confirmPassword") />
+                    @* Write any password validation errors to the page *@
+                    <br>@Html.ValidationMessage("confirmPassword")
+                    </p>
+
+                    <input type="submit" value="Register" />
+            </form>
+        </div>
+
+        <div id="footer">
+            <footer><br><br>
+                <p>&copy; Copyright 2013 Jody Michael Associates |
+                <a href="www.jodymichael.com"<div id="jmaLink">www.jodymichael.com</a></p>
+            </footer>
+        </div>
+
+    </body>
+</html>

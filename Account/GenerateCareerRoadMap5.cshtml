@@ -1,0 +1,480 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/CareerRoadMap5.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var thisUser=Request["UserNameFL"];
+        var db=Database.Open("JMA");
+        var data=db.QuerySingle("select * from UserProfile where UserNameFL=@0", thisUser);
+        var thisEmail=data.Email;
+        
+        var SQLSELECT="select * from CareerRoadMap5 where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, data.Email);
+
+        var ansQ1=answers.Q1;               // What problem would you love to work on
+        var ansQ2=answers.Q2;               // What is it that you like about each job
+        var ansQ3=answers.Q3;               // List work-related activities you enjoy
+        var ansQ4=answers.Q4;               // Describe your dream job
+        var ansQ5a=answers.Q5a;             // Potential career roles
+        var ansQ5b=answers.Q5b;
+        var ansQ5c=answers.Q5c;
+        var ansQ5d=answers.Q5d;
+        var ansQ5e=answers.Q5e;
+        var ansQ5f=answers.Q5f;
+        var ansQ5g=answers.Q5g;
+        var ansQ5h=answers.Q5h;
+        var ansQ5i=answers.Q5i;
+        var ansQ5j=answers.Q5j;
+
+        if(IsPost) {
+            Response.Redirect("~/index.cshtml");
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+<DIV id="dimg1">
+</DIV>
+
+<P class="p1 ft2">CAREER ROADMAP FIVE</P>
+<P class="p2 ft3">DISCOVERY</P>
+<P class="p3 ft4">Please note: This is a proprietary document that is intended for your personal use only.</P>
+<br><br><br><br><br><br><br><br>
+
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+
+<DIV id="page_2">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">2</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft6">Congratulations!</P>
+<P class="p9 ft7">The document you hold in your hands, Career RoadMap Five, shows that you have not only completed Career RoadMaps One, Two, Three and Four, but that you are ready to delve deeper into potential career roles.</P>
+<P class="p10 ft8">In Career RoadMap Three, you identified three possible career roles. Go back to that section and reacquaint yourself with what you wrote down. Don't worry if they are not exact-they are just possible career roles that you could see yourself truly enjoying and that would support who you are (e.g., your values and work purpose statement).</P>
+<P class="p11 ft8">Let's consider several new and different perspectives that may reveal more about your ideal career. First, think of a job as an opportunity to solve a problem. Since there are an unlimited number of problems in the world today, there are an unlimited number of jobs to be performed.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_3">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">3</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft6">A Different Vantage Point (Continued)</P>
+<P class="p12 ft8">What problem would you love to work on or solve? It can be an obvious problem with a clear finish line, like solving the energy crisis or beautifying ugly spaces. Or, it could be more nebulous, like raising the self-esteem of teenagers.</P>
+<input type="text" id="formColor" name="ansQ1" size="55" value="@ansQ1">
+<P class="p13 ft8">Another perspective might be to think of three people whose jobs you would like to have, even if you don't know them personally. What is it that you like about each job?</P>
+<input type="text" id="formColor" name="ansQ2" size="55" value="@ansQ2">
+<P class="p14 ft8">Yet another way to think about your career role is to view it as a job that lets you play. List several work-related activities that you really enjoy. Then, describe a few possible jobs that feature two or more of these activities.</P>
+<input type="text" id="formColor" name="ansQ3" size="55" value="@ansQ3">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_4">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<DIV id="id_1_1">
+<P class="p15 ft0">JMA: Career RoadMap Five</P>
+<P class="p16 ft9">"Choose a job you love and you will never have to work a day in your life."</P>
+<P class="p17 ft10">- Confucius</P>
+</DIV>
+<DIV id="id_1_2">
+<P class="p18 ft0">4</P>
+<P class="p19 ft6">A Different Vantage Point (Continued)</P>
+<P class="p20 ft7">Lastly, what about your dream job? You know--the one that you fantasize about, but that is so far out that you instinctively feel you would not be able to get it. Most people have some sense, at least deep down inside, of what they would love to be doing. This feeling is often so repressed, however, that it is experienced only in the form of some wildly impractical fantasy, something that they would never do. Even if it seems impossible, there is at least a grain of truth in the image. Listen. It is telling you something about who
+you are and what you really want to be doing.</P>
+<P class="p22 ft12">Describe your dream job.</P>
+<input type="text" id="formColor" name="ansQ4" size="50" value="@ansQ4">
+</DIV>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_5">
+<DIV id="dimg1">
+</DIV>
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">5</P></TD>
+</TR>
+</TABLE>
+<P class="p23 ft6">A Different Vantage Point (Continued)</P>
+<P class="p24 ft13">When it comes to your dream job, it's important to keep in mind that if you do, in fact, get it, you won't have necessarily arrived in job heaven. It doesn't always work that way. Sometimes, when people "make it," their reaction is, "Is this it?" and disappointment sets in.</P>
+<P class="p25 ft15">Dream jobs or ideal jobs are most valuable in terms of the sense of direction they provide. Use the insights you gain from these to focus instead on finding the right "job fit"--and there is more than one job that can provide that. Remember--this is an iterative process. Don't get discouraged if your next job isn't the perfect fit. It might be because you haven't yet obtained the necessary experience or skill set. But you're on the right path. Our job is to bring you closer into alignment with your values, talents and work purpose so that, with time and determination, you <SPAN class="ft14">will </SPAN>achieve the right job fit.</P>
+<P class="p26 ft13">Consider your responses to the previous questions, along with the three career roles you wrote down in Career RoadMap Three. Below, jot down as many potential career roles as you can.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t3">
+    <tr>
+        <td width="15">1.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5a" value="@ansQ5a" size="40"></td><td width="10">&nbsp;&nbsp;</td>
+        <td width="15">6.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5f" value="@ansQ5f" size="40"></td>
+    </tr>
+    <tr>
+        <td>2.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5b" value="@ansQ5b" size="40"></td><td width="10"></td>
+        <td>7.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5g" value="@ansQ5g" size="40"></td>
+    </tr>
+    <tr>
+        <td>3.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5c" value="@ansQ5c" size="40"></td><td width="10"></td>
+        <td>8.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5h" value="@ansQ5h" size="40"></td>
+    </tr>
+    <tr>
+        <td>4.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5d" value="@ansQ5d" size="40"></td><td width="10"></td>
+        <td>9.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5i" value="@ansQ5i" size="40"></td>
+    </tr>
+    <tr>
+        <td width="15">5.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5e" value="@ansQ5e" size="40"></td><td width="10"></td>
+        <td width="15">10.&nbsp;</td>
+        <td><input type="text" id="formColor" name="ansQ5j" value="@ansQ5j" size="40"></td>
+    </tr>
+</TABLE>
+<P class="p29 ft13">Overall, it is important to keep in mind that there is no one position that is intrinsically better or more satisfying than the other. Some jobs may appear that way to you; however, don't be fooled by appearances. The only measure of real value is what works for you. By coming to know yourself better, you will gain the insight to best determine the right career for you.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t4">
+<TR></TR>
+</TABLE>
+</DIV>
+
+<DIV id="page_6">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<DIV id="id_1_1">
+<P class="p30 ft0">JMA: Career RoadMap Five</P>
+<P class="p31 ft6">Expanding Your Potential Career Roles</P>
+<P class="p32 ft13">Now, it's time to go to the library and utilize resources online to explore and add to your list of potential career roles. The internet has some great sources for research and discovery, but do not underestimate the library! It contains a wealth of information you can use to test potential career roles that the Internet does not.</P>
+<P class="p33 ft13">We strongly suggest visiting the JMA career library, located in our north side office (4860 N. Paulina, through the door on the left). It is open for your convenience by appointment only, and includes a wealth of books and resources related to industry, career and job choices. It is very focused toward your needs. Ask your career coach to schedule an appointment.</P>
+<P class="p34 ft17">You can also visit Harold Washington Library in downtown Chicago. A good place to start is the career reference section on the fourth floor. This library has the largest selection of career-related resources, with some publications targeted to your task at hand, and some not. Some people can get a bit overwhelmed.</P>
+<P class="p35 ft9">"Often we think we can't only because we haven't made the effort to research how we could."</P>
+<P class="p36 ft10">- Laurence Boldt</P>
+</DIV>
+<DIV id="id_1_2">
+<P class="p18 ft0">6</P>
+<P class="p37 ft18">Here are guidelines to follow to help ensure research success:</P>
+<P class="p38 ft20"><SPAN class="ft11">•</SPAN><SPAN class="ft19">Schedule more than one block of time to focus on research; ideally, schedule</SPAN></P>
+<P class="p39 ft11">2-4 sessions for yourself.</P>
+<P class="p40 ft13"><SPAN class="ft11">•</SPAN><SPAN class="ft21">Make sure to allot at least </SPAN>3-4 hours at a time so that you are not rushed.</P>
+<P class="p41 ft23"><SPAN class="ft11">•</SPAN><SPAN class="ft22">Arrive to the library or your online search in a positive, open, hopeful state of mind and remain positive throughout. If you find yourself falling into negative territory (e.g. you're thinking "I'm not finding anything" or "I know I'll never find the right job," stop looking and try again later.</SPAN></P>
+<P class="p42 ft15"><SPAN class="ft11">•</SPAN><SPAN class="ft24">Explore. Stretch. Get outside your comfort zone and into industries and professions that you've never</SPAN></P>
+<P class="p43 ft13">considered. Be curious! See what's out there. An idea from one industry can often transfer to another.</P>
+<P class="p44 ft11"><SPAN class="ft11">•</SPAN><SPAN class="ft25">Don't underestimate the JMA library.</SPAN></P>
+<P class="p45 ft13">We have cultivated books solely focused on career choices from a variety of sources.</P>
+<P class="p46 ft15"><SPAN class="ft11">•</SPAN><SPAN class="ft24">At Harold Washington Library, ask the librarians behind the Business Information Center desk on the fourth floor to help. They are specially trained to assist you with this type of exercise.</SPAN></P>
+<P class="p47 ft13">In addition, some reference books are not available unless specifically requested from them.</P>
+<P class="p48 ft13"><SPAN class="ft11">•</SPAN><SPAN class="ft21">Look outside of books. Search Internet career sites, periodicals and journals.</SPAN></P>
+</DIV>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_7">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">7</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft6">A Wealth of Resources</P>
+<P class="p49 ft26">Career Reference Works</P>
+<P class="p50 ft27">The following is just a sampling of recommended books found at the Harold Washington Library Center (HWLC). Be sure to explore the shelves of the career reference section for other books that may be more specific to your interests.</P><br>
+</DIV>
+
+<table>
+    <tr>
+        <td id="reference" width="400"><b>O*Net Dictionary of Occupational Titles</b><br>Descriptions of 950 jobs, including education/training needed, number of people employed in that profession, annual earnings, job growth, personality type, values, abilities, general work activities and more. Also available online at www.onetonline.org.</td>
+        <td width="10">&nbsp;&nbsp;</td>
+        <td id="reference" width="260">Fourth Ed.<br>Farr, Michael and Laurence Shatkin.<br>Indianapolis: JIST, 2007.<br><i>HWLC 4th floor<br>HB2595.016 2007.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Career Pathways Handbook</b><br>Provides career profiles for a wide range of professions, including information regarding common job tasks, education/training, wages, important skills and abilities, typical career paths and interviews with people in that profession.</td>
+        <td></td>
+        <td id="reference">2005-2006 Ed.<br>Cassio, Jim.<br>Victoria: Trafford, 2004.<br><i>HWLC 4th floor<br>HF5382.C38 2005.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Enhanced Occupational Outlook Handbook</b><br>Includes more than 6,100 job descriptions, as well as information about trends in occupations and industries.</td>
+        <td></td>
+        <td id="reference">Seventh Ed.<br>Indianapolis: JIST, 2009.<br><i>HWLC 4th floor<br>HF5382.U6E55 2009.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Occupational Outlook Handbook</b><br>Provides an overview of a wide range of different occupations, including information about the nature of the work, training and qualifications, number of people employed in that occupation, job outlook, earnings and sources of additional information.</td>
+        <td></td>
+        <td id="reference">2010-2011 Ed.<br>Lanham: Bernan, 2010.<br><i>HWLC 4th floor<br>HF5382.5.U5O23 2010-2011.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Encyclopedia of Careers and Vocational Guidance.</b><br>Offers career field information, including a background and outlook of the field, sources for more information and related articles.</td>
+        <td></td>
+        <td id="reference">Fifteenth Ed.<br>New York: Infobase, 2011.<br><i>HWLC 4th floor<br>HF5381.E52 2011 (5 volumes).</i></td>
+    </tr>
+</table>
+
+<DIV id="id_3">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_8">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t5">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">8</P></TD>
+</TR>
+</TABLE>
+</DIV><br>
+
+<table>
+    <tr>
+        <td id="reference" width="400"><b>New Guide for Occupational Exploration: Linking Interests, Learning, and Careers</b><br>Offers more than 900 job descriptions emphasizing the skills needed, related courses, education required, earnings, growth and more for career planning.</td>
+        <td width="10">&nbsp;&nbsp;</td>
+        <td id="reference" width="260">Farr, Michael and Laurence Shatkin.<br>Indianapolis: JIST, 2006.<br><i>HWLC 4th floor<br></i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>The Princeton Review Guide to Your Career: Comprehensive Profiles of 240 of Today’s Hottest Careers</b><br>Provides crucial statistics about each career, including average salaries, hours worked per week, education/training required and major employers.</td>
+        <td></td>
+        <td id="reference">Sixth Ed.<br>Bernstein, Alan B.<br>New York: Princeton Review, 2006.<br><i>HWLC 4th floor<br>HF5382.5.U5G85 2006.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Career Information Center</b><br>Includes job profiles detailing nature of the work, education/ training, salary, employment outlook and additional resources.</td>
+        <td></td>
+        <td id="reference">Ninth Ed.<br>Farmington Hills: Thomson Gale, 2007.<br><i>HWLC 4th floor<br>HF5382.5.U5C32 2007 (13 volumes).</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Job Hunter’s Sourcebook</b><br>Provides occupation-specific sources of job-hunting information, such as handbooks/manuals, tradeshows and associations.</td>
+        <td></td>
+        <td id="reference">Seventh Ed.<br>Swartout, Kristy<br>Farmington Hills: Thomson Gale, 2007.<br><i>HWLC 4th floor<br>HF5382.75.U6J63 2007.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>Best Jobs for the 21st Century</b><br>Includes lists to help you explore jobs based on pay, interests, education level, personality type and other criteria. It also provides descriptions for each job.</td>
+        <td></td>
+        <td id="reference">Fifth Ed.<br>Farr, Michael and Laurence Shatkin Indianapolis: JIST, 2009.<br><i>HWLC 4th floor<br>HF5381.15.F37 2009.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>225 Best Jobs for Baby Boomers</b><br>Includes “best jobs” lists for baby boomers organized by three age groups, age-sensitive abilities, earnings, education/ training, interests and personality type. Also, provides job descriptions with details regarding tasks and responsibilities, skills needed, growth and work environment.</td>
+        <td></td>
+        <td id="reference">Farr, Michael and Laurence Shatkin<br>Indianapolis: JIST, 2007.<br><i>HWLC 4th floor<br>HF5382.5.U5F365 2007.</i></td>
+    </tr>
+</table>
+
+<DIV id="id_3">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_9">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t5">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">9</P></TD>
+</TR>
+</TABLE>
+</DIV><br>
+
+<table>
+    <tr>
+        <td id="reference" width="400"><b>175 Best Jobs Not Behind a Desk</b><br>Offers “best jobs” lists organized by activity level, time outdoors, earnings, education, growth, openings, interests, self-employed and part-time workers and more. Also, provides job descriptions with details including wages, tasks/responsibilities and work environment.</td>
+        <td width="10">&nbsp;&nbsp;</td>
+        <td id="reference" width="260">Farr, Michael and Laurence Shatkin<br>Indianapolis: JIST, 2007.<br><i>HWLC 4th floor<br>HF5382.5.U5F364 2007.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>40 Best Fields for Your Career</b><br>Provides descriptions of more than 40 fields, detailing earnings, growth, jobs in the industry, training, advancement and work environment.</td>
+        <td></td>
+        <td id="reference">Farr, Michael and Laurence Shatkin<br>Indianapolis: JIST, 2006.<br><i>HWLC 4th floor<br>HF5382.5.U5F363 2006.</i></td>
+    </tr>
+    <tr height="10"></tr>
+    <tr>
+        <td id="reference"><b>150 Best Jobs for Your Skills</b><br>Includes “best jobs” list for each skill, organized by pay, growth, openings, education, self-employed and part-time workers and more.</td>
+        <td></td>
+        <td id="reference">Farr, Michael and Laurence Shatkin<br>Indianapolis: JIST, 2008.<br><i>HWLC 4th floor<br>HF5382.5.U5F3634 2008.</i></td>
+    </tr>
+</table>
+
+
+<P class="p89 ft26">Online Resources</P>
+<DIV id="id_3">
+<P class="p51 ft11">Below is a sampling of recommended online resources. There are some great tools for researching careers.</P>
+<P class="p93 ft13">We've also listed some free online career assessments. Each test has its own limitations and typically only considers one facet of you as a person (i.e. interests, skills, potential earnings, etc.). Remember that the tests available do not incorporate your entire personality and experiences, but use them to assess different aspects of your personality and see careers from a different perspective. Make sure you hold onto your results - you may wish to take a second look later on.</P>
+<P class="p94 ft26">Online Research:</P>
+<P class="p95 ft11"><SPAN class="ft33">1.</SPAN><SPAN class="ft34">CareerOverview.com. </SPAN>Allows you to explore careers and salary information.</P>
+<P class="p96 ft11"><SPAN class="ft12">2.</SPAN><SPAN class="ft35">CareerSearchDatabase.com. </SPAN>Includes salary information and descriptions for a wide range of jobs.</P>
+<P class="p97 ft13"><SPAN class="ft12">3.</SPAN><SPAN class="ft36">Collegeboard.com. </SPAN>Visit the "Major & Career Profiles" page at bigfuture.collegeboard.org/ majors- careers for profiles on a variety of different professions.</P>
+<P class="p98 ft11"><SPAN class="ft12">4.</SPAN><SPAN class="ft35">Salary.com. </SPAN>Provides free salary information for thousands of jobs and locations.</P>
+<P class="p99 ft13"><SPAN class="ft12">5.</SPAN><SPAN class="ft36">Vault.com. </SPAN>Click on "Professions" in the top navigational bar to access "A Day in the Life" articles and interviews with top professionals.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t6">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_10">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t5">
+<TR>
+	<TD class="tr2 td8"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td9"><P class="p7 ft0">10</P></TD>
+</TR>
+</TABLE>
+<P class="p19 ft26">Free Online Career Assessments:</P>
+<P class="p100 ft39"><SPAN class="ft33">1.</SPAN><SPAN class="ft37">Add Up Your Interests: Career Possibilities </SPAN><SPAN class="ft38">https://bigfuture.collegeboard.org/explore-careers/careers/add-up-your-interests-career-possibilities</SPAN><SPAN class="ft38"> This is a fun test to find suggested careers with certain interest combinations. Scroll over the options and write down anything that appeals to you.</SPAN></P>
+<P class="p101 ft18"><SPAN class="ft12">2.</SPAN><SPAN class="ft36">5 Minute Career Quiz from The Princeton Review </SPAN><SPAN class="ft13">http://www.princetonreview.com/careers.aspx</SPAN></P>
+<P class="p102 ft13">Once you select "start," you'll need to create a free profile. This test organizes results by based on their metrics for measuring your interests and preferred work style.</P>
+<P class="p103 ft18"><SPAN class="ft12">3.</SPAN><SPAN class="ft36">O*Net Interest Profiler from My Next Move </SPAN><SPAN class="ft13">http://www.mynextmove.org/explore/ip</SPAN></P>
+<P class="p102 ft13">In addition to taking the assessment, you can also click on the "search" icon in the top right menu bar. This is a great research tool- just type in a few words and see what comes up.</P>
+<P class="p104 ft18"><SPAN class="ft12">4.</SPAN><SPAN class="ft36">O*Net Skills Search from O*Net OnLine </SPAN><SPAN class="ft13">http://www.onetonline.org/skills/</SPAN></P>
+<P class="p102 ft38">This tool can help you start thinking about careers in terms of skills, whether you have them already or want to develop them. Once you've selected a set of skills, click "go" and dive further into any careers that appeal to you.</P>
+<P class="p105 ft42"><SPAN class="ft40">5.</SPAN><SPAN class="ft41">Skills Profiler from Career Onestop </SPAN><SPAN class="ft17">http://www.careerinfonet.org/skills/default.aspx?nodeid=20 This test can help you think about rating your abilities. A word of</SPAN></P>
+<P class="p106 ft38"> caution - some of us got as little as two, one, or even zero matches on this site, but it can still be useful in the research stage.</P>
+<P class="p107 ft42"><SPAN class="ft33">6.</SPAN><SPAN class="ft43">MAPP Assessment </SPAN><SPAN class="ft17">http://www.assessment.com/takemapp/default.asp</SPAN></P>
+<P class="p108 ft11">This is Motivational Appraisal of Personal Potential, designed to help pinpoint one's natural motivations.</P>
+<P class="p109 ft13">You will not be able to access the top matched careers without buying a report, however you can select five different careers for free to see how they match up with their metrics.</P>
+<P class="p110 ft18"><SPAN class="ft44">7.</SPAN><SPAN class="ft45">Best Job Selector from SelectSmart.com </SPAN><SPAN class="ft13">http://www.selectsmart.com/topjobs.html</SPAN></P>
+<P class="p39 ft11">We like this test from the perspective of the questions they ask. Think about what is really important to you.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_11">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t5">
+<TR>
+	<TD class="tr2 td8"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td9"><P class="p7 ft0">11</P></TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV id="id_2">
+<DIV id="id_2_1">
+<P class="p51 ft26">Trade Magazines, Newsletters and Directories</P>
+<P class="p111 ft13">Virtually every field has trade magazines and newsletters geared toward those already working in the field. Reviewing the trade magazines in the fields you are considering will give you a feel for the attitudes, concerns and interests of people within the field, as well as current topics. Often these publications include job listings.</P>
+<P class="p96 ft11"><SPAN class="ft33">1.</SPAN><SPAN class="ft46">Gale Directory of Publications and Broadcast</SPAN></P>
+<P class="p112 ft11">Media</P>
+<P class="p113 ft11">Published annually.</P>
+<P class="p114 ft13"><SPAN class="ft12">2.</SPAN><SPAN class="ft47">The Standard Periodical Directory Published annually in January.</SPAN></P>
+<P class="p115 ft11"><SPAN class="ft12">3.</SPAN><SPAN class="ft48">Reader's Guide to Periodical Literature.</SPAN></P>
+<P class="p116 ft49">This publication indexes articles form over 400 periodicals, organized by article subject. It is particularly useful for its current events coverage.</P>
+</DIV>
+<DIV id="id_2_2">
+<P class="p117 ft50">Three of the most referenced business directories are:</P>
+<P class="p118 ft27"><SPAN class="ft33">1.</SPAN><SPAN class="ft51">Standard & Poor's Register of Corporations, Directors & Executives</SPAN></P>
+<P class="p119 ft11"><SPAN class="ft12">2.</SPAN><SPAN class="ft48">Dun & Bradstreet Million Dollar Directory</SPAN></P>
+<P class="p120 ft11">(or Dun & Bradstreet Middle Market Directory)</P>
+<P class="p121 ft11"><SPAN class="ft12">3.</SPAN><SPAN class="ft52">Hoovers</SPAN></P>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<P class="p122 ft53">"What is research but a blind date with knowledge?"</P>
+<P class="p123 ft53">- William Henry</P>
+</DIV>
+<DIV id="id_4">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_12">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td8"><P class="p5 ft0">JMA: Career RoadMap Five</P></TD>
+	<TD class="tr2 td9"><P class="p7 ft0">12</P></TD>
+</TR>
+</TABLE>
+<P class="p124 ft54">This is a proprietary document that is intended for your personal use only.</P>
+<P class="p125 ft8">This product, the Career RoadMap series, as well as any coaching information and materials disclosed and provided by Jody Michael Associates (JMA) during our work together, including, but not limited to, processes, products, methods, frameworks, tools, strategies and workshops, are confidential and protected by copyright laws.</P>
+<P class="p126 ft8">This means that this material, and all materials received in our work together, cannot be shared with others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form. It is not to be used for any coaching or consultative purpose.</P>
+<P class="p127 ft8">Over 90 percent of our new clients are referred by current clients. If you ever want to refer us to your colleagues and organizations, we would be pleased to provide you with non-confidential information to help facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact JMA. Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach this agreement, you will be liable and will pay to JMA the reasonable attorney's fees and costs JMA incurred as a result of your breach.</P>
+<P class="p128 ft8">If you have received this document and are not a client of Jody Michael Associates, then you are not the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and will be held liable. If you have received this material in error, and are not an intended recipient, please notify us immediately by email or phone and delete the original material.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</html>

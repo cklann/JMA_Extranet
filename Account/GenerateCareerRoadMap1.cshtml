@@ -1,0 +1,600 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/CareerRoadMap1.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var thisUser=Request["UserNameFL"];
+        var db=Database.Open("JMA");
+        var data=db.QuerySingle("select * from UserProfile where UserNameFL=@0", thisUser);
+        var thisEmail=data.Email;
+        
+        var SQLSELECT="select * from CareerRoadMap1 where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, data.Email);
+
+        // Explain how you feel right now
+        var ansQ1=answers.Q1;
+
+        // Current moods
+        var ansQ2a=answers.Q2a;             // Excited
+        var ansQ2b=answers.Q2b;             // Overwhelmed
+        var ansQ2c=answers.Q2c;             // Frustrated
+        var ansQ2d=answers.Q2d;             // Confused
+        var ansQ2e=answers.Q2e;             // Anxious/Worried
+        var ansQ2f=answers.Q2f;             // Disappointed
+        var ansQ2g=answers.Q2g;             // Angry
+        var ansQ2h=answers.Q2h;             // Hopeless
+        var ansQ2i=answers.Q2i;             // Hopeful
+        var ansQ2j=answers.Q2j;             // Fearful
+        var ansQ2k=answers.Q2k;             // Other
+        var ansQ2l=answers.Q2l;             // Other (text)
+	
+	    // Why do you want to change careers
+        var ansQ3a=answers.Q3a;             // You want your work to be more meaningful        var ansQ3b=answers.Q3b;             // You are looking for more autonomy than your work allows        var ansQ3c=answers.Q3c;             // You have plateaued        var ansQ3d=answers.Q3d;             // You have experienced roadblocks (e.g., political setbacks)        var ansQ3e=answers.Q3e;             // You are burned-out        var ansQ3f=answers.Q3f;             // You are riding out your time until retirement        var ansQ3g=answers.Q3g;             // You are not making enough money        var ansQ3h=answers.Q3h;             // You want more prestige        var ansQ3i=answers.Q3i;             // You dislike your boss and/or coworkers        var ansQ3j=answers.Q3j;             // You are not as successful as others in your family or circle of friends        var ansQ3k=answers.Q3k;             // You want to meet new people        var ansQ3l=answers.Q3l;             // You are just drifting        var ansQ3m=answers.Q3m;             // You are just coasting        var ansQ3n=answers.Q3n;             // You feel like a robot at work, just going through the motions        var ansQ3o=answers.Q3o;             // You want more happiness/fulfillment        var ansQ3p=answers.Q3p;             // You are bored        var ansQ3q=answers.Q3q;             // You are not doing anything important        var ansQ3r=answers.Q3r;             // You are not mentally stimulated        var ansQ3s=answers.Q3s;             // You are afraid to deal with reality
+
+    	// Which fears are familiar
+        var ansQ4a=answers.Q4a;             // Failure        var ansQ4b=answers.Q4b;             // Rejection        var ansQ4c=answers.Q4c;             // Change        var ansQ4d=answers.Q4d;             // Commitment        var ansQ4e=answers.Q4e;             // Reality        var ansQ4f=answers.Q4f;             // Losing autonomy        var ansQ4g=answers.Q4g;             // Not "looking good"        var ansQ4h=answers.Q4h;             // Disappointing family/others        var ansQ4i=answers.Q4i;             // Pain and sacrifice        var ansQ4j=answers.Q4j;             // Not being in control        var ansQ4k=answers.Q4k;             // Never being happy in a job        var ansQ4l=answers.Q4l;             // Making the "wrong" choice        var ansQ4m=answers.Q4m;             // Not being good at anything        var ansQ4n=answers.Q4n;             // Never knowing what the "right" career is        var ansQ4o=answers.Q4o;             // A good career fit not existing        var ansQ4p=answers.Q4p;             // Other
+        var ansQ4q=answers.Q4q;             // Other (text)
+
+        // Are you having any fear or anxiety over the process of finding the right career
+        var ansQ5=answers.Q5;
+
+        // Top fears that hold you back
+        var ansQ6=answers.Q6;
+
+        // Fears hindering your progress
+        var ansQ7=answers.Q7;
+
+        // Sought medical attention
+        var ansQ8=answers.Q8;
+
+        // Frustration level with current job
+        var ansQ9=answers.Q9;
+        var ansQ9a=answers.Q9a;
+
+        // Frustration level with job hunting experience
+        var ansQ10=answers.Q10;
+        var ansQ10a=answers.Q10a;
+
+        // Frustration level with interviewing
+        var ansQ11=answers.Q11;
+        var ansQ11a=answers.Q11a;
+
+        // Uncertainty level regarding what to do next
+        var ansQ12=answers.Q12;
+        var ansQ12a=answers.Q12a;
+
+        // Experience writing/updating resume
+        var ansQ13=answers.Q13;
+        var ansQ13a=answers.Q13a;
+
+        // Are you using strategies to help alleviate frustrations
+        var ansQ13b=answers.Q13b;
+
+        // If so, what are they and how often
+        var ansQ13c=answers.Q13c;
+        var ansQ13d=answers.Q13d;
+
+        // What is not working in your job/career
+        var ansQ14=answers.Q14;
+
+        // What is frustrating about your job/career
+        var ansQ15=answers.Q15;
+
+        // Has this pattern occurred before
+        var ansQ16=answers.Q16;
+
+        if(IsPost) {
+            Response.Redirect("~/index.cshtml");
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+    <div id="page_1">
+        <div id="dimg1">
+        </div>
+
+        <p class="p1 ft2">CAREER ROADMAP ONE</p>
+        <p class="p2 ft3">DISCOVERY</p>
+        <br><br><br><br><br><br><br><br>
+
+        <p class="p3 ft4">Please note: This is a proprietary document that is intended for your personal use only.</p>
+        <table cellpadding=0 cellspacing=0 class="t0">
+            <tr></tr><tr></tr>
+        </table>
+    </div>
+
+    <div id="page_2">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">2</p></td>
+                </tr>
+            </table>
+            <p class="p8 ft6">Welcome to Jody Michael Associates' Career RoadMap series.</p>
+            <p class="p9 ft7">We invite you to join us on a path of career discovery.</p>
+            <p class="p10 ft8">In your hands, you hold the first in a series of maps that will help guide you along the path. It was
+                created to help clients gain clarity and a better understanding of themselves. This knowledge has empowered thousands of
+                our clients, just like you, to choose and pursue the career that uses their talents and abilities and brings them the
+                most happiness and fulfillment.</p>
+            <p class="p11 ft8">Often, for a variety of reasons, people approach the career coaching process with anxiety and fear.
+                There's no need to worry. You already know exactly what you are meant to do and you already have the talents to do
+                it—we're just here to help you identify it.</p>
+            <p class="p12 ft8">The exercises in this series are designed to help you realize that the hours you spend on "career," "job"
+                or "vocation" are more integral to your life than you may have been led to believe. If you're unable to answer a
+                question, skip it and come back. But the more engaged you are in the process, the more insight and information it will
+                give us and the more quickly you'll travel along your career discovery path.</p>
+            <p class="p13 ft6">Now, let the journey begin…</p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+            <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_3">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p14 ft0">JMA: Career RoadMap One</p>
+                <p class="p15 ft6">Don't Settle—Do What You Love</p>
+                <p class="p16 ft9">Professionals spend over half of their waking hours earning a living. Wouldn't you like to spend it
+                    doing something that fulfills you? Many people believe that it's normal to hate their jobs; many of us have watched
+                    our parents, siblings and others suffer through jobs that they don't enjoy.</p>
+                <p class="p17 ft10">Statistics show that:</p>
+                <p class="p18 ft9"><span class="ft7">&#8226;</span><span class="ft11">Among American workers, 71 percent are "not engaged" or
+                    are "actively disengaged" in their work, meaning they are emotionally</span></p>
+                <p class="p19 ft13">disconnected from their workplaces and are less likely to be productive.<span class="ft12">
+                    1</span></p>
+                <p class="p20 ft13"><span class="ft7">&#8226;</span><span class="ft14">Actively disengaged workers and the unemployed are in
+                    significantly worse health than Americans who are engaged in their jobs.</span><span class="ft12">2</span></p>
+                <p class="p21 ft9"><span class="ft7">&#8226;</span><span class="ft11">When asked, "If you could do it all over again, would
+                    you choose the same career?," 62 percent of respondents said "no," while 38 percent said "yes."</span>
+                    <span class="ft15">3</span></p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p22 ft0">3</p>
+                <p class="p23 ft9">The fact that you're here means that you are committed and motivated to take responsibility for your
+                    own happiness. Given that you will spend approximately 50 years of your life working, devoting that time to
+                    something you love will have an immeasurable impact on your quality of life. And that's exactly what we're here to
+                    help you achieve.</p>
+                <p class="p24 ft16">"Your work is going to fill a large part of your life, and the only way to be truly</p>
+                <p class="p25 ft16">satisfied is to do what you believe is great work. And the only way to do great work is to love what
+                    you do. If you haven't found it yet, keep looking. Don't settle. As with all matters of the heart, you'll know when
+                    you find it. And, like any great relationship, it just gets better and better as the years roll on."</p>
+                <p class="p26 ft17">- Steve Jobs</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+            <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_4">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t3">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">4</p></td>
+                </tr>
+            </table>
+        </div>
+
+        <div id="id_2">
+            <div id="id_2_1">
+                <p class="p27 ft0"></p>
+                <p class="p28 ft4"></p>
+            </div>
+
+            <div id="id_2_2">
+                <p class="p29 ft6">Checking In</p>
+                <p class="p30 ft18">Take a moment to reflect on how you are starting your journey. Explain how you are feeling right
+                    now.</p>
+                <p><input type="text" id="formColor" name="ansQ1" size="65" value="@ansQ1"></p>
+                <p class="p31 ft19">Which of the following moods are you experiencing right now? Check all that apply.</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2a" value="1" @(ansQ2a.Contains("1") ? " checked" : "")>
+                    Excited</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2b" value="1" @(ansQ2b.Contains("1") ? " checked" : "")>
+                    Overwhelmed</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2c" value="1" @(ansQ2c.Contains("1") ? " checked" : "")>
+                    Frustrated</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2d" value="1" @(ansQ2d.Contains("1") ? " checked" : "")>
+                    Confused</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2e" value="1" @(ansQ2e.Contains("1") ? " checked" : "")>
+                    Anxious/Worried</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2f" value="1" @(ansQ2f.Contains("1") ? " checked" : "")>
+                    Disappointed</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2g" value="1" @(ansQ2g.Contains("1") ? " checked" : "")>
+                    Angry</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2h" value="1" @(ansQ2h.Contains("1") ? " checked" : "")>
+                    Hopeless</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2i" value="1" @(ansQ2i.Contains("1") ? " checked" : "")>
+                    Hopeful</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2j" value="1" @(ansQ2j.Contains("1") ? " checked" : "")>
+                    Fearful</p>
+                <p><input type="checkbox" id="formColor" name="ansQ2k" value="1" @(ansQ2k.Contains("1") ? " checked" : "")>
+                    Other&nbsp;
+                    <input type="text" id="formColor" name="ansQ2l" value="@ansQ2l"></p>
+
+                <table cellpadding=0 cellspacing=0 class="t5">
+                    <tr></tr><tr></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div id="page_5">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p14 ft0">JMA: Career RoadMap One</p>
+                <p class="p33 ft6">The Impetus for the Journey</p>
+                <p class="p34 ft19">If you are struggling in the area of career, you are not alone. Recent studies show that 75 percent
+                    of people are dissatisfied with their work or "don't know what they want to be when they grow up."</p>
+                <p class="p35 ft19">Which of the following categories describe why you want to change careers?</p>
+
+                <p>                <input type="checkbox" id="formColor" name="ansQ3a" value="1" @(ansQ3a.Contains("1") ? " checked" : "")>You want your                    work to be more meaningful<br>                <input type="checkbox" id="formColor" name="ansQ3b" value="1" @(ansQ3b.Contains("1") ? " checked" : "")>You are looking                    for more autonomy than your work<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;allows<br>                <input type="checkbox" id="formColor" name="ansQ3c" value="1" @(ansQ3c.Contains("1") ? " checked" : "")>You have                    plateaued<br>                <input type="checkbox" id="formColor" name="ansQ3d" value="1" @(ansQ3d.Contains("1") ? " checked" : "")>You have                    experienced roadblocks (e.g., political<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;setbacks)<br>                <input type="checkbox" id="formColor" name="ansQ3e" value="1" @(ansQ3e.Contains("1") ? " checked" : "")>You are                    burned-out<br>                <input type="checkbox" id="formColor" name="ansQ3f" value="1" @(ansQ3f.Contains("1") ? " checked" : "")>You are riding                    out your time until retirement<br>                <input type="checkbox" id="formColor" name="ansQ3g" value="1" @(ansQ3g.Contains("1") ? " checked" : "")>You are not                    making enough money<br>                <input type="checkbox" id="formColor" name="ansQ3h" value="1" @(ansQ3h.Contains("1") ? " checked" : "")>You want more                    prestige<br>                <input type="checkbox" id="formColor" name="ansQ3i" value="1" @(ansQ3i.Contains("1") ? " checked" : "")>You dislike your                    boss and/or coworkers<br>                <input type="checkbox" id="formColor" name="ansQ3j" value="1" @(ansQ3j.Contains("1") ? " checked" : "")>You are not as                    successful as others in your family or<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;circle of friends<br>                <input type="checkbox" id="formColor" name="ansQ3k" value="1" @(ansQ3k.Contains("1") ? " checked" : "")>You want to meet                    new people<br>                <input type="checkbox" id="formColor" name="ansQ3l" value="1" @(ansQ3l.Contains("1") ? " checked" : "")>You are just                    drifting<br>                <input type="checkbox" id="formColor" name="ansQ3m" value="1" @(ansQ3m.Contains("1") ? " checked" : "")>You are just                    coasting<br>                <input type="checkbox" id="formColor" name="ansQ3n" value="1" @(ansQ3n.Contains("1") ? " checked" : "")>You feel like a                    robot at work, just going through the<br>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;motions; one day is like the next<br>                <input type="checkbox" id="formColor" name="ansQ3o" value="1" @(ansQ3o.Contains("1") ? " checked" : "")>You want more                    happiness/fulfillment<br>                <input type="checkbox" id="formColor" name="ansQ3p" value="1" @(ansQ3p.Contains("1") ? " checked" : "")>You are                    bored<br>                <input type="checkbox" id="formColor" name="ansQ3q" value="1" @(ansQ3q.Contains("1") ? " checked" : "")>You are not                    doing anything important<br>                <input type="checkbox" id="formColor" name="ansQ3r" value="1" @(ansQ3r.Contains("1") ? " checked" : "")>You are not                    mentally stimulated<br>                <input type="checkbox" id="formColor" name="ansQ3s" value="1" @(ansQ3s.Contains("1") ? " checked" : "")>You are afraid
+                    to deal with reality<br>
+                </p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p22 ft0">5</p>
+                <p class="p42 ft26">"The past is not your potential. In any hour you can choose to liberate the future."</p>
+                <p class="p43 ft27">- Marilyn Ferguson</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_6">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p29 ft0">JMA: Career RoadMap One</p>
+                <p class="p44 ft28">"For many people a job is more than an income—it's an important part of who we are. So
+                    a career transition of any sort is one of the most unsettling experiences you can face in your life."</p>
+                <p class="p45 ft27">- Paul Clitheroe</p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p22 ft0">6</p>
+                <p class="p33 ft6">Travel Light</p>
+                <p class="p46 ft30">The categories you checked on the previous page are indicators that your work has fallen out of
+                    alignment with your current needs. Whether your needs changed or your work changed is not particularly relevant.
+                    What <span class="ft29">is </span>relevant is that action is required in order to restore alignment. We will study
+                    your feelings of discomfort. The</p>
+                <p class="p47 ft31">length of time you have observed this misalignment is important as well. Why have you stalled, not
+                    changed direction in your work-life to better</p>
+                <p class="p48 ft30">meet your needs? Frequently, the extended suffering of anxiety occurs due to fear. Which of the
+                    following fears are familiar to you?</p>
+                <p class="p49 ft10">Fear of:</p>
+
+                <p>                <input type="checkbox" id="formColor" name="ansQ4a" value="1" @(ansQ4a.Contains("1") ? " checked" : "")>                    Failure<br>                <input type="checkbox" id="formColor" name="ansQ4i" value="1" @(ansQ4i.Contains("1") ? " checked" : "")>                    Pain and sacrifice<br>                <input type="checkbox" id="formColor" name="ansQ4b" value="1" @(ansQ4b.Contains("1") ? " checked" : "")>                    Rejection<br>                <input type="checkbox" id="formColor" name="ansQ4j" value="1" @(ansQ4j.Contains("1") ? " checked" : "")>                    Not being in control<br>                <input type="checkbox" id="formColor" name="ansQ4c" value="1" @(ansQ4c.Contains("1") ? " checked" : "")>                    Change<br>                <input type="checkbox" id="formColor" name="ansQ4k" value="1" @(ansQ4k.Contains("1") ? " checked" : "")>                    Never being happy in a job<br>                <input type="checkbox" id="formColor" name="ansQ4d" value="1" @(ansQ4d.Contains("1") ? " checked" : "")>                    Commitment<br>                <input type="checkbox" id="formColor" name="ansQ4l" value="1" @(ansQ4l.Contains("1") ? " checked" : "")>                    Making the "wrong" choice<br>                <input type="checkbox" id="formColor" name="ansQ4e" value="1" @(ansQ4e.Contains("1") ? " checked" : "")>                    Reality<br>                <input type="checkbox" id="formColor" name="ansQ4m" value="1" @(ansQ4m.Contains("1") ? " checked" : "")>                    Not being good at anything<br>                <input type="checkbox" id="formColor" name="ansQ4f" value="1" @(ansQ4f.Contains("1") ? " checked" : "")>                    Losing autonomy<br>                <input type="checkbox" id="formColor" name="ansQ4n" value="1" @(ansQ4n.Contains("1") ? " checked" : "")>                    Never knowing what the "right" career is<br>                <input type="checkbox" id="formColor" name="ansQ4g" value="1" @(ansQ4g.Contains("1") ? " checked" : "")>                    Not "looking good"<br>                <input type="checkbox" id="formColor" name="ansQ4o" value="1" @(ansQ4o.Contains("1") ? " checked" : "")>                    A good career fit not existing<br>                <input type="checkbox" id="formColor" name="ansQ4h" value="1" @(ansQ4h.Contains("1") ? " checked" : "")>                    Disappointing family/others<br>                <input type="checkbox" id="formColor" name="ansQ4p" value="1" @(ansQ4p.Contains("1") ? " checked" : "")>
+                    Other&nbsp;
+                <input type="text" id="formColor" name="ansQ4q" value="@ansQ4q">
+                </p>
+
+                <p class="p51 ft7">Did you check any of the boxes above? If you did, that's completely normal. Everyone has fears. We're
+                    here to help you work past them.</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_7">
+        <div id="dimg1">
+        </div>
+
+        <table cellpadding=0 cellspacing=0 class="t1">
+            <tr>
+	            <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	            <td class="tr2 td4"><p class="p7 ft0">7</p></td>
+            </tr>
+        </table>
+
+        <p class="p54 ft6">Travel Light (Continued)</p>
+        <p class="p55 ft7">Are you having any fear or anxiety about this process of finding the right career? If so, please explain.</p>
+        <input type="text" name="ansQ5" id="formColor" size="100" value="@ansQ5">
+        <p class="p56 ft7">Please identify the top fears that you believe hold you back most.</p>
+        <input type="text" name="ansQ6" id="formColor" size="100" value="@ansQ6">
+        <p class="p57 ft7">Do you think any of these fears are significant enough to hinder your progress? If so, please elaborate.</p>
+        <input type="text" name="ansQ7" id="formColor" size="100" value="@ansQ7">
+        <p class="p58 ft25">Have any of these fears been so significant in your life that you have had to seek medical or psychological
+            treatment? If so, please explain. (No need to worry—your answer will not prevent us from working together. We
+            only ask in order to better support you and understand patterns that have occurred in your past. Some of our coaches are
+            trained to help you with such issues.)</p>
+        <input type="text" name="ansQ8" id="formColor" size="100" value="@ansQ8">
+        <p class="p59 ft25">By recognizing and taking note of your fears now, you are freeing yourself to be open to the process moving
+            forward. Imagine packaging up these fears in a neat box labeled "To Deal With Later" and putting this box on a shelf. Allow
+            yourself to be unencumbered as you discover what type of work is most likely to make you tick.</p>
+        <p class="p60 ft9">Don't worry—we are only at the exploration stage. You won't have to make any final decisions at
+            the end of this exercise. We can always come back and talk about your fears later. We just aren't at that stage yet. Trust
+            the process.</p>
+
+        <table cellpadding=0 cellspacing=0 class="t6">
+            <tr></tr><tr></tr>
+        </table>
+    </div>
+
+    <div id="page_8">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <div id="id_1_1">
+                <p class="p14 ft0">JMA: Career RoadMap One</p>
+                <p class="p33 ft6">Which Path?</p>
+                <p class="p61 ft30">As Robert Frost suggests in his often-misunderstood poem, "The Road Not Taken,"
+                    progress doesn't depend upon which path we choose. Both trails are "just as fair," or equally worn, after all.</p>
+                <p class="p62 ft18">Even though this decision of "which path" frequently consumes our attention, we posit that the
+                    process of moving forward leads to progress.</p>
+                <p class="p63 ft18">Most readers take the poet at face value—in retrospect, Frost appears to claim that the
+                    road he chose "has made all the difference." However, he does not feel remorse for taking one particular way over
+                    another. It was not a difficult decision or one fraught with anxiety. And certainly, he could have retraced his
+                    steps had he picked incorrectly. Rather, the decision point, the fork in the road, causes him to wonder years later.
+                    What if he had taken the alternate road? More importantly, what if he had let the decision keep him from taking
+                    either road?</p>
+                <p class="p64 ft18">Just as this interpretation may have changed your perception of Frost's poem, our work together will
+                    likely change your perception of the career discovery process. You may have always been told that there is only one
+                    choice or career path for you. That limited view is confining and discouraging.</p>
+                <p class="p65 ft30">Your career isn't a linear path; it's an iterative process. It winds, climbs and descends, based on
+                    the choices you make and, over time, it evolves to represent your beliefs, values and purpose. De- spite how unhappy
+                    or unfulfilled you may feel in your current job, there may be parts that are completely relevant and valuable to
+                    future steps in your career—you just don't know it yet.</p>
+            </div>
+
+            <div id="id_1_2">
+                <p class="p22 ft0">8</p>
+                <p class="p51a ft33">The Road Not Taken<span class="ft32">4</span></p>
+                <p class="p66 ft34">Two roads diverged in a yellow wood,</p>
+                <p class="p67 ft34">And sorry I could not travel both</p>
+                <p class="p67 ft34">And be one traveler, long I stood</p>
+                <p class="p68 ft34">And looked down one as far as I could</p>
+                <p class="p67 ft34">To where it bent in the undergrowth;</p>
+                <p class="p69 ft34">Then took the other, as just as fair,</p>
+                <p class="p67 ft34">And having perhaps the better claim,</p>
+                <p class="p67 ft34">Because it was grassy and wanted wear;</p>
+                <p class="p68 ft34">Though as for that the passing there</p>
+                <p class="p67 ft34">Had worn them really about the same,</p>
+                <p class="p69 ft34">And both that morning equally lay</p>
+                <p class="p67 ft34">In leaves no step had trodden black.</p>
+                <p class="p68 ft34">Oh, I kept the first for another day!</p>
+                <p class="p67 ft34">Yet knowing how way leads on to way,</p>
+                <p class="p67 ft34">I doubted if I should ever come back.</p>
+                <p class="p69 ft34">I shall be telling this with a sigh</p>
+                <p class="p67 ft34">Somewhere ages and ages hence:</p>
+                <p class="p68 ft34">Two roads diverged in a wood, and I--</p>
+                <p class="p67 ft34">I took the one less traveled by,</p>
+                <p class="p67 ft34">And that has made all the difference.</p>
+                <p class="p69 ft34">- Robert Frost</p>
+            </div>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_9">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td3"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td4"><p class="p7 ft0">9</p></td>
+                </tr>
+            </table>
+            <p class="p54 ft6">Fuel for the Journey</p>
+            <p class="p70 ft13">More than likely, you are frustrated with your current career situation. The good news is that your
+                frustration can fuel the career discovery process, giving you the motivation to forge ahead. Often, getting your
+                frustrations out on paper can help.</p>
+            <p class="p71 ft13">Please identify, on a scale of 1 to 5, how frustrated you are about each of the topics below, with 1
+                representing the least frustrated and 5 representing the most frustrated. For those topics that you rate as a 4 or 5,
+                please elaborate why on the lines that follow.</p>
+
+            <p class="p72 ft35">a. Your current job</p>
+            <p class="p73"><select name="ansQ9" id="blockColor">
+                <option value="1" @(ansQ9.Contains("1") ? " selected" : "")>1 - Not frustrated at all</option>
+                <option value="2" @(ansQ9.Contains("2") ? " selected" : "")>2 - Slightly frustrated</option>
+                <option value="3" @(ansQ9.Contains("3") ? " selected" : "")>3 - Somewhat frustrated</option>
+                <option value="4" @(ansQ9.Contains("4") ? " selected" : "")>4 - Very frustrated</option>
+                <option value="5" @(ansQ9.Contains("5") ? " selected" : "")>5 - Extremely frustrated (want to quit immediately)</option>
+            </select></p>
+            <p class="p73"><input type="text" name="ansQ9a" id="formColor" size="100" value="@ansQ9a"></p>
+
+            <p class="p75 ft35">b. Your job hunting experience</p>
+            <p class="p73"><select name="ansQ10" id="blockColor">
+                <option value="1" @(ansQ10.Contains("1") ? " selected" : "")>1 - Not frustrated at all</option>
+                <option value="2" @(ansQ10.Contains("2") ? " selected" : "")>2 - Slightly frustrated</option>
+                <option value="3" @(ansQ10.Contains("3") ? " selected" : "")>3 - Somewhat frustrated</option>
+                <option value="4" @(ansQ10.Contains("4") ? " selected" : "")>4 - Very frustrated</option>
+                <option value="5" @(ansQ10.Contains("5") ? " selected" : "")>5 - Extremely frustrated</option>
+            </select></p>
+            <p class="p73"><input type="text" name="ansQ10a" id="formColor" size="100" value="@ansQ10a"></p>
+
+            <p class="p81 ft35">c. Your interviewing success</p>
+            <p class="p73"><select name="ansQ11" id="blockColor">
+                <option value="1" @(ansQ11.Contains("1") ? " selected" : "")>1 - Not frustrated at all</option>
+                <option value="2" @(ansQ11.Contains("2") ? " selected" : "")>2 - Slightly frustrated</option>
+                <option value="3" @(ansQ11.Contains("3") ? " selected" : "")>3 - Somewhat frustrated</option>
+                <option value="4" @(ansQ11.Contains("4") ? " selected" : "")>4 - Very frustrated</option>
+                <option value="5" @(ansQ11.Contains("5") ? " selected" : "")>5 - Extremely frustrated</option>
+            </select></p>
+            <p class="p73"><input type="text" name="ansQ11a" id="formColor" size="100" value="@ansQ11a"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_10">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td38"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td39"><p class="p7 ft0">10</p></td>
+                </tr>
+            </table>
+            <p class="p54 ft6">Fuel for the Journey (Continued)</p>
+
+            <p class="p81 ft35">d. Your uncertainty regarding what to do next in your career</p>
+            <p class="p72"><select name="ansQ12" id="blockColor">
+                <option value="1" @(ansQ12.Contains("1") ? " selected" : "")>1 - Not frustrated at all</option>
+                <option value="2" @(ansQ12.Contains("2") ? " selected" : "")>2 - Slightly frustrated</option>
+                <option value="3" @(ansQ12.Contains("3") ? " selected" : "")>3 - Somewhat frustrated</option>
+                <option value="4" @(ansQ12.Contains("4") ? " selected" : "")>4 - Very frustrated</option>
+                <option value="5" @(ansQ12.Contains("5") ? " selected" : "")>5 - Extremely frustrated</option>
+            </select></p>
+            <p class="p73"><input type="text" name="ansQ12a" id="formColor" size="100" value="@ansQ12a"></p>
+
+            <p class="p81 ft35">e. Your experience writing or updating your resume</p>
+            <p class="p73"><select name="ansQ13" id="blockColor">
+                <option value="1" @(ansQ13.Contains("1") ? " selected" : "")>1 - Not frustrated at all</option>
+                <option value="2" @(ansQ13.Contains("2") ? " selected" : "")>2 - Slightly frustrated</option>
+                <option value="3" @(ansQ13.Contains("3") ? " selected" : "")>3 - Somewhat frustrated</option>
+                <option value="4" @(ansQ13.Contains("4") ? " selected" : "")>4 - Very frustrated</option>
+                <option value="5" @(ansQ13.Contains("5") ? " selected" : "")>5 - Extremely frustrated</option>
+            </select></p>
+            <p class="p73"><input type="text" name="ansQ13a" id="formColor" size="100" value="@ansQ13a"></p>
+
+            <p class="p93 ft7">Are you using any strategies to help you alleviate any of the frustrations identified in this section?
+                </p>
+            <p class="p73"><input type="text" name="ansQ13b" id="formColor" size="100" value="@ansQ13b"></p>
+            <p class="p93 ft7">If so, what are they?</p>
+            <p class="p73"><input type="text" name="ansQ13c" id="formColor" size="100" value="@ansQ13c"></p>
+            <p class="p93 ft7">How often do you employ them?</p>
+            <p class="p73"><input type="text" name="ansQ13d" id="formColor" size="100" value="@ansQ13d"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_11">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td38"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td39"><p class="p7 ft0">11</p></td>
+                </tr>
+            </table>
+            <p class="p54 ft6">Fuel for the Journey (Continued)</p>
+            <p class="p94 ft7">What is not working in your job and/or career?</p>
+            <p class="p73"><input type="text" name="ansQ14" id="formColor" size="100" value="@ansQ14"></p>
+            <p class="p95 ft7">What is frustrating you about your job and/or career?</p>
+            <p class="p73"><input type="text" name="ansQ15" id="formColor" size="100" value="@ansQ15"></p>
+            <p class="p96 ft7">Has this pattern or have these circumstances occurred in your life before? If so, please explain.</p>
+            <p class="p73"><input type="text" name="ansQ16" id="formColor" size="100" value="@ansQ16"></p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+
+    <div id="page_12">
+        <div id="dimg1">
+        </div>
+
+        <div id="id_1">
+            <table cellpadding=0 cellspacing=0 class="t1">
+                <tr>
+	                <td class="tr2 td38"><p class="p5 ft0">JMA: Career RoadMap One</p></td>
+	                <td class="tr2 td39"><p class="p7 ft0">12</p></td>
+                </tr>
+            </table>
+            <p class="p8 ft42">This is a proprietary document that is intended for your personal use only.</p>
+            <p class="p97 ft19">This product, the Career RoadMap series, as well as any coaching information and materials disclosed and
+                provided by Jody Michael Associates (JMA) during our work together, including, but not limited to, processes, products,
+                methods, frameworks, tools, strategies and workshops, are confidential and protected by copyright laws.</p>
+            <p class="p98 ft19">This means that this material, and all materials received in our work together, cannot be shared with
+                others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form.
+                It is not to be used for any coaching or consultative purpose.</p>
+            <p class="p99 ft19">Over 90 percent of our new clients are referred by current clients. If you ever want to refer us to your
+                colleagues and organizations, we would be pleased to provide you with non-confidential information to help
+                facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact JMA.
+                Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach this
+                agreement, you will be liable and will pay to JMA the reasonable attorney's fees and costs JMA incurred as a result of
+                your breach.</p>
+            <p class="p100 ft19">If you have received this document and are not a client of Jody Michael Associates, then you are not
+                the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and
+                will be held liable. If you have received this material in error, and are not an intended recipient, please notify us
+                immediately by email or phone and delete the original material.</p>
+            <p class="p101 ft10">Sources</p>
+            <p class="p51 ft7"><span class="ft43">1</span>Gallup Employee Engagement Index, October 2011.</p>
+            <p class="p51 ft7"><span class="ft43">2</span>Gallup-Healthways Well-Being Index Tracks U.S.</p>
+            <p class="p51 ft7"><span class="ft43">3</span>Poll by Parade magazine, January 9, 2011.</p>
+            <p class="p102 ft25"><span class="ft44">4</span>Frost, Robert; <span class="ft45">The Road Not Taken</span>, New Enlarged
+                Anthology of Robert Frost's Poems; Washington Square Press, Pocket Books, New York, New York, 1971; p.223.</p>
+        </div>
+
+        <div id="id_2">
+            <table cellpadding=0 cellspacing=0 class="t2">
+                <tr></tr><tr></tr>
+            </table>
+        </div>
+    </div>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</html>

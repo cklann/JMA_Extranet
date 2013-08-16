@@ -1,0 +1,24 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var db=Database.Open("JMA");
+    var SQLSELECT="select * from UserProfile where Email LIKE @0";
+    var query=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+    var currentStatus=query.Status;
+}
+
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+    <head>
+        <meta charset="utf-8" />
+        <title>Welcome</title>
+    </head>
+    <body>
+        <br><br><h1></h1>
+        <p id="bigText">Welcome to the JMA Client Server, @query.UserNameFL.</p>
+        @if(currentStatus=="Active") {
+            <p id="bigText">Please select from the above options.</p>
+        } else {
+            <p id="bigText">Your account is inactive. Please contact us if you want to reactivate your account.</p>
+        }
+    </body>
+</html>

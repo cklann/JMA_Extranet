@@ -1,0 +1,13 @@
+﻿@{
+    Layout="~/LayoutM.cshtml";
+    var db=Database.Open("JMA");
+    var SQLSELECT="select * from UserProfile where Email LIKE @0";
+    var query=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+    var thisUser=query.UserNameFL;
+}
+<br><br><h1></h1>
+<p><a id="regularWhite" href="~/MoodMinderUpdateM.cshtml?UserNameFL=@thisUser">Enter your current mood</a></p>
+<p><a id="regularWhite" href="~/MoodMinderReportM.cshtml?UserNameFL=@thisUser">View your MoodMinder report</a></p>
+<p><a id="regularWhite" href="~/Charts/MoodMinderChartsM.cshtml?UserNameFL=@thisUser">View graphs of your reported moods</a></p>
+<p><a id="regularWhite" href="~/MoodMinderSendM.cshtml?UserNameFL=@thisUser">Email your MoodMinder report to JMA</a></p>

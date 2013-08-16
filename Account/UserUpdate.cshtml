@@ -1,0 +1,247 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var thisUser=Request["UserNameLF"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from UserProfile where UserNameLF LIKE @0";
+        var query=db.QuerySingle(SQLSELECT, thisUser);
+        var thisEmail=query.Email;
+
+        // Count the number of modules and assign their names to an array
+        var SQLSELECTM="select * from Modules";
+        var queryM=db.Query(SQLSELECTM);
+        var countM=0;
+        String[] module=new String[10];
+        foreach (var row in queryM) {
+            module[countM]=@row.moduleName;
+            countM++;
+        }
+
+        // Count the number of Career RoadMaps and assign their names to an array
+        var SQLSELECTC="select * from CareerRoadMaps";
+        var queryC=db.Query(SQLSELECTC);
+        var countC=0;
+        String[] crm=new String[10];
+        foreach (var row in queryC) {
+            crm[countC]=@row.CareerRoadMap;
+            countC++;
+        }
+
+        <br><br><h1>Profile for @query.UserNameFL</h1>
+
+        var Status=query.Status;
+
+        var Module1=query.Module1;
+        var Module2=query.Module2;
+        var Module3=query.Module3;
+        var Module4=query.Module4;
+        var Module5=query.Module5;
+        var Module6=query.Module6;
+        var Module7=query.Module7;
+        var Module8=query.Module8;
+        var Module9=query.Module9;
+        var Module10=query.Module10;
+
+        var CareerRoadMap1=query.CareerRoadMap1;
+        var CareerRoadMap2=query.CareerRoadMap2;
+        var CareerRoadMap3=query.CareerRoadMap3;
+        var CareerRoadMap4=query.CareerRoadMap4;
+        var CareerRoadMap5=query.CareerRoadMap5;
+        var CareerRoadMap6=query.CareerRoadMap6;
+        var CareerRoadMap7=query.CareerRoadMap7;
+        var CareerRoadMap8=query.CareerRoadMap8;
+        var CareerRoadMap9=query.CareerRoadMap9;
+        var CareerRoadMap10=query.CareerRoadMap10;
+        var JobFactors=query.JobFactors;
+        var InterviewingSupport=query.InterviewingSupport;
+        var InformationalInterview=query.InformationalInterview;
+
+        if(IsPost) {
+            Status=Request["Status"].As<string>("");
+
+            Module1=Request["Module1"].As<string>("");
+            Module2=Request["Module2"].As<string>("");
+            Module3=Request["Module3"].As<string>("");
+            Module4=Request["Module4"].As<string>("");
+            Module5=Request["Module5"].As<string>("");
+            Module6=Request["Module6"].As<string>("");
+            Module7=Request["Module7"].As<string>("");
+            Module8=Request["Module8"].As<string>("");
+            Module9=Request["Module9"].As<string>("");
+            Module10=Request["Module10"].As<string>("");
+
+            CareerRoadMap1=Request["CareerRoadMap1"].As<string>("");
+            CareerRoadMap2=Request["CareerRoadMap2"].As<string>("");
+            CareerRoadMap3=Request["CareerRoadMap3"].As<string>("");
+            CareerRoadMap4=Request["CareerRoadMap4"].As<string>("");
+            CareerRoadMap5=Request["CareerRoadMap5"].As<string>("");
+            CareerRoadMap6=Request["CareerRoadMap6"].As<string>("");
+            CareerRoadMap7=Request["CareerRoadMap7"].As<string>("");
+            CareerRoadMap8=Request["CareerRoadMap8"].As<string>("");
+            CareerRoadMap9=Request["CareerRoadMap9"].As<string>("");
+            CareerRoadMap10=Request["CareerRoadMap10"].As<string>("");
+
+            JobFactors=Request["JobFactors"].As<string>("");
+            InterviewingSupport=Request["InterviewingSupport"].As<string>("");
+            InformationalInterview=Request["InformationalInterview"].As<string>("");
+
+            var SQLUPDATE="update UserProfile set Module1=@1, Module2=@2, Module3=@3, Module4=@4, Module5=@5, " +
+                "Module6=@6, Module7=@7, Module8=@8, Module9=@9, Module10=@10, CareerRoadMap1=@11, CareerRoadMap2=@12, " +
+                "CareerRoadMap3=@13, CareerRoadMap4=@14, CareerRoadMap5=@15, CareerRoadMap6=@16, CareerRoadMap7=@17, " +
+                "CareerRoadMap8=@18, CareerRoadMap9=@19, CareerRoadMap10=@20, JobFactors=@21, InterviewingSupport=@22, " +
+                "Status=@23, InformationalInterview=@24 " +
+                "where UserNameLF LIKE @0";
+            db.Execute(SQLUPDATE, thisUser, Module1, Module2, Module3, Module4, Module5, Module6, Module7, Module8,
+                       Module9, Module10, CareerRoadMap1, CareerRoadMap2, CareerRoadMap3, CareerRoadMap4, CareerRoadMap5,
+                       CareerRoadMap6, CareerRoadMap7, CareerRoadMap8, CareerRoadMap9, CareerRoadMap10, JobFactors,
+                       InterviewingSupport, Status, InformationalInterview);
+            Response.Redirect("~/Account/UserSelect.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>Status&nbsp;
+                <select name="Status">
+                    <option value="Inactive" @(Status.Contains("Inactive") ? " selected" : "")>Inactive</option>                    <option value="Active" @(Status.Contains("Active") ? " selected" : "")>Active</option>                </select></p>
+
+                <table>
+                    <tr><td width="300px">
+                        @if (countM>=1) {
+                            <div id="column1">@module[0]&nbsp;
+                            <select name="Module1">                                <option value="No" @(Module1.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module1.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td width="300px">
+                        @if (countC>=1) {
+                            <div id="column2">@crm[0]&nbsp;
+                            <select name="CareerRoadMap1">                                <option value="No" @(CareerRoadMap1.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap1.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        <div id="column10">Job Factors&nbsp;
+                        <select name="JobFactors">                            <option value="No" @(JobFactors.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(JobFactors.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=2) {
+                            <div id="column2">@module[1]&nbsp;
+                            <select name="Module2">                                <option value="No" @(Module2.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module2.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=2) {
+                            <div id="column2">@crm[1]&nbsp;
+                            <select name="CareerRoadMap2">                                <option value="No" @(CareerRoadMap2.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap2.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        <div id="column10">Interviewing Support&nbsp;
+                        <select name="InterviewingSupport">                            <option value="No" @(InterviewingSupport.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InterviewingSupport.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=3) {
+                            <div id="column3">@module[2]&nbsp;
+                            <select name="Module3">                                <option value="No" @(Module3.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module3.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=3) {
+                            <div id="column3">@crm[2]&nbsp;
+                            <select name="CareerRoadMap3">                                <option value="No" @(CareerRoadMap3.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap3.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        <div id="column10">Informational Interview&nbsp;
+                        <select name="InformationalInterview">                            <option value="No" @(InformationalInterview.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InformationalInterview.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=4) {
+                            <div id="column4">@module[3]&nbsp;
+                            <select name="Module4">                                <option value="No" @(Module4.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module4.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=4) {
+                            <div id="column4">@crm[3]&nbsp;
+                            <select name="CareerRoadMap4">                                <option value="No" @(CareerRoadMap4.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap4.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=5) {
+                            <div id="column5">@module[4]&nbsp;
+                            <select name="Module5">                                <option value="No" @(Module5.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module5.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=5) {
+                            <div id="column5">@crm[4]&nbsp;
+                            <select name="CareerRoadMap5">                                <option value="No" @(CareerRoadMap5.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap5.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=6) {
+                            <div id="column6">@module[5]&nbsp;
+                            <select name="Module6">                                <option value="No" @(Module6.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module6.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=6) {
+                            <div id="column6">@crm[5]&nbsp;
+                            <select name="CareerRoadMap6">                                <option value="No" @(CareerRoadMap6.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap6.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=7) {
+                            <div id="column7">@module[6]&nbsp;
+                            <select name="Module7">                                <option value="No" @(Module7.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module7.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=7) {
+                            <div id="column7">@crm[6]&nbsp;
+                            <select name="CareerRoadMap7">                                <option value="No" @(CareerRoadMap7.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap7.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=8) {
+                            <div id="column8">@module[7]&nbsp;
+                            <select name="Module8">                                <option value="No" @(Module8.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module8.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=8) {
+                            <div id="column8">@crm[7]&nbsp;
+                            <select name="CareerRoadMap8">                                <option value="No" @(CareerRoadMap8.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap8.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=9) {
+                            <div id="column9">@module[8]&nbsp;
+                            <select name="Module9">                                <option value="No" @(Module9.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module9.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=9) {
+                            <div id="column9">@crm[8]&nbsp;
+                            <select name="CareerRoadMap9">                                <option value="No" @(CareerRoadMap9.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap9.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+
+                    <tr><td>
+                        @if (countM>=10) {
+                            <div id="column10">@module[9]&nbsp;
+                            <select name="Module10">                                <option value="No" @(Module10.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(Module10.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td><td>
+                        @if (countC>=10) {
+                            <div id="column10">@crm[9]&nbsp;
+                            <select name="CareerRoadMap10">                                <option value="No" @(CareerRoadMap10.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap10.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
+                        }
+                    </td></tr>
+                </table>
+            <br>
+
+            <p><input type="submit" value="Submit Changes"></p>
+        </div></form>
+    } else {
+        <p>Please login.</p>
+    }
+}

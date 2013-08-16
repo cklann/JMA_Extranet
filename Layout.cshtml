@@ -1,0 +1,202 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+    <head>
+        <link rel="stylesheet" href="~/Styles/Styles.css">
+    </head>
+
+    <body>
+        @{
+            var db=Database.Open("JMA");
+            var SQLSELECT="select * from UserProfile where Email LIKE @0";
+            var query=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+            var thisUser=query.UserNameFL;
+            var currentStatus=query.Status;
+
+            // Count the number of modules and assign their names to an array
+            var SQLSELECTM="select * from Modules";
+            var queryM=db.Query(SQLSELECTM);
+            String[] modName=new String[10];
+            var count=0;
+            if (currentStatus=="Active") {
+                foreach (var row in queryM) {
+                    modName[count]=@row.moduleName;
+                    count++;
+                }
+            }
+
+            // Identify the site administrators
+            var Admin=0;
+            if (query.UserNameFL=="Carol Klann" || query.UserNameFL=="Cathy Cullen" ||
+                query.UserNameFL=="Jody Michael" || query.UserNameFL=="Kelly Obbish") {
+                Admin=1;
+            }
+        }
+
+        <div id="topBar">
+            @if (WebSecurity.IsAuthenticated) {
+                <p>Hello, @query.UserNameFL
+                <a id="regularGreen" href="~/Account/Logout.cshtml"> | Logout | </a>
+                <a id="regularGreen" href="~/Account/NeedHelp.cshtml">Need Help?</a></p>
+            } else {
+                <a id="regularGreen" href="~/Account/Login.cshtml">Login</a>
+            }
+        </div>
+        <div id="logo">
+            <p><img alt="A" src="~/Images/logo.png"></p>
+        </div>
+        
+        <ul class="dropv">
+            @if (@query.Module1=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[0]</a>
+                    <ul>
+                        @if (@query.CareerRoadMap1=="Yes") {
+                            <li><a href="~/CareerRoadMap1.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap One</a></li>
+                        }
+                        @if (@query.CareerRoadMap2=="Yes") {
+                            <li><a href="~/CareerRoadMap2.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Two</a></li>
+                        }
+                        @if (@query.CareerRoadMap3=="Yes") {
+                            <li><a href="~/CareerRoadMap3.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Three</a></li>
+                        }
+                        @if (@query.CareerRoadMap4=="Yes") {
+                            <li><a href="~/CareerRoadMap4.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Four</a></li>
+                        }
+                        @if (@query.CareerRoadMap5=="Yes") {
+                            <li><a href="~/CareerRoadMap5.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Five</a></li>
+                        }
+                        @if (@query.CareerRoadMap6=="Yes") {
+                            <li><a href="~/CareerRoadMap6.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Six</a></li>
+                        }
+                        @if (@query.CareerRoadMap7=="Yes") {
+                            <li><a href="~/CareerRoadMap7.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Seven</a></li>
+                        }
+                        @if (@query.CareerRoadMap8=="Yes") {
+                            <li><a href="~/CareerRoadMap8.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Eight</a></li>
+                        }
+                        @if (@query.CareerRoadMap9=="Yes") {
+                            <li><a href="~/CareerRoadMap9.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Nine</a></li>
+                        }
+                        @if (@query.CareerRoadMap10=="Yes") {
+                            <li><a href="~/CareerRoadMap10.cshtml?UserNameFL=@query.UserNameFL">Career RoadMap Ten</a></li>
+                        }
+                        @if (@query.JobFactors=="Yes") {
+                            <li><a href="~/JobFactors.cshtml?UserNameFL=@query.UserNameFL">Job Factors</a></li>
+                        }
+                        @if (@query.InterviewingSupport=="Yes") {
+                            <li><a href="~/InterviewingSupport.cshtml?UserNameFL=@query.UserNameFL">Interviewing Support</a></li>
+                        }
+                        @if (@query.InformationalInterview=="Yes") {
+                            <li><a href="~/InformationalInterview.cshtml?UserNameFL=@query.UserNameFL">
+                                Informational Interview Follow-Up Report</a></li>
+                        }
+                        @if (@query.CareerRoadMap1=="Yes" || @query.CareerRoadMap2=="Yes" ||
+                             @query.CareerRoadMap3=="Yes" || @query.CareerRoadMap4=="Yes" ||
+                             @query.CareerRoadMap5=="Yes" || @query.CareerRoadMap6=="Yes" ||
+                             @query.CareerRoadMap7=="Yes" || @query.CareerRoadMap8=="Yes" ||
+                             @query.CareerRoadMap9=="Yes" || @query.CareerRoadMap10=="Yes" ||
+                             @query.JobFactors=="Yes") {
+                                 <li><a href="~/CareerSend.cshtml?UserNameFL=@query.UserNameFL">
+                                     Send a completed worksheet to coach</a></li>
+                        }
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module2=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[1]</a>
+                    <ul>
+                        <li><a href="~/MoodMinderUpdate.cshtml?UserNameFL=@thisUser">
+                            Enter your current mood</a></li>
+                        <li><a href="~/MoodMinderReport.cshtml?UserNameFL=@thisUser">View your MoodMinder report</a></li>
+                        <li><a href="~/Charts/MoodMinderCharts.cshtml?UserNameFL=@thisUser">View graphs of your reported moods</a></li>
+                        <li><a href="~/MoodMinderSend.cshtml?UserNameFL=@thisUser">Email your MoodMinder report to JMA</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module3=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[2]</a>
+                    <ul>
+                        <li><a href="~/Organizational.cshtml?UserNameFL=@query.UserNameFL">Organizational coaching</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module4=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[3]</a>
+                    <ul>
+                        <li><a href="~/Trader.cshtml?UserNameFL=@query.UserNameFL">Trader coaching</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module5=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[4]</a>
+                    <ul>
+                        <li><a href="~/Wellness.cshtml?UserNameFL=@query.UserNameFL">Wellness coaching</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module6=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[5]</a>
+                    <ul>
+                        <li><a href="~/AccountabilityPreQuest.cshtml?UserNameFL=@query.UserNameFL">Complete pre-seminar questionnaire</a></li>
+                        <li><a href="~/AccountabilityHW.cshtml?UserNameFL=@query.UserNameFL">Complete personal accountability homework</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module7=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[6]</a>
+                    <ul>
+                        <li><a href="#">Module Name</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module8=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[7]</a>
+                    <ul>
+                        <li><a href="#">Module Name</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module9=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[8]</a>
+                    <ul>
+                        <li><a href="#">Module Name</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@query.Module10=="Yes" && currentStatus=="Active") {
+                <li><a href="#">@modName[9]</a>
+                    <ul>
+                        <li><a href="#">Module Name</a></li>
+                    </ul>
+                </li>
+            }
+
+            @if (@Admin==1) {
+                <li><a href="#">SITE ADMINISTRATION</a>
+                    <ul>
+                        <li><a href="~/Account/UserSelect.cshtml">View and update active clients' module selections
+                                                                  and print clients' worksheets</a></li>
+                        <li><a href="~/Account/UserSelectI.cshtml">View and reactivate inactive clients</a></li>
+                        <li><a href="~/Account/Modules.cshtml">View, update or add modules</a></li>
+                        <li><a href="~/Account/CareerRoadMaps.cshtml">View, update or add Career RoadMaps</a></li>
+                    </ul>
+                </li>
+            }
+        </ul>
+        <div id="main">
+            @RenderBody()
+        </div>
+        <footer><br><br>
+            <p id="footer">&copy; Copyright 2013 Jody Michael Associates |
+            <a id="regularFooter" href="http:\\www.jodymichael.com" style="text-decoration:underline">www.jodymichael.com</a></p>
+        </footer>
+    </body>
+</html>

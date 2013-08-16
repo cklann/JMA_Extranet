@@ -1,0 +1,36 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>Add a New Career RoadMap</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from CareerRoadMaps";
+
+        var newCRM="";
+        var newField="";
+
+        if(IsPost) {
+
+            newCRM=Request["newCRM"].As<string>("");
+            newField="Career RoadMap "+newCRM;
+
+            // Add field to CareerRoadMaps table
+            var SQLINSERT="insert into CareerRoadMaps (CareerRoadMap) values (@0)";
+            db.Execute(SQLINSERT, newField);
+
+            Response.Redirect("~/Account/CareerRoadMaps.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>New Career RoadMap name (e.g., Enter "Six" to create "Career RoadMap Six"):&nbsp;
+                Career RoadMap&nbsp;<input type="text" name="newCRM" size="20"></p>
+                <p><input type="submit" value="Submit New Career RoadMap"></p>
+            </div><br>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

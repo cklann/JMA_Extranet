@@ -1,0 +1,35 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+
+    if (WebSecurity.IsAuthenticated) {
+        var db=Database.Open("JMA");
+        var sqlUser="select * from UserProfile where Email LIKE @0";
+        var userName=db.QuerySingle(sqlUser, @WebSecurity.CurrentUserName);
+
+        var sqlQ="select * from MoodMinder where UserNameFL LIKE @0 order by DateTime";
+        var query=db.Query(sqlQ, @userName.UserNameFL);
+
+        <br><br><h1>MoodMinder Report for @userName.UserNameFL</h1>
+        <table id="report">
+            <tr>
+                <th valign="bottom" width="175px">Date and Time</th>
+                <th valign="bottom" width="100px">Mood</th>
+                <th valign="bottom" width="100px">Mood Is Self-Generated or Event-Driven</th>
+                <th valign="bottom" width="100px">Energy Level</th>
+                <th valign="bottom" width="700px">Thoughts That Generated the Mood</th>
+            </tr>
+            @foreach (var row in query) {
+                <tr>
+                    <td align="center" valign="top">@row.DateTime</td>
+                    <td align="center" valign="top">@row.CurrentMood</td>
+                    <td align="center" valign="top">@row.SelfOrEvent</td>
+                    <td align="center" valign="top">@row.EnergyLevel</td>
+                    <td align="left" valign="top">@row.Thoughts</td>
+                </tr>
+            }
+        </table>
+    } else {
+        <br><br><h1>MoodMinder Report</h1>
+        <p>Please login.</p>
+    }
+}

@@ -1,0 +1,33 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>Edit Career RoadMap Name</h1>
+    var oldName=Request["CareerRoadMap"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from CareerRoadMaps where CareerRoadMap LIKE @0";
+        var query=db.QuerySingle(SQLSELECT, oldName);
+
+        var newName=query.CareerRoadMap;
+
+        if(IsPost) {
+            newName=Request["newName"].As<string>("");
+            var SQLUPDATE="update CareerRoadMaps set CareerRoadMap=@1 where CareerRoadMap=@0";
+            db.Execute(SQLUPDATE, oldName, newName);
+            Response.Redirect("~/Account/CareerRoadMaps.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>Current Career RoadMap name:&nbsp;@oldName</p>
+                <p>New Career RoadMap name:&nbsp;<input type="text" name="newName" size="50" value="@newName"></p>
+            </div><br>
+
+            <p><input type="submit" value="Submit New Name"></p>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

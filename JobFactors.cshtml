@@ -1,0 +1,488 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/JobFactors.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from JobFactors where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        // Company focus
+        var ansQ1a=answers.Q1a;            // Size of company        var ansQ1b=answers.Q1b;        var ansQ1c=answers.Q1c;        var ansQ1d=answers.Q1d;        var ansQ1e=answers.Q1e;        var ansQ1f=answers.Q1f;        var ansQ2a=answers.Q2a;            // Sales volume        var ansQ2b=answers.Q2b;        var ansQ2c=answers.Q2c;        var ansQ2d=answers.Q2d;        var ansQ2e=answers.Q2e;        var ansQ2f=answers.Q2f;        var ansQ3a=answers.Q3a;            // # employees        var ansQ3b=answers.Q3b;        var ansQ3c=answers.Q3c;        var ansQ3d=answers.Q3d;        var ansQ3e=answers.Q3e;        var ansQ3f=answers.Q3f;        var ansQ4a=answers.Q4a;            // Public/private        var ansQ4b=answers.Q4b;        var ansQ4c=answers.Q4c;        var ansQ4d=answers.Q4d;        var ansQ4e=answers.Q4e;        var ansQ4f=answers.Q4f;        var ansQ5a=answers.Q5a;            // Profit/non-profit        var ansQ5b=answers.Q5b;        var ansQ5c=answers.Q5c;        var ansQ5d=answers.Q5d;        var ansQ5e=answers.Q5e;        var ansQ5f=answers.Q5f;        var ansQ6a=answers.Q6a;            // National/multi-national        var ansQ6b=answers.Q6b;        var ansQ6c=answers.Q6c;        var ansQ6d=answers.Q6d;        var ansQ6e=answers.Q6e;        var ansQ6f=answers.Q6f;        var ansQ7a=answers.Q7a;            // Academic        var ansQ7b=answers.Q7b;        var ansQ7c=answers.Q7c;        var ansQ7d=answers.Q7d;        var ansQ7e=answers.Q7e;        var ansQ7f=answers.Q7f;        var ansQ8a=answers.Q8a;            // Product / service        var ansQ8b=answers.Q8b;        var ansQ8c=answers.Q8c;        var ansQ8d=answers.Q8d;        var ansQ8e=answers.Q8e;        var ansQ8f=answers.Q8f;        var ansQ9a=answers.Q9a;            // Central /decentralized        var ansQ9b=answers.Q9b;        var ansQ9c=answers.Q9c;        var ansQ9d=answers.Q9d;        var ansQ9e=answers.Q9e;        var ansQ9f=answers.Q9f;        var ansQ10a=answers.Q10a;            // Division/sub-division        var ansQ10b=answers.Q10b;        var ansQ10c=answers.Q10c;        var ansQ10d=answers.Q10d;        var ansQ10e=answers.Q10e;        var ansQ10f=answers.Q10f;        var ansQ11a=answers.Q11a;            // Management depth        var ansQ11b=answers.Q11b;        var ansQ11c=answers.Q11c;        var ansQ11d=answers.Q11d;        var ansQ11e=answers.Q11e;        var ansQ11f=answers.Q11f;        var ansQ12a=answers.Q12a;            // Financial condition        var ansQ12b=answers.Q12b;        var ansQ12c=answers.Q12c;        var ansQ12d=answers.Q12d;        var ansQ12e=answers.Q12e;        var ansQ12f=answers.Q12f;        var ansQ13a=answers.Q13a;            // Political climate        var ansQ13b=answers.Q13b;        var ansQ13c=answers.Q13c;        var ansQ13d=answers.Q13d;        var ansQ13e=answers.Q13e;        var ansQ13f=answers.Q13f;        var ansQ14a=answers.Q14a;            // Company growth history        var ansQ14b=answers.Q14b;        var ansQ14c=answers.Q14c;        var ansQ14d=answers.Q14d;        var ansQ14e=answers.Q14e;        var ansQ14f=answers.Q14f;        var ansQ15a=answers.Q15a;            // Profitability        var ansQ15b=answers.Q15b;        var ansQ15c=answers.Q15c;        var ansQ15d=answers.Q15d;        var ansQ15e=answers.Q15e;        var ansQ15f=answers.Q15f;        var ansQ16a=answers.Q16a;            // Future growth        var ansQ16b=answers.Q16b;        var ansQ16c=answers.Q16c;        var ansQ16d=answers.Q16d;        var ansQ16e=answers.Q16e;        var ansQ16f=answers.Q16f;        var ansQ17a=answers.Q17a;            // Turn around options        var ansQ17b=answers.Q17b;        var ansQ17c=answers.Q17c;        var ansQ17d=answers.Q17d;        var ansQ17e=answers.Q17e;        var ansQ17f=answers.Q17f;        var ansQ18a=answers.Q18a;            // Stability        var ansQ18b=answers.Q18b;        var ansQ18c=answers.Q18c;        var ansQ18d=answers.Q18d;        var ansQ18e=answers.Q18e;        var ansQ18f=answers.Q18f;        var ansQ19a=answers.Q19a;            // Reputation        var ansQ19b=answers.Q19b;        var ansQ19c=answers.Q19c;        var ansQ19d=answers.Q19d;        var ansQ19e=answers.Q19e;        var ansQ19f=answers.Q19f;        var ansQ20a=answers.Q20a;            // Market dependency        var ansQ20b=answers.Q20b;        var ansQ20c=answers.Q20c;        var ansQ20d=answers.Q20d;        var ansQ20e=answers.Q20e;        var ansQ20f=answers.Q20f;        var ansQ21a=answers.Q21a;            // Meets objectives        var ansQ21b=answers.Q21b;        var ansQ21c=answers.Q21c;        var ansQ21d=answers.Q21d;        var ansQ21e=answers.Q21e;        var ansQ21f=answers.Q21f;        var ansQ22a=answers.Q22a;            // Duty/responsibilities        var ansQ22b=answers.Q22b;        var ansQ22c=answers.Q22c;        var ansQ22d=answers.Q22d;        var ansQ22e=answers.Q22e;        var ansQ22f=answers.Q22f;        var ansQ23a=answers.Q23a;            // Authority        var ansQ23b=answers.Q23b;        var ansQ23c=answers.Q23c;        var ansQ23d=answers.Q23d;        var ansQ23e=answers.Q23e;        var ansQ23f=answers.Q23f;        var ansQ24a=answers.Q24a;            // Independence        var ansQ24b=answers.Q24b;        var ansQ24c=answers.Q24c;        var ansQ24d=answers.Q24d;        var ansQ24e=answers.Q24e;        var ansQ24f=answers.Q24f;        var ansQ25a=answers.Q25a;            // Challenge        var ansQ25b=answers.Q25b;        var ansQ25c=answers.Q25c;        var ansQ25d=answers.Q25d;        var ansQ25e=answers.Q25e;        var ansQ25f=answers.Q25f;        var ansQ26a=answers.Q26a;            // High/low risk        var ansQ26b=answers.Q26b;        var ansQ26c=answers.Q26c;        var ansQ26d=answers.Q26d;        var ansQ26e=answers.Q26e;        var ansQ26f=answers.Q26f;        var ansQ27a=answers.Q27a;            // Job visibility        var ansQ27b=answers.Q27b;        var ansQ27c=answers.Q27c;        var ansQ27d=answers.Q27d;        var ansQ27e=answers.Q27e;        var ansQ27f=answers.Q27f;        var ansQ28a=answers.Q28a;            // Reporting relationship        var ansQ28b=answers.Q28b;        var ansQ28c=answers.Q28c;        var ansQ28d=answers.Q28d;        var ansQ28e=answers.Q28e;        var ansQ28f=answers.Q28f;        var ansQ29a=answers.Q29a;            // Direct line        var ansQ29b=answers.Q29b;        var ansQ29c=answers.Q29c;        var ansQ29d=answers.Q29d;        var ansQ29e=answers.Q29e;        var ansQ29f=answers.Q29f;        var ansQ30a=answers.Q30a;            // Dotted line        var ansQ30b=answers.Q30b;        var ansQ30c=answers.Q30c;        var ansQ30d=answers.Q30d;        var ansQ30e=answers.Q30e;        var ansQ30f=answers.Q30f;        var ansQ31a=answers.Q31a;            // Travel        var ansQ31b=answers.Q31b;        var ansQ31c=answers.Q31c;        var ansQ31d=answers.Q31d;        var ansQ31e=answers.Q31e;        var ansQ31f=answers.Q31f;        var ansQ32a=answers.Q32a;            // Status (title)        var ansQ32b=answers.Q32b;        var ansQ32c=answers.Q32c;        var ansQ32d=answers.Q32d;        var ansQ32e=answers.Q32e;        var ansQ32f=answers.Q32f;        var ansQ33a=answers.Q33a;            // History/previous        var ansQ33b=answers.Q33b;        var ansQ33c=answers.Q33c;        var ansQ33d=answers.Q33d;        var ansQ33e=answers.Q33e;        var ansQ33f=answers.Q33f;        var ansQ34a=answers.Q34a;            // Incumbent        var ansQ34b=answers.Q34b;        var ansQ34c=answers.Q34c;        var ansQ34d=answers.Q34d;        var ansQ34e=answers.Q34e;        var ansQ34f=answers.Q34f;        var ansQ35a=answers.Q35a;            // Incumbent        var ansQ35b=answers.Q35b;        var ansQ35c=answers.Q35c;        var ansQ35d=answers.Q35d;        var ansQ35e=answers.Q35e;        var ansQ35f=answers.Q35f;        var ansQ36a=answers.Q36a;            // Other        var ansQ36b=answers.Q36b;        var ansQ36c=answers.Q36c;        var ansQ36d=answers.Q36d;        var ansQ36e=answers.Q36e;        var ansQ36f=answers.Q36f;        // Personal focus        var ansQ37a=answers.Q37a;            // Interpersonal chemistry        var ansQ37b=answers.Q37b;        var ansQ37c=answers.Q37c;        var ansQ37d=answers.Q37d;        var ansQ37e=answers.Q37e;        var ansQ37f=answers.Q37f;        var ansQ38a=answers.Q38a;            // Management style        var ansQ38b=answers.Q38b;        var ansQ38c=answers.Q38c;        var ansQ38d=answers.Q38d;        var ansQ38e=answers.Q38e;        var ansQ38f=answers.Q38f;        var ansQ39a=answers.Q39a;            // Step in career path        var ansQ39b=answers.Q39b;        var ansQ39c=answers.Q39c;        var ansQ39d=answers.Q39d;        var ansQ39e=answers.Q39e;        var ansQ39f=answers.Q39f;        var ansQ40a=answers.Q40a;            // Promotion potential        var ansQ40b=answers.Q40b;        var ansQ40c=answers.Q40c;        var ansQ40d=answers.Q40d;        var ansQ40e=answers.Q40e;        var ansQ40f=answers.Q40f;        var ansQ41a=answers.Q41a;            // Work hours        var ansQ41b=answers.Q41b;        var ansQ41c=answers.Q41c;        var ansQ41d=answers.Q41d;        var ansQ41e=answers.Q41e;        var ansQ41f=answers.Q41f;        var ansQ42a=answers.Q42a;            // Commute        var ansQ42b=answers.Q42b;        var ansQ42c=answers.Q42c;        var ansQ42d=answers.Q42d;        var ansQ42e=answers.Q42e;        var ansQ42f=answers.Q42f;        var ansQ43a=answers.Q43a;            // Compatibility with life        var ansQ43b=answers.Q43b;        var ansQ43c=answers.Q43c;        var ansQ43d=answers.Q43d;        var ansQ43e=answers.Q43e;        var ansQ43f=answers.Q43f;        var ansQ44a=answers.Q44a;            // Style        var ansQ44b=answers.Q44b;        var ansQ44c=answers.Q44c;        var ansQ44d=answers.Q44d;        var ansQ44e=answers.Q44e;        var ansQ44f=answers.Q44f;        var ansQ45a=answers.Q45a;            // Other        var ansQ45b=answers.Q45b;        var ansQ45c=answers.Q45c;        var ansQ45d=answers.Q45d;        var ansQ45e=answers.Q45e;        var ansQ45f=answers.Q45f;        // Community focus        var ansQ46a=answers.Q46a;            // Location/relocation        var ansQ46b=answers.Q46b;        var ansQ46c=answers.Q46c;        var ansQ46d=answers.Q46d;        var ansQ46e=answers.Q46e;        var ansQ46f=answers.Q46f;        var ansQ47a=answers.Q47a;            // City/country living        var ansQ47b=answers.Q47b;        var ansQ47c=answers.Q47c;        var ansQ47d=answers.Q47d;        var ansQ47e=answers.Q47e;        var ansQ47f=answers.Q47f;        var ansQ48a=answers.Q48a;            // Schools        var ansQ48b=answers.Q48b;        var ansQ48c=answers.Q48c;        var ansQ48d=answers.Q48d;        var ansQ48e=answers.Q48e;        var ansQ48f=answers.Q48f;        var ansQ49a=answers.Q49a;            // Religious affiliations        var ansQ49b=answers.Q49b;        var ansQ49c=answers.Q49c;        var ansQ49d=answers.Q49d;        var ansQ49e=answers.Q49e;        var ansQ49f=answers.Q49f;        var ansQ50a=answers.Q50a;            // Cultural activities        var ansQ50b=answers.Q50b;        var ansQ50c=answers.Q50c;        var ansQ50d=answers.Q50d;        var ansQ50e=answers.Q50e;        var ansQ50f=answers.Q50f;        var ansQ51a=answers.Q51a;            // Recreational areas        var ansQ51b=answers.Q51b;        var ansQ51c=answers.Q51c;        var ansQ51d=answers.Q51d;        var ansQ51e=answers.Q51e;        var ansQ51f=answers.Q51f;        var ansQ52a=answers.Q52a;            // Local taxes        var ansQ52b=answers.Q52b;        var ansQ52c=answers.Q52c;        var ansQ52d=answers.Q52d;        var ansQ52e=answers.Q52e;        var ansQ52f=answers.Q52f;        var ansQ53a=answers.Q53a;            // Other        var ansQ53b=answers.Q53b;        var ansQ53c=answers.Q53c;        var ansQ53d=answers.Q53d;        var ansQ53e=answers.Q53e;        var ansQ53f=answers.Q53f;
+
+        if(IsPost) {
+            ansQ1a=Request["ansQ1a"].As<string>("");            ansQ1b=Request["ansQ1b"].As<string>("");            ansQ1c=Request["ansQ1c"].As<string>("");            ansQ1d=Request["ansQ1d"].As<string>("");            ansQ1e=Request["ansQ1e"].As<string>("");            ansQ1f=Request["ansQ1f"].As<string>("");            ansQ2a=Request["ansQ2a"].As<string>("");            ansQ2b=Request["ansQ2b"].As<string>("");            ansQ2c=Request["ansQ2c"].As<string>("");            ansQ2d=Request["ansQ2d"].As<string>("");            ansQ2e=Request["ansQ2e"].As<string>("");            ansQ2f=Request["ansQ2f"].As<string>("");            ansQ3a=Request["ansQ3a"].As<string>("");            ansQ3b=Request["ansQ3b"].As<string>("");            ansQ3c=Request["ansQ3c"].As<string>("");            ansQ3d=Request["ansQ3d"].As<string>("");            ansQ3e=Request["ansQ3e"].As<string>("");            ansQ3f=Request["ansQ3f"].As<string>("");            ansQ4a=Request["ansQ4a"].As<string>("");            ansQ4b=Request["ansQ4b"].As<string>("");            ansQ4c=Request["ansQ4c"].As<string>("");            ansQ4d=Request["ansQ4d"].As<string>("");            ansQ4e=Request["ansQ4e"].As<string>("");            ansQ4f=Request["ansQ4f"].As<string>("");            ansQ5a=Request["ansQ5a"].As<string>("");            ansQ5b=Request["ansQ5b"].As<string>("");            ansQ5c=Request["ansQ5c"].As<string>("");            ansQ5d=Request["ansQ5d"].As<string>("");            ansQ5e=Request["ansQ5e"].As<string>("");            ansQ5f=Request["ansQ5f"].As<string>("");            ansQ6a=Request["ansQ6a"].As<string>("");            ansQ6b=Request["ansQ6b"].As<string>("");            ansQ6c=Request["ansQ6c"].As<string>("");            ansQ6d=Request["ansQ6d"].As<string>("");            ansQ6e=Request["ansQ6e"].As<string>("");            ansQ6f=Request["ansQ6f"].As<string>("");            ansQ7a=Request["ansQ7a"].As<string>("");            ansQ7b=Request["ansQ7b"].As<string>("");            ansQ7c=Request["ansQ7c"].As<string>("");            ansQ7d=Request["ansQ7d"].As<string>("");            ansQ7e=Request["ansQ7e"].As<string>("");            ansQ7f=Request["ansQ7f"].As<string>("");            ansQ8a=Request["ansQ8a"].As<string>("");            ansQ8b=Request["ansQ8b"].As<string>("");            ansQ8c=Request["ansQ8c"].As<string>("");            ansQ8d=Request["ansQ8d"].As<string>("");            ansQ8e=Request["ansQ8e"].As<string>("");            ansQ8f=Request["ansQ8f"].As<string>("");            ansQ9a=Request["ansQ9a"].As<string>("");            ansQ9b=Request["ansQ9b"].As<string>("");            ansQ9c=Request["ansQ9c"].As<string>("");            ansQ9d=Request["ansQ9d"].As<string>("");            ansQ9e=Request["ansQ9e"].As<string>("");            ansQ9f=Request["ansQ9f"].As<string>("");            ansQ10a=Request["ansQ10a"].As<string>("");            ansQ10b=Request["ansQ10b"].As<string>("");            ansQ10c=Request["ansQ10c"].As<string>("");            ansQ10d=Request["ansQ10d"].As<string>("");            ansQ10e=Request["ansQ10e"].As<string>("");            ansQ10f=Request["ansQ10f"].As<string>("");            ansQ11a=Request["ansQ11a"].As<string>("");            ansQ11b=Request["ansQ11b"].As<string>("");            ansQ11c=Request["ansQ11c"].As<string>("");            ansQ11d=Request["ansQ11d"].As<string>("");            ansQ11e=Request["ansQ11e"].As<string>("");            ansQ11f=Request["ansQ11f"].As<string>("");            ansQ12a=Request["ansQ12a"].As<string>("");            ansQ12b=Request["ansQ12b"].As<string>("");            ansQ12c=Request["ansQ12c"].As<string>("");            ansQ12d=Request["ansQ12d"].As<string>("");            ansQ12e=Request["ansQ12e"].As<string>("");            ansQ12f=Request["ansQ12f"].As<string>("");            ansQ13a=Request["ansQ13a"].As<string>("");            ansQ13b=Request["ansQ13b"].As<string>("");            ansQ13c=Request["ansQ13c"].As<string>("");            ansQ13d=Request["ansQ13d"].As<string>("");            ansQ13e=Request["ansQ13e"].As<string>("");            ansQ13f=Request["ansQ13f"].As<string>("");            ansQ14a=Request["ansQ14a"].As<string>("");            ansQ14b=Request["ansQ14b"].As<string>("");            ansQ14c=Request["ansQ14c"].As<string>("");            ansQ14d=Request["ansQ14d"].As<string>("");            ansQ14e=Request["ansQ14e"].As<string>("");            ansQ14f=Request["ansQ14f"].As<string>("");            ansQ15a=Request["ansQ15a"].As<string>("");            ansQ15b=Request["ansQ15b"].As<string>("");            ansQ15c=Request["ansQ15c"].As<string>("");            ansQ15d=Request["ansQ15d"].As<string>("");            ansQ15e=Request["ansQ15e"].As<string>("");            ansQ15f=Request["ansQ15f"].As<string>("");            ansQ16a=Request["ansQ16a"].As<string>("");            ansQ16b=Request["ansQ16b"].As<string>("");            ansQ16c=Request["ansQ16c"].As<string>("");            ansQ16d=Request["ansQ16d"].As<string>("");            ansQ16e=Request["ansQ16e"].As<string>("");            ansQ16f=Request["ansQ16f"].As<string>("");            ansQ17a=Request["ansQ17a"].As<string>("");            ansQ17b=Request["ansQ17b"].As<string>("");            ansQ17c=Request["ansQ17c"].As<string>("");            ansQ17d=Request["ansQ17d"].As<string>("");            ansQ17e=Request["ansQ17e"].As<string>("");            ansQ17f=Request["ansQ17f"].As<string>("");            ansQ18a=Request["ansQ18a"].As<string>("");            ansQ18b=Request["ansQ18b"].As<string>("");            ansQ18c=Request["ansQ18c"].As<string>("");            ansQ18d=Request["ansQ18d"].As<string>("");            ansQ18e=Request["ansQ18e"].As<string>("");            ansQ18f=Request["ansQ18f"].As<string>("");            ansQ19a=Request["ansQ19a"].As<string>("");            ansQ19b=Request["ansQ19b"].As<string>("");            ansQ19c=Request["ansQ19c"].As<string>("");            ansQ19d=Request["ansQ19d"].As<string>("");            ansQ19e=Request["ansQ19e"].As<string>("");            ansQ19f=Request["ansQ19f"].As<string>("");            ansQ20a=Request["ansQ20a"].As<string>("");            ansQ20b=Request["ansQ20b"].As<string>("");            ansQ20c=Request["ansQ20c"].As<string>("");            ansQ20d=Request["ansQ20d"].As<string>("");            ansQ20e=Request["ansQ20e"].As<string>("");            ansQ20f=Request["ansQ20f"].As<string>("");            ansQ21a=Request["ansQ21a"].As<string>("");            ansQ21b=Request["ansQ21b"].As<string>("");            ansQ21c=Request["ansQ21c"].As<string>("");            ansQ21d=Request["ansQ21d"].As<string>("");            ansQ21e=Request["ansQ21e"].As<string>("");            ansQ21f=Request["ansQ21f"].As<string>("");            ansQ22a=Request["ansQ22a"].As<string>("");            ansQ22b=Request["ansQ22b"].As<string>("");            ansQ22c=Request["ansQ22c"].As<string>("");            ansQ22d=Request["ansQ22d"].As<string>("");            ansQ22e=Request["ansQ22e"].As<string>("");            ansQ22f=Request["ansQ22f"].As<string>("");            ansQ23a=Request["ansQ23a"].As<string>("");            ansQ23b=Request["ansQ23b"].As<string>("");            ansQ23c=Request["ansQ23c"].As<string>("");            ansQ23d=Request["ansQ23d"].As<string>("");            ansQ23e=Request["ansQ23e"].As<string>("");            ansQ23f=Request["ansQ23f"].As<string>("");            ansQ24a=Request["ansQ24a"].As<string>("");            ansQ24b=Request["ansQ24b"].As<string>("");            ansQ24c=Request["ansQ24c"].As<string>("");            ansQ24d=Request["ansQ24d"].As<string>("");            ansQ24e=Request["ansQ24e"].As<string>("");            ansQ24f=Request["ansQ24f"].As<string>("");            ansQ25a=Request["ansQ25a"].As<string>("");            ansQ25b=Request["ansQ25b"].As<string>("");            ansQ25c=Request["ansQ25c"].As<string>("");            ansQ25d=Request["ansQ25d"].As<string>("");            ansQ25e=Request["ansQ25e"].As<string>("");            ansQ25f=Request["ansQ25f"].As<string>("");            ansQ26a=Request["ansQ26a"].As<string>("");            ansQ26b=Request["ansQ26b"].As<string>("");            ansQ26c=Request["ansQ26c"].As<string>("");            ansQ26d=Request["ansQ26d"].As<string>("");            ansQ26e=Request["ansQ26e"].As<string>("");            ansQ26f=Request["ansQ26f"].As<string>("");            ansQ27a=Request["ansQ27a"].As<string>("");            ansQ27b=Request["ansQ27b"].As<string>("");            ansQ27c=Request["ansQ27c"].As<string>("");            ansQ27d=Request["ansQ27d"].As<string>("");            ansQ27e=Request["ansQ27e"].As<string>("");            ansQ27f=Request["ansQ27f"].As<string>("");            ansQ28a=Request["ansQ28a"].As<string>("");            ansQ28b=Request["ansQ28b"].As<string>("");            ansQ28c=Request["ansQ28c"].As<string>("");            ansQ28d=Request["ansQ28d"].As<string>("");            ansQ28e=Request["ansQ28e"].As<string>("");            ansQ28f=Request["ansQ28f"].As<string>("");            ansQ29a=Request["ansQ29a"].As<string>("");            ansQ29b=Request["ansQ29b"].As<string>("");            ansQ29c=Request["ansQ29c"].As<string>("");            ansQ29d=Request["ansQ29d"].As<string>("");            ansQ29e=Request["ansQ29e"].As<string>("");            ansQ29f=Request["ansQ29f"].As<string>("");            ansQ30a=Request["ansQ30a"].As<string>("");            ansQ30b=Request["ansQ30b"].As<string>("");            ansQ30c=Request["ansQ30c"].As<string>("");            ansQ30d=Request["ansQ30d"].As<string>("");            ansQ30e=Request["ansQ30e"].As<string>("");            ansQ30f=Request["ansQ30f"].As<string>("");            ansQ31a=Request["ansQ31a"].As<string>("");            ansQ31b=Request["ansQ31b"].As<string>("");            ansQ31c=Request["ansQ31c"].As<string>("");            ansQ31d=Request["ansQ31d"].As<string>("");            ansQ31e=Request["ansQ31e"].As<string>("");            ansQ31f=Request["ansQ31f"].As<string>("");            ansQ32a=Request["ansQ32a"].As<string>("");            ansQ32b=Request["ansQ32b"].As<string>("");            ansQ32c=Request["ansQ32c"].As<string>("");            ansQ32d=Request["ansQ32d"].As<string>("");            ansQ32e=Request["ansQ32e"].As<string>("");            ansQ32f=Request["ansQ32f"].As<string>("");            ansQ33a=Request["ansQ33a"].As<string>("");            ansQ33b=Request["ansQ33b"].As<string>("");            ansQ33c=Request["ansQ33c"].As<string>("");            ansQ33d=Request["ansQ33d"].As<string>("");            ansQ33e=Request["ansQ33e"].As<string>("");            ansQ33f=Request["ansQ33f"].As<string>("");            ansQ34a=Request["ansQ34a"].As<string>("");            ansQ34b=Request["ansQ34b"].As<string>("");            ansQ34c=Request["ansQ34c"].As<string>("");            ansQ34d=Request["ansQ34d"].As<string>("");            ansQ34e=Request["ansQ34e"].As<string>("");            ansQ34f=Request["ansQ34f"].As<string>("");            ansQ35a=Request["ansQ35a"].As<string>("");            ansQ35b=Request["ansQ35b"].As<string>("");            ansQ35c=Request["ansQ35c"].As<string>("");            ansQ35d=Request["ansQ35d"].As<string>("");            ansQ35e=Request["ansQ35e"].As<string>("");            ansQ35f=Request["ansQ35f"].As<string>("");            ansQ36a=Request["ansQ36a"].As<string>("");            ansQ36b=Request["ansQ36b"].As<string>("");            ansQ36c=Request["ansQ36c"].As<string>("");            ansQ36d=Request["ansQ36d"].As<string>("");            ansQ36e=Request["ansQ36e"].As<string>("");            ansQ36f=Request["ansQ36f"].As<string>("");            ansQ37a=Request["ansQ37a"].As<string>("");            ansQ37b=Request["ansQ37b"].As<string>("");            ansQ37c=Request["ansQ37c"].As<string>("");            ansQ37d=Request["ansQ37d"].As<string>("");            ansQ37e=Request["ansQ37e"].As<string>("");            ansQ37f=Request["ansQ37f"].As<string>("");            ansQ38a=Request["ansQ38a"].As<string>("");            ansQ38b=Request["ansQ38b"].As<string>("");            ansQ38c=Request["ansQ38c"].As<string>("");            ansQ38d=Request["ansQ38d"].As<string>("");            ansQ38e=Request["ansQ38e"].As<string>("");            ansQ38f=Request["ansQ38f"].As<string>("");            ansQ39a=Request["ansQ39a"].As<string>("");            ansQ39b=Request["ansQ39b"].As<string>("");            ansQ39c=Request["ansQ39c"].As<string>("");            ansQ39d=Request["ansQ39d"].As<string>("");            ansQ39e=Request["ansQ39e"].As<string>("");            ansQ39f=Request["ansQ39f"].As<string>("");            ansQ40a=Request["ansQ40a"].As<string>("");            ansQ40b=Request["ansQ40b"].As<string>("");            ansQ40c=Request["ansQ40c"].As<string>("");            ansQ40d=Request["ansQ40d"].As<string>("");            ansQ40e=Request["ansQ40e"].As<string>("");            ansQ40f=Request["ansQ40f"].As<string>("");            ansQ41a=Request["ansQ41a"].As<string>("");            ansQ41b=Request["ansQ41b"].As<string>("");            ansQ41c=Request["ansQ41c"].As<string>("");            ansQ41d=Request["ansQ41d"].As<string>("");            ansQ41e=Request["ansQ41e"].As<string>("");            ansQ41f=Request["ansQ41f"].As<string>("");            ansQ42a=Request["ansQ42a"].As<string>("");            ansQ42b=Request["ansQ42b"].As<string>("");            ansQ42c=Request["ansQ42c"].As<string>("");            ansQ42d=Request["ansQ42d"].As<string>("");            ansQ42e=Request["ansQ42e"].As<string>("");            ansQ42f=Request["ansQ42f"].As<string>("");            ansQ43a=Request["ansQ43a"].As<string>("");            ansQ43b=Request["ansQ43b"].As<string>("");            ansQ43c=Request["ansQ43c"].As<string>("");            ansQ43d=Request["ansQ43d"].As<string>("");            ansQ43e=Request["ansQ43e"].As<string>("");            ansQ43f=Request["ansQ43f"].As<string>("");            ansQ44a=Request["ansQ44a"].As<string>("");            ansQ44b=Request["ansQ44b"].As<string>("");            ansQ44c=Request["ansQ44c"].As<string>("");            ansQ44d=Request["ansQ44d"].As<string>("");            ansQ44e=Request["ansQ44e"].As<string>("");            ansQ44f=Request["ansQ44f"].As<string>("");            ansQ45a=Request["ansQ45a"].As<string>("");            ansQ45b=Request["ansQ45b"].As<string>("");            ansQ45c=Request["ansQ45c"].As<string>("");            ansQ45d=Request["ansQ45d"].As<string>("");            ansQ45e=Request["ansQ45e"].As<string>("");            ansQ45f=Request["ansQ45f"].As<string>("");            ansQ46a=Request["ansQ46a"].As<string>("");            ansQ46b=Request["ansQ46b"].As<string>("");            ansQ46c=Request["ansQ46c"].As<string>("");            ansQ46d=Request["ansQ46d"].As<string>("");            ansQ46e=Request["ansQ46e"].As<string>("");            ansQ46f=Request["ansQ46f"].As<string>("");            ansQ47a=Request["ansQ47a"].As<string>("");            ansQ47b=Request["ansQ47b"].As<string>("");            ansQ47c=Request["ansQ47c"].As<string>("");            ansQ47d=Request["ansQ47d"].As<string>("");            ansQ47e=Request["ansQ47e"].As<string>("");            ansQ47f=Request["ansQ47f"].As<string>("");            ansQ48a=Request["ansQ48a"].As<string>("");            ansQ48b=Request["ansQ48b"].As<string>("");            ansQ48c=Request["ansQ48c"].As<string>("");            ansQ48d=Request["ansQ48d"].As<string>("");            ansQ48e=Request["ansQ48e"].As<string>("");            ansQ48f=Request["ansQ48f"].As<string>("");            ansQ49a=Request["ansQ49a"].As<string>("");            ansQ49b=Request["ansQ49b"].As<string>("");            ansQ49c=Request["ansQ49c"].As<string>("");            ansQ49d=Request["ansQ49d"].As<string>("");            ansQ49e=Request["ansQ49e"].As<string>("");            ansQ49f=Request["ansQ49f"].As<string>("");            ansQ50a=Request["ansQ50a"].As<string>("");            ansQ50b=Request["ansQ50b"].As<string>("");            ansQ50c=Request["ansQ50c"].As<string>("");            ansQ50d=Request["ansQ50d"].As<string>("");            ansQ50e=Request["ansQ50e"].As<string>("");            ansQ50f=Request["ansQ50f"].As<string>("");            ansQ51a=Request["ansQ51a"].As<string>("");            ansQ51b=Request["ansQ51b"].As<string>("");            ansQ51c=Request["ansQ51c"].As<string>("");            ansQ51d=Request["ansQ51d"].As<string>("");            ansQ51e=Request["ansQ51e"].As<string>("");            ansQ51f=Request["ansQ51f"].As<string>("");            ansQ52a=Request["ansQ52a"].As<string>("");            ansQ52b=Request["ansQ52b"].As<string>("");            ansQ52c=Request["ansQ52c"].As<string>("");            ansQ52d=Request["ansQ52d"].As<string>("");            ansQ52e=Request["ansQ52e"].As<string>("");            ansQ52f=Request["ansQ52f"].As<string>("");            ansQ53a=Request["ansQ53a"].As<string>("");            ansQ53b=Request["ansQ53b"].As<string>("");            ansQ53c=Request["ansQ53c"].As<string>("");            ansQ53d=Request["ansQ53d"].As<string>("");            ansQ53e=Request["ansQ53e"].As<string>("");            ansQ53f=Request["ansQ53f"].As<string>("");
+
+            var SQLUPDATE="update JobFactors set Q1a=@1, Q1b=@2, Q1c=@3, "+
+                          "Q1d=@4, Q1e=@5, Q1f=@6, Q2a=@7, Q2b=@8, Q2c=@9, Q2d=@10, " +                          "Q2e=@11, Q2f=@12, Q3a=@13, Q3b=@14, Q3c=@15, Q3d=@16, Q3e=@17, Q3f=@18, Q4a=@19, " +                          "Q4b=@20, Q4c=@21, Q4d=@22, Q4e=@23, Q4f=@24, Q5a=@25, Q5b=@26, Q5c=@27, Q5d=@28, " +                          "Q5e=@29, Q5f=@30, Q6a=@31, Q6b=@32, Q6c=@33, Q6d=@34, Q6e=@35, Q6f=@36, Q7a=@37, " +                          "Q7b=@38, Q7c=@39, Q7d=@40, Q7e=@41, Q7f=@42, Q8a=@43, Q8b=@44, Q8c=@45, Q8d=@46, " +                          "Q8e=@47, Q8f=@48, Q9a=@49, Q9b=@50, Q9c=@51, Q9d=@52, Q9e=@53, Q9f=@54, " +                          "Q10a=@55, Q10b=@56, Q10c=@57, Q10d=@58, Q10e=@59, Q10f=@60, Q11a=@61, Q11b=@62, " +                          "Q11c=@63, Q11d=@64, Q11e=@65, Q11f=@66, Q12a=@67, Q12b=@68, Q12c=@69, Q12d=@70, " +                          "Q12e=@71, Q12f=@72, Q13a=@73, Q13b=@74, Q13c=@75, Q13d=@76, Q13e=@77, Q13f=@78, " +                          "Q14a=@79, Q14b=@80, Q14c=@81, Q14d=@82, Q14e=@83, Q14f=@84, Q15a=@85, Q15b=@86, " +                          "Q15c=@87, Q15d=@88, Q15e=@89, Q15f=@90, Q16a=@91, Q16b=@92, Q16c=@93, Q16d=@94, " +                          "Q16e=@95, Q16f=@96, Q17a=@97, Q17b=@98, Q17c=@99, Q17d=@100, Q17e=@101, " +                          "Q17f=@102, Q18a=@103, Q18b=@104, Q18c=@105, Q18d=@106, Q18e=@107, Q18f=@108, " +                          "Q19a=@109, Q19b=@110, Q19c=@111, Q19d=@112, Q19e=@113, Q19f=@114, Q20a=@115, " +                          "Q20b=@116, Q20c=@117, Q20d=@118, Q20e=@119, Q20f=@120, Q21a=@121, Q21b=@122, " +                          "Q21c=@123, Q21d=@124, Q21e=@125, Q21f=@126, Q22a=@127, Q22b=@128, Q22c=@129, " +                          "Q22d=@130, Q22e=@131, Q22f=@132, Q23a=@133, Q23b=@134, Q23c=@135, Q23d=@136, " +                          "Q23e=@137, Q23f=@138, Q24a=@139, Q24b=@140, Q24c=@141, Q24d=@142, Q24e=@143, " +                          "Q24f=@144, Q25a=@145, Q25b=@146, Q25c=@147, Q25d=@148, Q25e=@149, Q25f=@150, " +                          "Q26a=@151, Q26b=@152, Q26c=@153, Q26d=@154, Q26e=@155, Q26f=@156, Q27a=@157, " +                          "Q27b=@158, Q27c=@159, Q27d=@160, Q27e=@161, Q27f=@162, Q28a=@163, Q28b=@164, " +                          "Q28c=@165, Q28d=@166, Q28e=@167, Q28f=@168, Q29a=@169, Q29b=@170, Q29c=@171, " +                          "Q29d=@172, Q29e=@173, Q29f=@174, Q30a=@175, Q30b=@176, Q30c=@177, Q30d=@178, " +                          "Q30e=@179, Q30f=@180, Q31a=@181, Q31b=@182, Q31c=@183, Q31d=@184, Q31e=@185, " +                          "Q31f=@186, Q32a=@187, Q32b=@188, Q32c=@189, Q32d=@190, Q32e=@191, Q32f=@192, " +                          "Q33a=@193, Q33b=@194, Q33c=@195, Q33d=@196, Q33e=@197, Q33f=@198, Q34a=@199, " +                          "Q34b=@200, Q34c=@201, Q34d=@202, Q34e=@203, Q34f=@204, Q35a=@205, Q35b=@206, " +                          "Q35c=@207, Q35d=@208, Q35e=@209, Q35f=@210, Q36a=@211, Q36b=@212, Q36c=@213, " +                          "Q36d=@214, Q36e=@215, Q36f=@216, Q37a=@217, Q37b=@218, Q37c=@219, Q37d=@220, " +                          "Q37e=@221, Q37f=@222, Q38a=@223, Q38b=@224, Q38c=@225, Q38d=@226, Q38e=@227, " +                          "Q38f=@228, Q39a=@229, Q39b=@230, Q39c=@231, Q39d=@232, Q39e=@233, Q39f=@234, " +                          "Q40a=@235, Q40b=@236, Q40c=@237, Q40d=@238, Q40e=@239, Q40f=@240, Q41a=@241, " +                          "Q41b=@242, Q41c=@243, Q41d=@244, Q41e=@245, Q41f=@246, Q42a=@247, Q42b=@248, " +                          "Q42c=@249, Q42d=@250, Q42e=@251, Q42f=@252, Q43a=@253, Q43b=@254, Q43c=@255, " +                          "Q43d=@256, Q43e=@257, Q43f=@258, Q44a=@259, Q44b=@260, Q44c=@261, Q44d=@262, " +                          "Q44e=@263, Q44f=@264, Q45a=@265, Q45b=@266, Q45c=@267, Q45d=@268, Q45e=@269, " +                          "Q45f=@270, Q46a=@271, Q46b=@272, Q46c=@273, Q46d=@274, Q46e=@275, Q46f=@276, " +                          "Q47a=@277, Q47b=@278, Q47c=@279, Q47d=@280, Q47e=@281, Q47f=@282, Q48a=@283, " +                          "Q48b=@284, Q48c=@285, Q48d=@286, Q48e=@287, Q48f=@288, Q49a=@289, Q49b=@290, " +                          "Q49c=@291, Q49d=@292, Q49e=@293, Q49f=@294, Q50a=@295, Q50b=@296, Q50c=@297, " +                          "Q50d=@298, Q50e=@299, Q50f=@300, Q51a=@301, Q51b=@302, Q51c=@303, Q51d=@304, " +                          "Q51e=@305, Q51f=@306, Q52a=@307, Q52b=@308, Q52c=@309, Q52d=@310, Q52e=@311, " +                          "Q52f=@312, Q53a=@313, Q53b=@314, Q53c=@315, Q53d=@316, Q53e=@317, Q53f=@318 " +
+                          "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, ansQ1a, ansQ1b, ansQ1c, ansQ1d, ansQ1e, ansQ1f,
+                          ansQ2a, ansQ2b, ansQ2c, ansQ2d, ansQ2e, ansQ2f, ansQ3a, ansQ3b, ansQ3c, ansQ3d,                           ansQ3e, ansQ3f, ansQ4a, ansQ4b, ansQ4c, ansQ4d, ansQ4e, ansQ4f, ansQ5a, ansQ5b, ansQ5c,                          ansQ5d, ansQ5e, ansQ5f, ansQ6a, ansQ6b, ansQ6c, ansQ6d, ansQ6e, ansQ6f, ansQ7a, ansQ7b,                          ansQ7c, ansQ7d, ansQ7e, ansQ7f, ansQ8a, ansQ8b, ansQ8c, ansQ8d, ansQ8e, ansQ8f, ansQ9a,                          ansQ9b, ansQ9c, ansQ9d, ansQ9e, ansQ9f, ansQ10a, ansQ10b, ansQ10c, ansQ10d, ansQ10e,                          ansQ10f, ansQ11a, ansQ11b, ansQ11c, ansQ11d, ansQ11e, ansQ11f, ansQ12a, ansQ12b, ansQ12c,                          ansQ12d, ansQ12e, ansQ12f, ansQ13a, ansQ13b, ansQ13c, ansQ13d, ansQ13e, ansQ13f,                          ansQ14a, ansQ14b, ansQ14c, ansQ14d, ansQ14e, ansQ14f, ansQ15a, ansQ15b,                          ansQ15c, ansQ15d, ansQ15e, ansQ15f, ansQ16a, ansQ16b, ansQ16c, ansQ16d,                          ansQ16e, ansQ16f, ansQ17a, ansQ17b, ansQ17c, ansQ17d, ansQ17e, ansQ17f,                          ansQ18a, ansQ18b, ansQ18c, ansQ18d, ansQ18e, ansQ18f, ansQ19a, ansQ19b,                          ansQ19c, ansQ19d, ansQ19e, ansQ19f, ansQ20a, ansQ20b, ansQ20c, ansQ20d,                          ansQ20e, ansQ20f, ansQ21a, ansQ21b, ansQ21c, ansQ21d, ansQ21e, ansQ21f,                          ansQ22a, ansQ22b, ansQ22c, ansQ22d, ansQ22e, ansQ22f, ansQ23a, ansQ23b,                          ansQ23c, ansQ23d, ansQ23e, ansQ23f, ansQ24a, ansQ24b, ansQ24c, ansQ24d,                          ansQ24e, ansQ24f, ansQ25a, ansQ25b, ansQ25c, ansQ25d, ansQ25e, ansQ25f,                          ansQ26a, ansQ26b, ansQ26c, ansQ26d, ansQ26e, ansQ26f, ansQ27a, ansQ27b,                          ansQ27c, ansQ27d, ansQ27e, ansQ27f, ansQ28a, ansQ28b, ansQ28c, ansQ28d,                          ansQ28e, ansQ28f, ansQ29a, ansQ29b, ansQ29c, ansQ29d, ansQ29e, ansQ29f,                          ansQ30a, ansQ30b, ansQ30c, ansQ30d, ansQ30e, ansQ30f, ansQ31a, ansQ31b,                          ansQ31c, ansQ31d, ansQ31e, ansQ31f, ansQ32a, ansQ32b, ansQ32c, ansQ32d,                          ansQ32e, ansQ32f, ansQ33a, ansQ33b, ansQ33c, ansQ33d, ansQ33e, ansQ33f,                          ansQ34a, ansQ34b, ansQ34c, ansQ34d, ansQ34e, ansQ34f, ansQ35a, ansQ35b,                          ansQ35c, ansQ35d, ansQ35e, ansQ35f, ansQ36a, ansQ36b, ansQ36c, ansQ36d,                          ansQ36e, ansQ36f, ansQ37a, ansQ37b, ansQ37c, ansQ37d, ansQ37e, ansQ37f,                          ansQ38a, ansQ38b, ansQ38c, ansQ38d, ansQ38e, ansQ38f, ansQ39a, ansQ39b,                          ansQ39c, ansQ39d, ansQ39e, ansQ39f, ansQ40a, ansQ40b, ansQ40c, ansQ40d,                          ansQ40e, ansQ40f, ansQ41a, ansQ41b, ansQ41c, ansQ41d, ansQ41e, ansQ41f,                          ansQ42a, ansQ42b, ansQ42c, ansQ42d, ansQ42e, ansQ42f, ansQ43a, ansQ43b,                          ansQ43c, ansQ43d, ansQ43e, ansQ43f, ansQ44a, ansQ44b, ansQ44c, ansQ44d,                          ansQ44e, ansQ44f, ansQ45a, ansQ45b, ansQ45c, ansQ45d, ansQ45e, ansQ45f,                          ansQ46a, ansQ46b, ansQ46c, ansQ46d, ansQ46e, ansQ46f, ansQ47a, ansQ47b,                          ansQ47c, ansQ47d, ansQ47e, ansQ47f, ansQ48a, ansQ48b, ansQ48c, ansQ48d,                          ansQ48e, ansQ48f, ansQ49a, ansQ49b, ansQ49c, ansQ49d, ansQ49e, ansQ49f,                          ansQ50a, ansQ50b, ansQ50c, ansQ50d, ansQ50e, ansQ50f, ansQ51a, ansQ51b,                          ansQ51c, ansQ51d, ansQ51e, ansQ51f, ansQ52a, ansQ52b, ansQ52c, ansQ52d,                          ansQ52e, ansQ52f, ansQ53a, ansQ53b, ansQ53c, ansQ53d, ansQ53e, ansQ53f);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+    <DIV id="dimg1">
+        <IMG src="~/Images//JMA_Job_Factors1x1.jpg" id="img1">
+    </DIV>
+    <DIV class="dclr"></DIV>
+    <DIV id="id_1">
+        <P class="p0 ft0">JOB FACTORS EXERCISE</P>
+    </DIV>
+    <DIV id="id_2">
+        <P class="p0 ft1">CAREER ROADMAP SERIES</P>
+    </DIV>
+    <DIV id="id_3">
+        <TABLE cellpadding=0 cellspacing=0 class="t0">
+                <tr></tr>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_2">
+    <DIV id="dimg1">
+        <IMG src="~/Images//JMA_Job_Factors2x1.jpg" id="img1">
+    </DIV>
+    <DIV id="id_1">
+        <TABLE cellpadding=0 cellspacing=0 class="t1">
+            <tr>
+	            <TD class="tr2 td3"><P class="p1 ft5">JMA: Job Factors Exercise</P></TD>
+	            <TD class="tr2 td4"><P class="p3 ft6">2</P></TD>
+            </tr>
+        </TABLE>
+    </DIV>
+    <DIV id="id_2">
+        <P class="p0 ft7">WELCOME TO JODY MICHAEL’S CAREER ROADMAP SERIES.</P>
+        <P class="p4 ft8">I am delighted that you have decided to engage in the process of career discovery and career coaching with JMA. In your hands is a product that required years of refinement and work. It was created to help clients reach their goal of career discovery and it has done just that for hundreds of clients, just like yourself.</P>
+        <P class="p5 ft9">This is a proprietary document that is intended for your personal use only.</P>
+        <P class="p6 ft10">This product, the Career RoadMap series, as well as all and any coaching information and materials disclosed and provided by JMA during our work together, including, but not limited to, processes, products, methods, frameworks, tools, strategies and workshops are confidential and protected by copyright laws.</P>
+        <P class="p7 ft10">This means that this material, and all materials received in our work together, cannot be shared with others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form. It is not to be used for any coaching or consultative purpose.</P>
+        <P class="p8 ft10">Over 90% of new clients are referred by current clients. If you ever want to refer us to your colleagues and organizations, we would be pleased to provide you with <NOBR>non-confidential</NOBR> information to help facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact JMA. Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach this agreement, you will be liable and will pay to JMA the reasonable attorney’s fees and costs JMA incurred as a result of your breach.</P>
+        <P class="p9 ft10">If you have received this document and are not a client of Jody Michael Associates, then you are not the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and will be held liable. If you have received this material in error, and are not an intended recipient, please notify us immediately by <NOBR>e-mail</NOBR> or phone and delete the original material.</P>
+    </DIV>
+    <DIV id="id_3">
+        <TABLE cellpadding=0 cellspacing=0 class="t0">
+                <tr></tr>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_3">
+    <DIV id="dimg1">
+        <IMG src="~/Images//JMA_Job_Factors3x1.jpg" id="img1">
+    </DIV>
+    <TABLE cellpadding=0 cellspacing=0 class="t2">
+        <tr>
+	        <TD class="tr2 td3"><P class="p1 ft5">JMA: Job Factors Exercise</P></TD>
+	        <TD class="tr2 td4"><P class="p3 ft6">3</P></TD>
+        </tr>
+    </TABLE>
+    <P class="p11 ft12">Offers received measured against same scale. Measure relative value of all offers. Rank in order of <NOBR>1–10<SPAN class="ft11">.</SPAN></NOBR></P>
+
+    <TABLE cellpadding=0 cellspacing=0 class="t3">
+        <tr height="40">
+            <td id="box1" width="163">COMPANY FOCUS</td>
+            <td id="box1" width="45">RANK</td>
+            <td id="box1" width="77">IDEAL POSITION</td>
+            <td id="box1" width="77">PREVIOUS POSITION</td>
+            <td id="box1" width="77">OPTION A (JOB OFFER)</td>
+            <td id="box1" width="77">OPTION B (JOB OFFER)</td>
+            <td id="box1" width="77">OPTION C (JOB OFFER)</td>
+        </tr>
+        <tr height="40">            <td id="box2">Size of Company</td>            <td id="box3"><input type="text" id="formColor" name="ansQ1a" value="@ansQ1a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ1b" value="@ansQ1b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ1c" value="@ansQ1c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ1d" value="@ansQ1d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ1e" value="@ansQ1e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ1f" value="@ansQ1f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Sales Volume</td>            <td id="box3"><input type="text" id="formColor" name="ansQ2a" value="@ansQ2a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ2b" value="@ansQ2b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ2c" value="@ansQ2c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ2d" value="@ansQ2d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ2e" value="@ansQ2e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ2f" value="@ansQ2f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2"># Employees</td>            <td id="box3"><input type="text" id="formColor" name="ansQ3a" value="@ansQ3a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ3b" value="@ansQ3b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ3c" value="@ansQ3c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ3d" value="@ansQ3d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ3e" value="@ansQ3e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ3f" value="@ansQ3f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Public/Private</td>            <td id="box3"><input type="text" id="formColor" name="ansQ4a" value="@ansQ4a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ4b" value="@ansQ4b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ4c" value="@ansQ4c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ4d" value="@ansQ4d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ4e" value="@ansQ4e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ4f" value="@ansQ4f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Profit/Non-Profit</td>            <td id="box3"><input type="text" id="formColor" name="ansQ5a" value="@ansQ5a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ5b" value="@ansQ5b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ5c" value="@ansQ5c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ5d" value="@ansQ5d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ5e" value="@ansQ5e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ5f" value="@ansQ5f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">National/Multi-national</td>            <td id="box3"><input type="text" id="formColor" name="ansQ6a" value="@ansQ6a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ6b" value="@ansQ6b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ6c" value="@ansQ6c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ6d" value="@ansQ6d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ6e" value="@ansQ6e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ6f" value="@ansQ6f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Academic</td>            <td id="box3"><input type="text" id="formColor" name="ansQ7a" value="@ansQ7a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ7b" value="@ansQ7b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ7c" value="@ansQ7c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ7d" value="@ansQ7d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ7e" value="@ansQ7e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ7f" value="@ansQ7f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Product / Service</td>            <td id="box3"><input type="text" id="formColor" name="ansQ8a" value="@ansQ8a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ8b" value="@ansQ8b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ8c" value="@ansQ8c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ8d" value="@ansQ8d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ8e" value="@ansQ8e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ8f" value="@ansQ8f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Central /Decentralized</td>            <td id="box3"><input type="text" id="formColor" name="ansQ9a" value="@ansQ9a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ9b" value="@ansQ9b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ9c" value="@ansQ9c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ9d" value="@ansQ9d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ9e" value="@ansQ9e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ9f" value="@ansQ9f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Division/Sub-Division</td>            <td id="box3"><input type="text" id="formColor" name="ansQ10a" value="@ansQ10a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ10b" value="@ansQ10b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ10c" value="@ansQ10c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ10d" value="@ansQ10d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ10e" value="@ansQ10e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ10f" value="@ansQ10f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Management Depth</td>            <td id="box3"><input type="text" id="formColor" name="ansQ11a" value="@ansQ11a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ11b" value="@ansQ11b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ11c" value="@ansQ11c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ11d" value="@ansQ11d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ11e" value="@ansQ11e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ11f" value="@ansQ11f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Financial Condition</td>            <td id="box3"><input type="text" id="formColor" name="ansQ12a" value="@ansQ12a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ12b" value="@ansQ12b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ12c" value="@ansQ12c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ12d" value="@ansQ12d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ12e" value="@ansQ12e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ12f" value="@ansQ12f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Political Climate</td>            <td id="box3"><input type="text" id="formColor" name="ansQ13a" value="@ansQ13a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ13b" value="@ansQ13b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ13c" value="@ansQ13c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ13d" value="@ansQ13d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ13e" value="@ansQ13e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ13f" value="@ansQ13f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Company Growth History</td>            <td id="box3"><input type="text" id="formColor" name="ansQ14a" value="@ansQ14a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ14b" value="@ansQ14b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ14c" value="@ansQ14c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ14d" value="@ansQ14d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ14e" value="@ansQ14e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ14f" value="@ansQ14f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Profitability</td>            <td id="box3"><input type="text" id="formColor" name="ansQ15a" value="@ansQ15a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ15b" value="@ansQ15b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ15c" value="@ansQ15c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ15d" value="@ansQ15d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ15e" value="@ansQ15e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ15f" value="@ansQ15f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Future Growth</td>            <td id="box3"><input type="text" id="formColor" name="ansQ16a" value="@ansQ16a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ16b" value="@ansQ16b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ16c" value="@ansQ16c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ16d" value="@ansQ16d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ16e" value="@ansQ16e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ16f" value="@ansQ16f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Turn Around Options</td>            <td id="box3"><input type="text" id="formColor" name="ansQ17a" value="@ansQ17a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ17b" value="@ansQ17b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ17c" value="@ansQ17c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ17d" value="@ansQ17d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ17e" value="@ansQ17e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ17f" value="@ansQ17f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Stability</td>            <td id="box3"><input type="text" id="formColor" name="ansQ18a" value="@ansQ18a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ18b" value="@ansQ18b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ18c" value="@ansQ18c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ18d" value="@ansQ18d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ18e" value="@ansQ18e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ18f" value="@ansQ18f" size="2" style="text-align: right"></td>        </tr>        <tr height="40">            <td id="box2">Reputation</td>            <td id="box3"><input type="text" id="formColor" name="ansQ19a" value="@ansQ19a" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ19b" value="@ansQ19b" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ19c" value="@ansQ19c" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ19d" value="@ansQ19d" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ19e" value="@ansQ19e" size="2" style="text-align: right"></td>            <td id="box3"><input type="text" id="formColor" name="ansQ19f" value="@ansQ19f" size="2" style="text-align: right"></td>        </tr>    </table>
+
+
+
+    <TABLE cellpadding=0 cellspacing=0 class="t4">
+            <tr></tr>
+    </TABLE>
+</DIV>
+
+<DIV id="page_4">
+    <DIV id="dimg1">
+        <IMG src="~/Images//JMA_Job_Factors4x1.jpg" id="img1">
+    </DIV>
+    <DIV id="id_1"><br><br><br>
+        <TABLE cellpadding=0 cellspacing=0 class="t5">
+            <tr height="40">
+                <td id="box1" width="163">COMPANY FOCUS</td>
+                <td id="box1" width="45">RANK</td>
+                <td id="box1" width="77">IDEAL POSITION</td>
+                <td id="box1" width="77">PREVIOUS POSITION</td>
+                <td id="box1" width="77">OPTION A (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION B (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION C (JOB OFFER)</td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Market Dependency</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20a" value="@ansQ20a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20b" value="@ansQ20b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20c" value="@ansQ20c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20d" value="@ansQ20d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20e" value="@ansQ20e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ20f" value="@ansQ20f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Meets Objectives</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21a" value="@ansQ21a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21b" value="@ansQ21b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21c" value="@ansQ21c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21d" value="@ansQ21d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21e" value="@ansQ21e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ21f" value="@ansQ21f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Duty/Responsibilities</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22a" value="@ansQ22a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22b" value="@ansQ22b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22c" value="@ansQ22c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22d" value="@ansQ22d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22e" value="@ansQ22e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ22f" value="@ansQ22f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Authority</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23a" value="@ansQ23a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23b" value="@ansQ23b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23c" value="@ansQ23c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23d" value="@ansQ23d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23e" value="@ansQ23e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ23f" value="@ansQ23f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Independence</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24a" value="@ansQ24a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24b" value="@ansQ24b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24c" value="@ansQ24c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24d" value="@ansQ24d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24e" value="@ansQ24e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ24f" value="@ansQ24f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Challenge</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25a" value="@ansQ25a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25b" value="@ansQ25b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25c" value="@ansQ25c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25d" value="@ansQ25d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25e" value="@ansQ25e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ25f" value="@ansQ25f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">High/Low Risk</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26a" value="@ansQ26a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26b" value="@ansQ26b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26c" value="@ansQ26c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26d" value="@ansQ26d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26e" value="@ansQ26e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ26f" value="@ansQ26f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Job Visibility</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27a" value="@ansQ27a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27b" value="@ansQ27b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27c" value="@ansQ27c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27d" value="@ansQ27d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27e" value="@ansQ27e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ27f" value="@ansQ27f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Reporting Relationship</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28a" value="@ansQ28a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28b" value="@ansQ28b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28c" value="@ansQ28c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28d" value="@ansQ28d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28e" value="@ansQ28e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ28f" value="@ansQ28f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Direct Line</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29a" value="@ansQ29a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29b" value="@ansQ29b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29c" value="@ansQ29c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29d" value="@ansQ29d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29e" value="@ansQ29e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ29f" value="@ansQ29f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Dotted Line</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30a" value="@ansQ30a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30b" value="@ansQ30b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30c" value="@ansQ30c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30d" value="@ansQ30d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30e" value="@ansQ30e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ30f" value="@ansQ30f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Travel</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31a" value="@ansQ31a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31b" value="@ansQ31b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31c" value="@ansQ31c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31d" value="@ansQ31d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31e" value="@ansQ31e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ31f" value="@ansQ31f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Status (Title)</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32a" value="@ansQ32a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32b" value="@ansQ32b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32c" value="@ansQ32c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32d" value="@ansQ32d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32e" value="@ansQ32e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ32f" value="@ansQ32f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">History/Previous</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33a" value="@ansQ33a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33b" value="@ansQ33b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33c" value="@ansQ33c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33d" value="@ansQ33d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33e" value="@ansQ33e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ33f" value="@ansQ33f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Incumbent</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34a" value="@ansQ34a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34b" value="@ansQ34b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34c" value="@ansQ34c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34d" value="@ansQ34d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34e" value="@ansQ34e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ34f" value="@ansQ34f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Incumbent</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35a" value="@ansQ35a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35b" value="@ansQ35b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35c" value="@ansQ35c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35d" value="@ansQ35d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35e" value="@ansQ35e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ35f" value="@ansQ35f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Other</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36a" value="@ansQ36a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36b" value="@ansQ36b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36c" value="@ansQ36c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36d" value="@ansQ36d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36e" value="@ansQ36e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ36f" value="@ansQ36f" size="2" style="text-align: right"></td>
+            </tr>
+        </TABLE>
+    </DIV>
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t0">
+            <tr></tr>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_5">
+    <DIV id="dimg1">
+        <IMG src="~/Images//JMA_Job_Factors5x1.jpg" id="img1">
+    </DIV>
+    <DIV id="id_1"><br><br><br>
+        <TABLE cellpadding=0 cellspacing=0 class="t5">
+            <tr height="40">
+                <td id="box1" width="163">COMPANY FOCUS</td>
+                <td id="box1" width="45">RANK</td>
+                <td id="box1" width="77">IDEAL POSITION</td>
+                <td id="box1" width="77">PREVIOUS POSITION</td>
+                <td id="box1" width="77">OPTION A (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION B (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION C (JOB OFFER)</td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Interpersonal Chemistry</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37a" value="@ansQ37a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37b" value="@ansQ37b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37c" value="@ansQ37c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37d" value="@ansQ37d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37e" value="@ansQ37e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ37f" value="@ansQ37f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Management Style</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38a" value="@ansQ38a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38b" value="@ansQ38b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38c" value="@ansQ38c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38d" value="@ansQ38d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38e" value="@ansQ38e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ38f" value="@ansQ38f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Step in Career Path</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39a" value="@ansQ39a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39b" value="@ansQ39b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39c" value="@ansQ39c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39d" value="@ansQ39d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39e" value="@ansQ39e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ39f" value="@ansQ39f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Promotion Potential</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40a" value="@ansQ40a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40b" value="@ansQ40b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40c" value="@ansQ40c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40d" value="@ansQ40d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40e" value="@ansQ40e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ40f" value="@ansQ40f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Work Hours</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41a" value="@ansQ41a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41b" value="@ansQ41b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41c" value="@ansQ41c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41d" value="@ansQ41d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41e" value="@ansQ41e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ41f" value="@ansQ41f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Commute</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42a" value="@ansQ42a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42b" value="@ansQ42b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42c" value="@ansQ42c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42d" value="@ansQ42d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42e" value="@ansQ42e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ42f" value="@ansQ42f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Compatibility with Life</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43a" value="@ansQ43a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43b" value="@ansQ43b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43c" value="@ansQ43c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43d" value="@ansQ43d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43e" value="@ansQ43e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ43f" value="@ansQ43f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Style</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44a" value="@ansQ44a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44b" value="@ansQ44b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44c" value="@ansQ44c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44d" value="@ansQ44d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44e" value="@ansQ44e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ44f" value="@ansQ44f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Other</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45a" value="@ansQ45a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45b" value="@ansQ45b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45c" value="@ansQ45c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45d" value="@ansQ45d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45e" value="@ansQ45e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ45f" value="@ansQ45f" size="2" style="text-align: right"></td>
+            </tr>
+        </TABLE>
+        <br><br>
+        <TABLE cellpadding=0 cellspacing=0 class="t5">
+            <tr height="40">
+                <td id="box1" width="163">COMPANY FOCUS</td>
+                <td id="box1" width="45">RANK</td>
+                <td id="box1" width="77">IDEAL POSITION</td>
+                <td id="box1" width="77">PREVIOUS POSITION</td>
+                <td id="box1" width="77">OPTION A (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION B (JOB OFFER)</td>
+                <td id="box1" width="77">OPTION C (JOB OFFER)</td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Location/Relocation</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46a" value="@ansQ46a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46b" value="@ansQ46b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46c" value="@ansQ46c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46d" value="@ansQ46d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46e" value="@ansQ46e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ46f" value="@ansQ46f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">City/Country Living</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47a" value="@ansQ47a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47b" value="@ansQ47b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47c" value="@ansQ47c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47d" value="@ansQ47d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47e" value="@ansQ47e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ47f" value="@ansQ47f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Schools</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48a" value="@ansQ48a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48b" value="@ansQ48b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48c" value="@ansQ48c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48d" value="@ansQ48d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48e" value="@ansQ48e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ48f" value="@ansQ48f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Religious Affiliations</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49a" value="@ansQ49a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49b" value="@ansQ49b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49c" value="@ansQ49c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49d" value="@ansQ49d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49e" value="@ansQ49e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ49f" value="@ansQ49f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Cultural Activities</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50a" value="@ansQ50a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50b" value="@ansQ50b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50c" value="@ansQ50c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50d" value="@ansQ50d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50e" value="@ansQ50e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ50f" value="@ansQ50f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Recreational Areas</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51a" value="@ansQ51a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51b" value="@ansQ51b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51c" value="@ansQ51c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51d" value="@ansQ51d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51e" value="@ansQ51e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ51f" value="@ansQ51f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Local Taxes</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52a" value="@ansQ52a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52b" value="@ansQ52b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52c" value="@ansQ52c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52d" value="@ansQ52d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52e" value="@ansQ52e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ52f" value="@ansQ52f" size="2" style="text-align: right"></td>
+            </tr>
+            <tr height="40">
+                <td id="box2">Other</td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53a" value="@ansQ53a" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53b" value="@ansQ53b" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53c" value="@ansQ53c" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53d" value="@ansQ53d" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53e" value="@ansQ53e" size="2" style="text-align: right"></td>
+                <td id="box3"><input type="text" id="formColor" name="ansQ53f" value="@ansQ53f" size="2" style="text-align: right"></td>
+            </tr>
+        </TABLE>
+    </DIV>
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t0">
+            <tr></tr>
+        </TABLE>
+    </DIV>
+</DIV>
+
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</html>

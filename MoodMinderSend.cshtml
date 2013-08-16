@@ -1,0 +1,76 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var thisUser=Request["UserNameFL"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var startDate="01/01/1900";
+        var endDate="12/31/2999";
+        var coach="";
+
+        if (IsPost) {
+
+            startDate=Request["startDate"].As<string>("");
+            endDate=Request["endDate"].As<string>("");
+            coach=Request["coach"].As<string>("");
+
+            var sendTo="support.team@jodymichael.com";
+        
+            // Create report
+            var db=Database.Open("JMA");
+            var SQLSELECT="select * from MoodMinder where UserNameFL LIKE @0 and DateTime>=@1 and DateTime<=@2";
+            var query=db.Query(SQLSELECT, thisUser, startDate, endDate);
+
+            var dataFile=Server.MapPath("MoodMinder.txt");
+            File.WriteAllText(@dataFile, WebSecurity.CurrentUserName+Environment.NewLine);
+            
+            var newLine="";
+            foreach (var row in query) {
+                File.AppendAllText(@dataFile, @row.DateTime+", ");
+                File.AppendAllText(@dataFile, @row.CurrentMood+", ");
+                File.AppendAllText(@dataFile, @row.SelfOrEvent+", ");
+                File.AppendAllText(@dataFile, @row.EnergyLevel+", ");
+                File.AppendAllText(@dataFile, @row.Thoughts+Environment.NewLine);
+            }
+
+            // Send report
+            var errorMessage="";
+            try {
+                WebMail.SmtpServer="server.jodymichael.com";
+                WebMail.SmtpPort=587;
+                WebMail.EnableSsl=true;
+                WebMail.UserName=sendTo;
+                WebMail.Password="st0516ST!";
+    
+                var filesList=new string [] { dataFile };
+                
+                WebMail.Send(to: sendTo,
+                        subject: "Att'n " + @coach + ": MoodMinder for " + @WebSecurity.CurrentUserName,
+                        body: "File attached",
+                        filesToAttach: filesList);
+
+                Response.Redirect("~/MoodMinderSuccess.cshtml");
+
+            } catch (Exception e) {
+                errorMessage=e.Message;
+            }
+        }
+
+        <br><br><h1>Send MoodMinder Report</h1>
+        <form method="post" action="">
+            <p>Starting date (mm/dd/yyyy):&nbsp;<input type="text" name="startDate" value="@startDate"></p>
+            <p>Ending date (mm/dd/yyyy):&nbsp;<input type="text" name="endDate" value="@endDate"></p>
+            <p>Coach:&nbsp;<select name="coach">
+                <option name="Jody">Jody</option>
+                <option name="Maura">Maura</option>
+                <option name="Andrew">Andrew</option>
+                <option name="Christine">Christine</option>
+            </select></p>
+
+            <p><input type="submit" name="submit" value="Send report"></p>
+        </form>
+
+    } else {
+        <p>Please login.</p>
+    }
+}

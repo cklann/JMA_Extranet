@@ -1,0 +1,78 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var thisUser=Request["UserNameFL"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var worksheet="";
+        var coach="";
+
+        if (IsPost) {
+
+            worksheet=Request["worksheet"].As<string>("");
+            coach=Request["coach"].As<string>("");
+
+            var sendTo="support.team@jodymichael.com";
+        
+            // Create report
+            var db=Database.Open("JMA");
+            var SQLSELECT="";
+            if (worksheet=="Career RoadMap One") {
+                SQLSELECT="select * from CareerRoadMap1 where Email LIKE @0";
+            } else if (worksheet=="Career RoadMap Two") {
+                SQLSELECT="select * from CareerRoadMap2 where Email LIKE @0";
+            } else if (worksheet=="Career RoadMap Three") {
+                SQLSELECT="select * from CareerRoadMap3 where Email LIKE @0";
+            } else if (worksheet=="Career RoadMap Four") {
+                SQLSELECT="select * from CareerRoadMap4 where Email LIKE @0";
+            } else if (worksheet=="Career RoadMap Five") {
+                SQLSELECT="select * from CareerRoadMap5 where Email LIKE @0";
+            }
+            
+            var query=db.Query(SQLSELECT, WebSecurity.CurrentUserName);
+
+            // Send report
+            var errorMessage="";
+            try {
+                WebMail.SmtpServer="server.jodymichael.com";
+                WebMail.SmtpPort=587;
+                WebMail.EnableSsl=true;
+                WebMail.UserName=sendTo;
+                WebMail.Password="st0516ST!";
+    
+                WebMail.Send(to: sendTo,
+                        subject: "Att'n " + @coach + ": " + @worksheet + @WebSecurity.CurrentUserName,
+                        body: @thisUser + " has completed " + @worksheet +
+                              ". Please print the " + @worksheet + " and give to " + @coach + ".");
+
+                Response.Redirect("~/CareerSuccess.cshtml");
+
+            } catch (Exception e) {
+                errorMessage=e.Message;
+            }
+        }
+
+        <br><br><h1>Send Worksheet to Coach</h1>
+        <p>Note: Only send <b><u>completed</u></b> Career RoadMaps to your coach.</p>
+        <form method="post" action="">
+            <p>Worksheet&nbsp;<select name="worksheet">
+                <option name="Career RoadMap One">Career RoadMap One</option>
+                <option name="Career RoadMap Two">Career RoadMap Two</option>
+                <option name="Career RoadMap Three">Career RoadMap Three</option>
+                <option name="Career RoadMap Four">Career RoadMap Four</option>
+                <option name="Career RoadMap Five">Career RoadMap Five</option>
+            </select></p>
+            <p>Coach:&nbsp;<select name="coach">
+                <option name="Jody">Jody</option>
+                <option name="Maura">Maura</option>
+                <option name="Andrew">Andrew</option>
+                <option name="Christine">Christine</option>
+            </select></p>
+
+            <p><input type="submit" name="submit" value="Send Worksheet"></p>
+        </form>
+
+    } else {
+        <p>Please login.</p>
+    }
+}

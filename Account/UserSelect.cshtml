@@ -1,0 +1,179 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>View Active Client Profiles</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var sqlQ="select * from UserProfile where Status='Active' order by UserNameLF";
+        var data=db.Query(sqlQ);
+
+        // List of module names
+        var sqlM="select * from Modules";
+        var dataM=db.Query(sqlM);
+
+        // Count the number of modules
+        var countM=0;
+        foreach (var row in dataM) {
+            countM++;
+        }
+
+        // List of Career RoadMaps
+        var sqlC="select * from CareerRoadMaps";
+        var dataC=db.Query(sqlC);
+
+        // Count the number of RoadMaps
+        var countRM=0;
+        foreach (var row in dataC) {
+            countRM++;
+        }
+
+        <div id="block">
+            <table id="users">
+                <tr>
+                    <th width="30px"></th>
+                    <th valign="bottom" width="125px">User Name</th>
+                    <th valign="bottom" width="75px">Coach</th>
+                    @foreach (var row in dataM) {
+                        <th valign="bottom" width="75px">@row.moduleName</th>
+                    }
+                    @if(@countRM>=1) {
+                        <th valign="bottom" width="50px">CRM One</th>
+                    }
+                    @if(@countRM>=2) {
+                        <th valign="bottom" width="50px">CRM Two</th>
+                    }
+                    @if(@countRM>=3) {
+                        <th valign="bottom" width="50px">CRM Three</th>
+                    }
+                    @if(@countRM>=4) {
+                        <th valign="bottom" width="50px">CRM Four</th>
+                    }
+                    @if(@countRM>=5) {
+                        <th valign="bottom" width="50px">CRM Five</th>
+                    }
+                    @if(@countRM>=6) {
+                        <th valign="bottom" width="50px">CRM Six</th>
+                    }
+                    @if(@countRM>=7) {
+                        <th valign="bottom" width="50px">CRM Seven</th>
+                    }
+                    @if(@countRM>=8) {
+                        <th valign="bottom" width="50px">CRM Eight</th>
+                    }
+                    @if(@countRM>=9) {
+                        <th valign="bottom" width="50px">CRM Nine</th>
+                    }
+                    @if(@countRM>=10) {
+                        <th valign="bottom" width="50px">CRM Ten</th>
+                    }
+                    <th valign="bottom" width="50px">Job Factors</th>
+                    <th valign="bottom" width="50px">Interviewing Support</th>
+                    <th valign="bottom" width="50px">Informational Interview</th>
+                </tr>
+                @foreach(var row in data) {
+                    <tr>
+                        <td><a id="edit" href="UserUpdate.cshtml?UserNameLF=@row.UserNameLF">Edit</a></td>
+                        <td align="center">@row.UserNameLF</td>
+                        <td align="center">@row.Coach</td>
+                        @if(@countM>=1) {
+                            <td align="center">@row.Module1</td>
+                        }
+                        @if(@countM>=2) {
+                            <td align="center">@row.Module2</td>
+                        }
+                        @if(@countM>=3) {
+                            <td align="center">@row.Module3</td>
+                        }
+                        @if(@countM>=4) {
+                            <td align="center">@row.Module4</td>
+                        }
+                        @if(@countM>=5) {
+                            <td align="center">@row.Module5</td>
+                        }
+                        @if(@countM>=6) {
+                            <td align="center">@row.Module6</td>
+                        }
+                        @if(@countM>=7) {
+                            <td align="center">@row.Module7</td>
+                        }
+                        @if(@countM>=8) {
+                            <td align="center">@row.Module8</td>
+                        }
+                        @if(@countM>=9) {
+                            <td align="center">@row.Module9</td>
+                        }
+                        @if(@countM>=10) {
+                            <td align="center">@row.Module10</td>
+                        }
+                        @if(@countRM>=1) {
+                            if (@row.CareerRoadMap1=="Yes") {
+                                <td align="center">
+                                    <a id="edit" href="~/Account/GenerateCareerRoadMap1.cshtml?UserNameFL=@row.UserNameFL">Print</a>
+                                </td>
+                            } else {
+                                <td align="center">No</td>
+                            }
+                        }
+                        @if(@countRM>=2) {
+                            if (@row.CareerRoadMap2=="Yes") {
+                                <td align="center">
+                                    <a id="edit" href="~/Account/GenerateCareerRoadMap2.cshtml?UserNameFL=@row.UserNameFL">Print</a>
+                                </td>
+                            } else {
+                                <td align="center">No</td>
+                            }
+                        }
+                        @if(@countRM>=3) {
+                            if (@row.CareerRoadMap3=="Yes") {
+                                <td align="center">
+                                    <a id="edit" href="~/Account/GenerateCareerRoadMap3.cshtml?UserNameFL=@row.UserNameFL">Print</a>
+                                </td>
+                            } else {
+                                <td align="center">No</td>
+                            }
+                        }
+                        @if(@countRM>=4) {
+                            if (@row.CareerRoadMap4=="Yes") {
+                                <td align="center">
+                                    <a id="edit" href="~/Account/GenerateCareerRoadMap4.cshtml?UserNameFL=@row.UserNameFL">Print</a>
+                                </td>
+                            } else {
+                                <td align="center">No</td>
+                            }
+                        }
+                        @if(@countRM>=5) {
+                            if (@row.CareerRoadMap5=="Yes") {
+                                <td align="center">
+                                    <a id="edit" href="~/Account/GenerateCareerRoadMap5.cshtml?UserNameFL=@row.UserNameFL">Print</a>
+                                </td>
+                            } else {
+                                <td align="center">No</td>
+                            }
+                        }
+                        @if(@countRM>=6) {
+                            <td align="center">@row.CareerRoadmap6</td>
+                        }
+                        @if(@countRM>=7) {
+                            <td align="center">@row.CareerRoadMap7</td>
+                        }
+                        @if(@countRM>=8) {
+                            <td align="center">@row.CareerRoadMap8</td>
+                        }
+                        @if(@countRM>=9) {
+                            <td align="center">@row.CareerRoadMap9</td>
+                        }
+                        @if(@countRM>=10) {
+                            <td align="center">@row.CareerRoadMap10</td>
+                        }
+                        <td align="center">@row.JobFactors</td>
+                        <td align="center">@row.InterviewingSupport</td>
+                        <td align="center">@row.InformationalInterview</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    } else {
+        <p>Please login.</p>
+    }
+}

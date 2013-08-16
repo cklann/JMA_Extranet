@@ -1,0 +1,14 @@
+﻿@{
+    Layout="~/LayoutM.cshtml";
+
+    if (IsPost) {
+        Response.Redirect("~/MoodMinderM.cshtml");
+    }
+}
+
+<br><br><h1></h1>
+<p>We have received your question and will reply as soon as possible.</p>
+
+<form method="post" action="">
+    <input type="submit" name="submit" value="Return to Main Menu">
+</form>

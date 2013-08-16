@@ -1,0 +1,36 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+
+    var end=DateTime.Now;
+    var start=end.AddDays(-30);
+    var db=Database.Open("JMA");
+    var queryU=db.QuerySingle("select * from UserProfile where Email LIKE @0", WebSecurity.CurrentUserName);
+    var thisUser=queryU.UserNameFL;
+    var query=db.Query("select * from MoodMinder where UserNameFL=@0 and DateTime>@1 and DateTime<=@2 order by EnergyLevel",
+        thisUser, start, end);
+
+
+    Dictionary<string,int> levelList=new Dictionary<string,int>();
+    Dictionary<string,string> levelListS=new Dictionary<string,string>();
+
+    // List of all levels
+    foreach (var row in query) {
+        if (levelList.ContainsKey(row.EnergyLevel)) {
+            levelList[row.EnergyLevel]++;
+        } else {
+            levelList.Add(row.EnergyLevel,1);
+        }
+    }
+
+    // Convert level counts to strings
+    foreach (KeyValuePair<string,int> pair in levelList) {
+        levelListS.Add(pair.Key,pair.Value.ToString());
+    }
+
+    var myChart = new Chart(width: 600, height: 400) 
+        .AddTitle("Energy Levels for the Last Month") 
+        .AddSeries(chartType: "Pie",
+            xValue: levelListS.Keys, 
+            yValues: levelListS.Values) 
+        .Write();
+}

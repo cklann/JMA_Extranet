@@ -1,0 +1,1452 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/CareerRoadMap4.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var thisUser=Request["UserNameFL"];
+        var db=Database.Open("JMA");
+        var data=db.QuerySingle("select * from UserProfile where UserNameFL=@0", thisUser);
+        var thisEmail=data.Email;
+        
+        var SQLSELECT="select * from CareerRoadMap4 where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, data.Email);
+
+        // Where have you been?
+        var ansQ1a=answers.Q1a;             // Job #1        var ansQ1b=answers.Q1b;             // Dates held        var ansQ1c=answers.Q1c;             // How it made me feel        var ansQ1d=answers.Q1d;             // Changed direction        var ansQ1e=answers.Q1e;             // Patterns        var ansQ1f=answers.Q1f;             // Learned or gained
+        var ansQ2a=answers.Q2a;             // Job #2        var ansQ2b=answers.Q2b;             // Dates held        var ansQ2c=answers.Q2c;             // How it made me feel        var ansQ2d=answers.Q2d;             // Changed direction        var ansQ2e=answers.Q2e;             // Patterns        var ansQ2f=answers.Q2f;             // Learned or gained        var ansQ3a=answers.Q3a;             // Job #3        var ansQ3b=answers.Q3b;             // Dates held        var ansQ3c=answers.Q3c;             // How it made me feel        var ansQ3d=answers.Q3d;             // Changed direction        var ansQ3e=answers.Q3e;             // Patterns        var ansQ3f=answers.Q3f;             // Learned or gained        var ansQ4a=answers.Q4a;             // Job #4        var ansQ4b=answers.Q4b;             // Dates held        var ansQ4c=answers.Q4c;             // How it made me feel        var ansQ4d=answers.Q4d;             // Changed direction        var ansQ4e=answers.Q4e;             // Patterns        var ansQ4f=answers.Q4f;             // Learned or gained        var ansQ5a=answers.Q5a;             // Job #5        var ansQ5b=answers.Q5b;             // Dates held        var ansQ5c=answers.Q5c;             // How it made me feel        var ansQ5d=answers.Q5d;             // Changed direction        var ansQ5e=answers.Q5e;             // Patterns        var ansQ5f=answers.Q5f;             // Learned or gained        var ansQ6a=answers.Q6a;             // Job #6        var ansQ6b=answers.Q6b;             // Dates held        var ansQ6c=answers.Q6c;             // How it made me feel        var ansQ6d=answers.Q6d;             // Changed direction        var ansQ6e=answers.Q6e;             // Patterns        var ansQ6f=answers.Q6f;             // Learned or gained        var ansQ7a=answers.Q7a;             // Job #7        var ansQ7b=answers.Q7b;             // Dates held        var ansQ7c=answers.Q7c;             // How it made me feel        var ansQ7d=answers.Q7d;             // Changed direction        var ansQ7e=answers.Q7e;             // Patterns        var ansQ7f=answers.Q7f;             // Learned or gained        var ansQ8a=answers.Q8a;             // Job #8        var ansQ8b=answers.Q8b;             // Dates held        var ansQ8c=answers.Q8c;             // How it made me feel        var ansQ8d=answers.Q8d;             // Changed direction        var ansQ8e=answers.Q8e;             // Patterns        var ansQ8f=answers.Q8f;             // Learned or gained        var ansQ9a=answers.Q9a;             // Job #9        var ansQ9b=answers.Q9b;             // Dates held        var ansQ9c=answers.Q9c;             // How it made me feel        var ansQ9d=answers.Q9d;             // Changed direction        var ansQ9e=answers.Q9e;             // Patterns        var ansQ9f=answers.Q9f;             // Learned or gained        var ansQ10a=answers.Q10a;           // Job #10        var ansQ10b=answers.Q10b;           // Dates held        var ansQ10c=answers.Q10c;           // How it made me feel        var ansQ10d=answers.Q10d;           // Changed direction        var ansQ10e=answers.Q10e;           // Patterns        var ansQ10f=answers.Q10f;           // Learned or gained        var ansQ11a=answers.Q11a;           // Job #11        var ansQ11b=answers.Q11b;           // Dates held        var ansQ11c=answers.Q11c;           // How it made me feel        var ansQ11d=answers.Q11d;           // Changed direction        var ansQ11e=answers.Q11e;           // Patterns        var ansQ11f=answers.Q11f;           // Learned or gained        var ansQ12a=answers.Q12a;           // Job #12        var ansQ12b=answers.Q12b;           // Dates held        var ansQ12c=answers.Q12c;           // How it made me feel        var ansQ12d=answers.Q12d;           // Changed direction        var ansQ12e=answers.Q12e;           // Patterns        var ansQ12f=answers.Q12f;           // Learned or gained
+        var ansQ13a=answers.Q13a;           // Job #13        var ansQ13b=answers.Q13b;           // Dates held        var ansQ13c=answers.Q13c;           // How it made me feel        var ansQ13d=answers.Q13d;           // Changed direction        var ansQ13e=answers.Q13e;           // Patterns        var ansQ13f=answers.Q13f;           // Learned or gained
+        var ansQ14a=answers.Q14a;           // Job #14        var ansQ14b=answers.Q14b;           // Dates held        var ansQ14c=answers.Q14c;           // How it made me feel        var ansQ14d=answers.Q14d;           // Changed direction        var ansQ14e=answers.Q14e;           // Patterns        var ansQ14f=answers.Q14f;           // Learned or gained
+        var ansQ15a=answers.Q15a;           // Job #15        var ansQ15b=answers.Q15b;           // Dates held        var ansQ15c=answers.Q15c;           // How it made me feel        var ansQ15d=answers.Q15d;           // Changed direction        var ansQ15e=answers.Q15e;           // Patterns        var ansQ15f=answers.Q15f;           // Learned or gained
+
+        // Summarize the themes
+        var ansQ16=answers.Q16;
+
+        // A Day in the Life
+        var ansQ17=answers.Q17;             // What time do you get up to go to work?        var ansQ17a=answers.Q17a;        var ansQ18=answers.Q18;             // How do you dress for work? Formally? Casually? Do you have a choice?        var ansQ18a=answers.Q18a;        var ansQ19=answers.Q19;             // What means of transportation do you use to get there?        var ansQ19a=answers.Q19a;        var ansQ20=answers.Q20;             // While traveling to work, what do you do? Drive, sleep, read or work?        var ansQ20a=answers.Q20a;        var ansQ21=answers.Q21;             // How do you spend most of your day? What activities do you engage in?        var ansQ21a=answers.Q21a;        var ansQ22=answers.Q22;             // How structured is your day?        var ansQ22a=answers.Q22a;        var ansQ23=answers.Q23;             // How long is your day? How many hours?        var ansQ23a=answers.Q23a;        var ansQ24=answers.Q24;             // Do you have a boss? How closely does he/she work with you and direct you?        var ansQ24a=answers.Q24a;        var ansQ25=answers.Q25;             // Do you primarily work with people inside your company or outside your company?        var ansQ25a=answers.Q25a;        var ansQ26=answers.Q26;             // Do you primarily work alone or with others? How much time do you spend interacting with others?        var ansQ26a=answers.Q26a;        var ansQ27=answers.Q27;             // How competitive or collaborative is your work?        var ansQ27a=answers.Q27a;        var ansQ28=answers.Q28;             // How stressful is your work?        var ansQ28a=answers.Q28a;        var ansQ29=answers.Q29;             // How physically, emotionally and intellectually demanding is it?        var ansQ29a=answers.Q29a;        var ansQ30=answers.Q30;             // How much creativity do you use at work?        var ansQ30a=answers.Q30a;        var ansQ31=answers.Q31;             // How long does it take to produce results? Is it immediate or does it take months (or longer)?        var ansQ31a=answers.Q31a;        var ansQ32=answers.Q32;             // How prestigious is your current job or company?        var ansQ32a=answers.Q32a;        var ansQ33=answers.Q33;             // Are you expected to eat lunch at your desk or can you choose how to spend it?        var ansQ33a=answers.Q33a;        var ansQ34=answers.Q34;             // How much work do you bring home with you?        var ansQ34a=answers.Q34a;        var ansQ35=answers.Q35;             // How many hours are in a typical work week?        var ansQ35a=answers.Q35a;        var ansQ36=answers.Q36;             // Is your work ever done?        var ansQ36a=answers.Q36a;        var ansQ37=answers.Q37;             // How much after-hours social time is required to be successful in this job?        var ansQ37a=answers.Q37a;        var ansQ38=answers.Q38;             // How much money do you make? Calculate how much you make per hour, including benefits.        var ansQ38a=answers.Q38a;
+
+        var ansQ39a=answers.Q39a;           // Other values
+        var ansQ39b=answers.Q39b;
+
+        // Top ten values
+        var ansQ40a=answers.Q40a;
+        var ansQ40b=answers.Q40b;
+        var ansQ40c=answers.Q40c;
+        var ansQ40d=answers.Q40d;
+        var ansQ40e=answers.Q40e;
+        var ansQ40f=answers.Q40f;
+        var ansQ40g=answers.Q40g;
+        var ansQ40h=answers.Q40h;
+        var ansQ40i=answers.Q40i;
+        var ansQ40j=answers.Q40j;
+
+        // Are now, aspire to be, aspire to do
+        var ansQ41=answers.Q41;
+
+        // Top five values
+        var ansQ42a=answers.Q42a;
+        var ansQ42b=answers.Q42b;
+        var ansQ42c=answers.Q42c;
+        var ansQ42d=answers.Q42d;
+        var ansQ42e=answers.Q42e;
+
+        // How are these values currently expressed in your career
+        var ansQ43=answers.Q43;
+
+        // Your internal compass
+            // Create list of all values
+            var dbM=Database.Open("JMA");
+            var SQLSELECTM="select * from AllValues order by Value";
+            var values=dbM.Query(SQLSELECTM);
+            String[] allWords=new String[379];
+            int index=0;
+            foreach (var row in values) {
+                allWords[index]=@row.Value;
+                index++;
+            }
+
+            // Create flags that indicate whether the user has selected each value
+            String[] contWord=new String[379];
+            var ans_shortList=answers.shortList;
+            for (int i=0; i<allWords.Length; i++) {
+                contWord[i]="0";
+                if (ans_shortList.Contains(allWords[i])) {
+                    contWord[i]="1";
+                }
+            }
+
+        if(IsPost) {
+            Response.Redirect("~/index.cshtml");
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+    <DIV id="dimg1">
+    </DIV>
+    <P class="p1 ft2">CAREER ROADMAP FOUR</P>
+    <P class="p2 ft3">DISCOVERY</P>
+    <P class="p3 ft4">Please note: This is a proprietary document that is intended for your personal use only.</P>
+    <TABLE cellpadding=0 cellspacing=0 class="t0">
+        <TR></TR><TR></TR>
+    </TABLE>
+</DIV>
+
+<DIV id="page_2">
+    <DIV id="dimg1">
+    </DIV>
+    <DIV id="id_1">
+        <TABLE cellpadding=0 cellspacing=0 class="t1">
+            <TR>
+	            <TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+    	        <TD class="tr2 td4"><P class="p7 ft0">2</P></TD>
+            </TR>
+        </TABLE>
+        <P class="p8 ft6">Congratulations!</P>
+        <P class="p9 ft7">The document that you hold in your hands, Career RoadMap Four, shows that you have completed Career</P>
+        <P class="p10 ft7">RoadMaps One, Two and Three and that you are now in a position to further define your career target.</P>
+        <P class="p11 ft6">Where Have You Been?</P>
+        <P class="p12 ft7">If the previous section left you frustrated, do not worry. That was just the first step. We will spend more time honing your career path.</P>
+        <P class="p13 ft7">In Career RoadMap Four, we look at your history and consider what brought you to where you are today. How have you previously made decisions? How have the results of your decision-making born out in practice? Simply, we look to the past to find clues that may guide us to appropriate focus in the present and in planning the future.</P>
+        <P class="p14 ft8">However, there are some rules you must follow during this trip down memory lane. We don't have time to relive the past-just time to learn from it. Try not to get sidetracked emotionally. Needless speculation about "the path you should have followed" or "how things might have turned out if..." do not help us here. You are only looking at the past to gain better focus now.</P>
+    </DIV>
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t2">
+            <TR></TR><TR></TR>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_3">
+    <DIV id="dimg1">
+    </DIV>
+    <DIV id="id_1">
+        <DIV id="id_1_1">
+            <P class="p15 ft0">JMA: Career RoadMap Four</P>
+            <P class="p16 ft6">Where Have You Been? (Continued)</P>
+            <P class="p17 ft7">Use the chart on the next pages to recall your past jobs and how they impacted you.</P>
+            <P class="p11 ft9">Consider the following for each column:</P>
+            <P class="p18 ft12"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft11">Job: </SPAN>Chronologically, list all of the jobs you have ever had, including the lifeguarding job you held in high school, the job you worked for a week and quit, and the lemonade stand you set up when you were six years old. Also, add how you were "employed" during your grade school years: pulling weeds, mowing lawns, dusting the house, shoveling walks, etc.</P>
+            <P class="p19 ft14"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft13">Dates Held: </SPAN>List the dates you began and left each job. If you don't remember specific dates, you can enter something more general, such as "grade school," "high school" or "college."</P>
+            <P class="p20 ft9"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft15">How It Made Me Feel: </SPAN><SPAN class="ft7">Consider how you felt while performing that job. For example, did you experience happiness, fulfillment, pride, frustration or boredom?</SPAN></P>
+            <P class="p21 ft14"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft13">Changed Direction: </SPAN>For each job, what made you decide to change direction, do something else or move on? These are the forks in your path. Examples include parental or sibling</P>
+            <P class="p22 ft7">influence, input from teachers, academic or extracurricular preparation, financial pressure and convenience.</P>
+            <P class="p23 ft14"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft13">Patterns: </SPAN>Examine the chart for patterns. Did you determine a direction using the same technique several times? Who made the decision? Where you had a say, what influenced</P>
+            <P class="p24 ft7">you? For example, you could answer, "My friends were working there," "I took it because it was the first opportunity that came along," or "The employer pursued me."</P>
+            <P class="p25 ft14"><SPAN class="ft10">&#8226;</SPAN><SPAN class="ft13">Learned or Gained: </SPAN>Give some thought to what you may have learned from each job. Did you take something positive away from it? Did it help you realize what you would like to avoid in future jobs? Did it help you better understand yourself and what you wanted in your ideal job?</P>
+        </DIV>
+        <DIV id="id_1_2">
+            <P class="p26 ft0">3</P>
+            <P class="p27 ft16">"The past has no power over the present moment."</P>
+            <P class="p28 ft17">- Eckhart Tolle</P>
+        </DIV>
+    </DIV>
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t2">
+            <TR></TR><TR></TR>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_4">
+    <DIV id="dimg1">
+    </DIV>
+    <TABLE cellpadding=0 cellspacing=0 class="t3">
+        <TR>
+        	<TD class="tr3 td5"><P class="p4 ft0">JMA: Career RoadMap Four</P></TD>
+	        <TD class="tr3 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	        <TD class="tr3 td2"><P class="p29 ft0">4</P></TD>
+        </TR>
+        <TR>
+	        <TD class="tr4 td5"><P class="p5 ft6">Where Have You Been? (Continued)</P></TD>
+	        <TD class="tr4 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	        <TD class="tr4 td2"><P class="p5 ft18">&nbsp;</P></TD>
+        </TR>
+    </TABLE><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ1a" size="32" value="@ansQ1a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ1b" size="32" value="@ansQ1b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ1c" size="85" value="@ansQ1c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ1d" size="32" value="@ansQ1d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ1e" size="32" value="@ansQ1e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ1f" size="85" value="@ansQ1f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ2a" size="32" value="@ansQ2a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ2b" size="32" value="@ansQ2b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ2c" size="85" value="@ansQ2c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ2d" size="32" value="@ansQ2d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ2e" size="32" value="@ansQ2e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ2f" size="85" value="@ansQ2f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ3a" size="32" value="@ansQ3a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ3b" size="32" value="@ansQ3b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ3c" size="85" value="@ansQ3c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ3d" size="32" value="@ansQ3d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ3e" size="32" value="@ansQ3e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ3f" size="85" value="@ansQ3f"></td>
+        </tr>
+    </table>
+    <TABLE>
+            <TR></TR><TR></TR>
+    </TABLE>
+</DIV>
+
+<DIV id="page_5">
+    <DIV id="dimg1">
+    </DIV>
+    <TABLE cellpadding=0 cellspacing=0 class="t3">
+        <TR>
+        	<TD class="tr3 td5"><P class="p4 ft0">JMA: Career RoadMap Four</P></TD>
+        	<TD class="tr3 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	        <TD class="tr3 td2"><P class="p29 ft0">5</P></TD>
+        </TR>
+        <TR>
+        	<TD class="tr4 td5"><P class="p5 ft6">Where Have You Been? (Continued)</P></TD>
+	        <TD class="tr4 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	        <TD class="tr4 td2"><P class="p5 ft18">&nbsp;</P></TD>
+        </TR>
+    </TABLE><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ4a" size="32" value="@ansQ4a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ4b" size="32" value="@ansQ4b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ4c" size="85" value="@ansQ4c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ4d" size="32" value="@ansQ4d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ4e" size="32" value="@ansQ4e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ4f" size="85" value="@ansQ4f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ5a" size="32" value="@ansQ5a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ5b" size="32" value="@ansQ5b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ5c" size="85" value="@ansQ5c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ5d" size="32" value="@ansQ5d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ5e" size="32" value="@ansQ5e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ5f" size="85" value="@ansQ5f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ6a" size="32" value="@ansQ6a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ6b" size="32" value="@ansQ6b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ6c" size="85" value="@ansQ6c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ6d" size="32" value="@ansQ6d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ6e" size="32" value="@ansQ6e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ6f" size="85" value="@ansQ6f"></td>
+        </tr>
+    </table>
+    <table>
+        <TR></TR><TR></TR>
+    </TABLE>
+</DIV>
+
+<DIV id="page_6">
+    <DIV id="dimg1">
+    </DIV>
+    <TABLE cellpadding=0 cellspacing=0 class="t3">
+        <TR>
+        	<TD class="tr3 td5"><P class="p4 ft0">JMA: Career RoadMap Four</P></TD>
+        	<TD class="tr3 td1"><P class="p5 ft18">&nbsp;</P></TD>
+        	<TD class="tr3 td2"><P class="p29 ft0">6</P></TD>
+        </TR>
+        <TR>
+	        <TD class="tr4 td5"><P class="p5 ft6">Where Have You Been? (Continued)</P></TD>
+	        <TD class="tr4 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	        <TD class="tr4 td2"><P class="p5 ft18">&nbsp;</P></TD>
+        </TR>
+    </TABLE><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ7a" size="32" value="@ansQ7a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ7b" size="32" value="@ansQ7b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ7c" size="85" value="@ansQ7c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ7d" size="32" value="@ansQ7d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ7e" size="32" value="@ansQ7e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ7f" size="85" value="@ansQ7f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ8a" size="32" value="@ansQ8a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ8b" size="32" value="@ansQ8b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ8c" size="85" value="@ansQ8c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ8d" size="32" value="@ansQ8d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ8e" size="32" value="@ansQ8e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ8f" size="85" value="@ansQ8f"></td>
+        </tr>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ9a" size="32" value="@ansQ9a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ9b" size="32" value="@ansQ9b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ9c" size="85" value="@ansQ9c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ9d" size="32" value="@ansQ9d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ9e" size="32" value="@ansQ9e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ9f" size="85" value="@ansQ9f"></td>
+        </tr>
+    </table>
+    <table>
+        <TR></TR><TR></TR>
+    </TABLE>
+</DIV>
+
+<DIV id="page_7">
+    <DIV id="dimg1">
+    </DIV>
+    <TABLE cellpadding=0 cellspacing=0 class="t3">
+        <TR>
+        	<TD class="tr3 td5"><P class="p4 ft0">JMA: Career RoadMap Four</P></TD>
+        	<TD class="tr3 td1"><P class="p5 ft18">&nbsp;</P></TD>
+        	<TD class="tr3 td2"><P class="p29 ft0">7</P></TD>
+        </TR>
+        <TR>
+        	<TD class="tr4 td5"><P class="p5 ft6">Where Have You Been? (Continued)</P></TD>
+	        <TD class="tr4 td1"><P class="p5 ft18">&nbsp;</P></TD>
+        	<TD class="tr4 td2"><P class="p5 ft18">&nbsp;</P></TD>
+        </TR>
+    </table><br><br>
+    <table id="tableForm" border="1">
+        <tr>
+            <td width="100" height="50">Job</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ10a" size="32" value="@ansQ10a"></td>
+            <td width="100">Dates Held</td>
+            <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ10b" size="32" value="@ansQ10b"></td>
+        </tr>
+        <tr>
+            <td height="50">How It Made Me Feel</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ10c" size="85" value="@ansQ10c"></td>
+        </tr>
+        <tr>
+            <td height="50">Changed Direction</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ10d" size="32" value="@ansQ10d"></td>
+            <td>Patterns</td>
+            <td>&nbsp;<input type="text" id="formColor" name="ansQ10e" size="32" value="@ansQ10e"></td>
+        </tr>
+        <tr>
+            <td height="50">Learned or Gained</td>
+            <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ10f" size="85" value="@ansQ10f"></td>
+        </tr>
+    </table><br><br>
+<table id="tableForm" border="1">
+    <tr>
+        <td width="100" height="50">Job</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ11a" size="32" value="@ansQ11a"></td>
+        <td width="100">Dates Held</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ11b" size="32" value="@ansQ11b"></td>
+    </tr>
+    <tr>
+        <td height="50">How It Made Me Feel</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ11c" size="85" value="@ansQ11c"></td>
+    </tr>
+    <tr>
+        <td height="50">Changed Direction</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ11d" size="32" value="@ansQ11d"></td>
+        <td>Patterns</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ11e" size="32" value="@ansQ11e"></td>
+    </tr>
+    <tr>
+        <td height="50">Learned or Gained</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ11f" size="85" value="@ansQ11f"></td>
+    </tr>
+</table>
+
+<br><br>
+<table id="tableForm" border="1">
+    <tr>
+        <td width="100" height="50">Job</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ12a" size="32" value="@ansQ12a"></td>
+        <td width="100">Dates Held</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ12b" size="32" value="@ansQ12b"></td>
+    </tr>
+    <tr>
+        <td height="50">How It Made Me Feel</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ12c" size="85" value="@ansQ12c"></td>
+    </tr>
+    <tr>
+        <td height="50">Changed Direction</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ12d" size="32" value="@ansQ12d"></td>
+        <td>Patterns</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ12e" size="32" value="@ansQ12e"></td>
+    </tr>
+    <tr>
+        <td height="50">Learned or Gained</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ12f" size="85" value="@ansQ12f"></td>
+    </tr>
+</table>
+
+<table>
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+<DIV id="page_8">
+<DIV id="dimg1">
+</DIV>
+
+<TABLE cellpadding=0 cellspacing=0 class="t3">
+<TR>
+	<TD class="tr3 td5"><P class="p4 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr3 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	<TD class="tr3 td2"><P class="p29 ft0">8</P></TD>
+</TR>
+<TR>
+	<TD class="tr4 td5"><P class="p5 ft6">Where Have You Been? (Continued)</P></TD>
+	<TD class="tr4 td1"><P class="p5 ft18">&nbsp;</P></TD>
+	<TD class="tr4 td2"><P class="p5 ft18">&nbsp;</P></TD>
+</TR>
+</table>
+
+<br><br>
+<table id="tableForm" border="1">
+    <tr>
+        <td width="100" height="50">Job</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ13a" size="32" value="@ansQ13a"></td>
+        <td width="100">Dates Held</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ13b" size="32" value="@ansQ13b"></td>
+    </tr>
+    <tr>
+        <td height="50">How It Made Me Feel</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ13c" size="85" value="@ansQ13c"></td>
+    </tr>
+    <tr>
+        <td height="50">Changed Direction</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ13d" size="32" value="@ansQ13d"></td>
+        <td>Patterns</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ13e" size="32" value="@ansQ13e"></td>
+    </tr>
+    <tr>
+        <td height="50">Learned or Gained</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ13f" size="85" value="@ansQ13f"></td>
+    </tr>
+</table>
+
+<br><br>
+<table id="tableForm" border="1">
+    <tr>
+        <td width="100" height="50">Job</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ14a" size="32" value="@ansQ14a"></td>
+        <td width="100">Dates Held</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ14b" size="32" value="@ansQ14b"></td>
+    </tr>
+    <tr>
+        <td height="50">How It Made Me Feel</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ14c" size="85" value="@ansQ14c"></td>
+    </tr>
+    <tr>
+        <td height="50">Changed Direction</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ14d" size="32" value="@ansQ14d"></td>
+        <td>Patterns</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ14e" size="32" value="@ansQ14e"></td>
+    </tr>
+    <tr>
+        <td height="50">Learned or Gained</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ14f" size="85" value="@ansQ14f"></td>
+    </tr>
+</table>
+
+<br><br>
+<table id="tableForm" border="1">
+    <tr>
+        <td width="100" height="50">Job</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ15a" size="32" value="@ansQ15a"></td>
+        <td width="100">Dates Held</td>
+        <td width="248">&nbsp;<input type="text" id="formColor" name="ansQ15b" size="32" value="@ansQ15b"></td>
+    </tr>
+    <tr>
+        <td height="50">How It Made Me Feel</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ15c" size="85" value="@ansQ15c"></td>
+    </tr>
+    <tr>
+        <td height="50">Changed Direction</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ15d" size="32" value="@ansQ15d"></td>
+        <td>Patterns</td>
+        <td>&nbsp;<input type="text" id="formColor" name="ansQ15e" size="32" value="@ansQ15e"></td>
+    </tr>
+    <tr>
+        <td height="50">Learned or Gained</td>
+        <td colspan="3">&nbsp;<input type="text" id="formColor" name="ansQ15f" size="85" value="@ansQ15f"></td>
+    </tr>
+</table>
+
+<table>
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+
+
+<DIV id="page_9">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">9</P></TD>
+</TR>
+</TABLE>
+<P class="p34 ft6">Where Have You Been? (Continued)</P>
+<P class="p35 ft9">Review the previous pages for any themes that stand out. Here are sample themes for your reference:</P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I was bored or felt that I had mastered the job and was looking for something new and exciting.</SPAN></P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I didn't like the people with whom I worked.</SPAN></P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">The money was better.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">The job required me to learn new skills.</SPAN></P>
+<P class="p38 ft24"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft23">I was always looking for a place where I could interact with people, such as clients, employees and vendors.</SPAN></P>
+<P class="p39 ft24"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft23">I was looking for jobs that would help me succeed on a range of fronts: professional, personal, spiritual, family and health.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">They wanted me to work for them and I was fl attered.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I wanted a lighter work load.</SPAN></P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I wanted more opportunity for </SPAN>work-life balance.</P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">A spouse or parent infl uenced me to accept and/or leave the job.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I was afraid I wouldn't find anything better.</SPAN></P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I wanted to impress my family and friends.</SPAN></P>
+<P class="p36 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">The grass always seemed greener elsewhere.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">I already worked for the company and it would have looked bad not to take the new job/promotion.</SPAN></P>
+<P class="p40 ft9">Brieifly summarize the themes that emerge for you.</P>
+    <input type="text" id="formColor" name="ansQ16" size="100" value="@ansQ16">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_10">
+<DIV id="dimg1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">10</P></TD>
+</TR>
+</TABLE>
+<P class="p41 ft6">Where Have You Been? (Continued)</P>
+<P class="p42 ft25">In looking back upon your past decisions and career moves, you may feel regretful, worrying that you wasted your efforts or made a "wrong" decision somewhere along your path. But let us reassure you-you made no wrong choices.</P>
+<P class="p43 ft25">Each of your experiences happened for a reason and they each helped you to learn more about yourself-what you like and don't like, what you do well and what you want to avoid, how you work best, etc. Without those experiences, you wouldn't have the knowledge and self-awareness that you do today.</P>
+<P class="p44 ft25">It"s that same knowledge that will help you determine what you are meant to do with your career going forward. You may not be able to see this in the present moment, but years from now, you will look back and better understand how it all fits together.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_11">
+<DIV id="dimg1">
+</DIV>
+
+
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">11</P></TD>
+</TR>
+</TABLE>
+<P class="p45 ft6">A Day in the Life</P>
+<P class="p46 ft7">Consider the following questions as they relate to your current career. In the second column, explain your present situation and, in the third column, indicate how you feel about the situation by writing "like," "neutral" or "dislike."</P>
+
+<br><br>
+<table id="tableForm">
+    <tr id="tableForm">
+        <td width="215" height="50" id="tableForm"><b>Topic</b></td>
+        <td width="320" id="tableForm"><b>Your Situation</b></td>
+        <td width="130" id="tableForm"><b>Do you like this situation?</b></td>
+    </tr>
+    <tr id="tableForm">        <td height="50" id="tableForm">What time do you get up to go to work?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ17" size="55" value="@ansQ17"></td>        <td id="tableForm">&nbsp;<select name="ansQ17a">            <option value="Like" @(ansQ17a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ17a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ17a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How do you dress for work? Formally? Casually? Do you have a choice?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ18" size="55" value="@ansQ18"></td>        <td id="tableForm">&nbsp;<select name="ansQ18a">            <option value="Like" @(ansQ18a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ18a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ18a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">What means of transportation do you use to get there?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ19" size="55" value="@ansQ19"></td>        <td id="tableForm">&nbsp;<select name="ansQ19a">            <option value="Like" @(ansQ19a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ19a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ19a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">While traveling to work, what do you do? Drive, sleep, read or work?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ20" size="55" value="@ansQ20"></td>        <td id="tableForm">&nbsp;<select name="ansQ20a">            <option value="Like" @(ansQ20a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ20a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ20a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How do you spend most of your day? What activities do you engage in?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ21" size="55" value="@ansQ21"></td>        <td id="tableForm">&nbsp;<select name="ansQ21a">            <option value="Like" @(ansQ21a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ21a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ21a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How structured is your day?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ22" size="55" value="@ansQ22"></td>        <td id="tableForm">&nbsp;<select name="ansQ22a">            <option value="Like" @(ansQ22a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ22a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ22a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How long is your day? How many hours?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ23" size="55" value="@ansQ23"></td>        <td id="tableForm">&nbsp;<select name="ansQ23a">            <option value="Like" @(ansQ23a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ23a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ23a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">Do you have a boss? How closely does he/she work with you and direct you?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ24" size="55" value="@ansQ24"></td>        <td id="tableForm">&nbsp;<select name="ansQ24a">            <option value="Like" @(ansQ24a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ24a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ24a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">Do you primarily work with people inside your company or outside your company?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ25" size="55" value="@ansQ25"></td>        <td id="tableForm">&nbsp;<select name="ansQ25a">            <option value="Like" @(ansQ25a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ25a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ25a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">Do you primarily work alone or with others? How much time do you spend interacting with others?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ26" size="55" value="@ansQ26"></td>        <td id="tableForm">&nbsp;<select name="ansQ26a">            <option value="Like" @(ansQ26a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ26a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ26a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>
+</table>
+
+<table>
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+
+<DIV id="page_12">
+<DIV id="dimg1">
+</DIV>
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">12</P></TD>
+</TR>
+</TABLE>
+<P class="p41 ft6">A Day in the Life (Continued)</P>
+<br><br>
+<table id="tableForm">
+    <tr id="tableForm">
+        <td width="215" height="50" id="tableForm"><b>Topic</b></td>
+        <td width="320" id="tableForm"><b>Your Situation</b></td>
+        <td width="130" id="tableForm"><b>Do you like this situation?</b></td>
+    </tr>
+    <tr id="tableForm">        <td id="tableForm" height="50">How competitive or collaborative is your work?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ27" size="55" value="@ansQ27"></td>        <td id="tableForm">&nbsp;<select name="ansQ27a">            <option value="Like" @(ansQ27a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ27a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ27a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How stressful is your work?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ28" size="55" value="@ansQ28"></td>        <td id="tableForm">&nbsp;<select name="ansQ28a">            <option value="Like" @(ansQ28a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ28a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ28a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How physically, emotionally and intellectually demanding is it?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ29" size="55" value="@ansQ29"></td>        <td id="tableForm">&nbsp;<select name="ansQ29a">            <option value="Like" @(ansQ29a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ29a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ29a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How much creativity do you use at work?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ30" size="55" value="@ansQ30"></td>        <td id="tableForm">&nbsp;<select name="ansQ30a">            <option value="Like" @(ansQ30a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ30a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ30a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How long does it take to produce results? Is it immediate or does it take months (or longer)?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ31" size="55" value="@ansQ31"></td>        <td id="tableForm">&nbsp;<select name="ansQ31a">            <option value="Like" @(ansQ31a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ31a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ31a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How prestigious is your current job or company?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ32" size="55" value="@ansQ32"></td>        <td id="tableForm">&nbsp;<select name="ansQ32a">            <option value="Like" @(ansQ32a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ32a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ32a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">Are you expected to eat lunch at your desk or can you choose how to spend it?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ33" size="55" value="@ansQ33"></td>        <td id="tableForm">&nbsp;<select name="ansQ33a">            <option value="Like" @(ansQ33a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ33a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ33a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How much work do you bring home with you?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ34" size="55" value="@ansQ34"></td>        <td id="tableForm">&nbsp;<select name="ansQ34a">            <option value="Like" @(ansQ34a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ34a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ34a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How many hours are in a typical work week?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ35" size="55" value="@ansQ35"></td>        <td id="tableForm">&nbsp;<select name="ansQ35a">            <option value="Like" @(ansQ35a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ35a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ35a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">Is your work ever done?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ36" size="55" value="@ansQ36"></td>        <td id="tableForm">&nbsp;<select name="ansQ36a">            <option value="Like" @(ansQ36a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ36a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ36a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How much after-hours social time is required to be successful in this job?</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ37" size="55" value="@ansQ37"></td>        <td id="tableForm">&nbsp;<select name="ansQ37a">            <option value="Like" @(ansQ37a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ37a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ37a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>    <tr id="tableForm">        <td id="tableForm" height="50">How much money do you make? Calculate how much you make per hour, including benefits.</td>        <td id="tableForm">&nbsp;<input type="text" id="formColor2" name="ansQ38" size="55" value="@ansQ38"></td>        <td id="tableForm">&nbsp;<select name="ansQ38a">            <option value="Like" @(ansQ38a.Contains("Like") ? " selected" : "")>Like</option>            <option value="Neutral" @(ansQ38a.Contains("Neutral") ? " selected" : "")>Neutral</option>            <option value="Dislike" @(ansQ38a.Contains("Dislike") ? " selected" : "")>Dislike</option>        </select></td>    </tr>
+</table>
+
+<table>
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+
+<DIV id="page_13">
+    <DIV id="dimg1">
+    </DIV>
+    <DIV id="id_1">
+        <DIV id="id_1_1">
+            <P class="p15 ft0">JMA: Career RoadMap Four</P>
+            <P class="p16 ft6">Your Internal Compass</P>
+            <P class="p50 ft38">The term "values" refers to those beliefs, attitudes or ideals that represent what we believe to be desirable, useful and of utmost importance. Our values make up the quintessential nature of who we are and what we are all about-the core of our character.</P>
+            <P class="p51 ft38">Each person has a unique set of primary values that developed via his or her upbringing, culture and early experiences. This set helps define many personal and professional attributes: behaviors, decision-making styles and role preferences.</P>
+            <P class="p52 ft38">The extent to which you focus your career on your values determines, in large part, the satisfaction you generate for yourself. You could be performing a job that uses your talents in a field that interests you, but if it doesn't align with your values, you can still feel unfulfi lled or like something is missing.</P>
+            <P class="p53 ft39">Despite their importance, we are often unaware of our values. They are difficult to identify and understand. While they run deep within us, values can easily be lost in the ebb and flow of a workday or a career.</P>
+            <P class="p54 ft38">Tasks that scream with immediacy often redirect our focus away from our values. Fears, anxieties and familial and cultural pressures often do the same. We may be persuaded by the preferences of others or the momentum of a career, regardless of whether or not these forces align with our values.</P>
+            <P class="p55 ft40">On the next two pages, you will find a list of words and phrases. Indicate those that capture the essence of who you are, speak to you, or jump off the page. Look for words that trigger a physical reaction in you-words that energize or excite you. Trust your body-it's like a tuning fork and it will guide you to those you should choose. Also, feel free to add any words that you find significant that are not included in the list.</P>
+        </DIV>
+        <DIV id="id_1_2">
+            <P class="p26 ft0">13</P>
+            <P class="p56 ft42"><SPAN class="ft41">"</SPAN>Your beliefs become your thoughts. Your thoughts become your words. Your words become your actions.</P>
+            <P class="p57 ft43">Your actions become your habits. Your habits become your values. Your values become your destiny."</P>
+            <P class="p58 ft44">- Mahatma Ghandi</P>
+        </DIV>
+    </DIV>
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t2">
+            <TR></TR><TR></TR>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_14">
+    <DIV id="dimg1">
+    </DIV>
+    <DIV id="id_1">
+        <DIV id="id_1_1">
+            <TABLE cellpadding=0 cellspacing=0 class="t1">
+                <TR>
+	                <TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	                <TD class="tr2 td7"><P class="p7 ft0">14</P></TD>
+                </TR>
+            </TABLE>
+            <P class="p41 ft6">Your Internal Compass (Continued)</P>
+            <p id="single">Values List<span class="ft57">1</span></p>
+        </DIV>
+    </div>
+
+<table>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[0]" value="1" @(contWord[0].Contains("1") ? " checked" : "")>Abundance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[37]" value="1" @(contWord[37].Contains("1") ? " checked" : "")>Bliss</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[74]" value="1" @(contWord[74].Contains("1") ? " checked" : "")>Contribution</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[111]" value="1" @(contWord[111].Contains("1") ? " checked" : "")>Drive</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[148]" value="1" @(contWord[148].Contains("1") ? " checked" : "")>Ferocity</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[1]" value="1" @(contWord[1].Contains("1") ? " checked" : "")>Acceptance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[38]" value="1" @(contWord[38].Contains("1") ? " checked" : "")>Boldness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[75]" value="1" @(contWord[75].Contains("1") ? " checked" : "")>Control</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[112]" value="1" @(contWord[112].Contains("1") ? " checked" : "")>Duty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[149]" value="1" @(contWord[149].Contains("1") ? " checked" : "")>Fidelity</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[2]" value="1" @(contWord[2].Contains("1") ? " checked" : "")>Accessibility</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[39]" value="1" @(contWord[39].Contains("1") ? " checked" : "")>Bravery</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[76]" value="1" @(contWord[76].Contains("1") ? " checked" : "")>Conviction</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[113]" value="1" @(contWord[113].Contains("1") ? " checked" : "")>Dynamism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[150]" value="1" @(contWord[150].Contains("1") ? " checked" : "")>Fierceness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[3]" value="1" @(contWord[3].Contains("1") ? " checked" : "")>Accomplishment</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[40]" value="1" @(contWord[40].Contains("1") ? " checked" : "")>Brilliance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[77]" value="1" @(contWord[77].Contains("1") ? " checked" : "")>Conviviality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[114]" value="1" @(contWord[114].Contains("1") ? " checked" : "")>Eagerness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[151]" value="1" @(contWord[151].Contains("1") ? " checked" : "")>Financial independence</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[4]" value="1" @(contWord[4].Contains("1") ? " checked" : "")>Accuracy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[41]" value="1" @(contWord[41].Contains("1") ? " checked" : "")>Buoyancy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[78]" value="1" @(contWord[78].Contains("1") ? " checked" : "")>Coolness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[115]" value="1" @(contWord[115].Contains("1") ? " checked" : "")>Economy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[152]" value="1" @(contWord[152].Contains("1") ? " checked" : "")>Firmness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[5]" value="1" @(contWord[5].Contains("1") ? " checked" : "")>Achievement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[42]" value="1" @(contWord[42].Contains("1") ? " checked" : "")>Calmness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[79]" value="1" @(contWord[79].Contains("1") ? " checked" : "")>Cooperation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[116]" value="1" @(contWord[116].Contains("1") ? " checked" : "")>Ecstasy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[153]" value="1" @(contWord[153].Contains("1") ? " checked" : "")>Fitness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[6]" value="1" @(contWord[6].Contains("1") ? " checked" : "")>Acknowledgement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[43]" value="1" @(contWord[43].Contains("1") ? " checked" : "")>Camaraderie</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[80]" value="1" @(contWord[80].Contains("1") ? " checked" : "")>Cordiality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[117]" value="1" @(contWord[117].Contains("1") ? " checked" : "")>Education</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[154]" value="1" @(contWord[154].Contains("1") ? " checked" : "")>Flexibility</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[7]" value="1" @(contWord[7].Contains("1") ? " checked" : "")>Activeness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[44]" value="1" @(contWord[44].Contains("1") ? " checked" : "")>Candor</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[81]" value="1" @(contWord[81].Contains("1") ? " checked" : "")>Correctness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[118]" value="1" @(contWord[118].Contains("1") ? " checked" : "")>Effectiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[155]" value="1" @(contWord[155].Contains("1") ? " checked" : "")>Flow</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[8]" value="1" @(contWord[8].Contains("1") ? " checked" : "")>Adaptability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[45]" value="1" @(contWord[45].Contains("1") ? " checked" : "")>Capability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[82]" value="1" @(contWord[82].Contains("1") ? " checked" : "")>Courage</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[119]" value="1" @(contWord[119].Contains("1") ? " checked" : "")>Efficiency</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[156]" value="1" @(contWord[156].Contains("1") ? " checked" : "")>Fluency</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[9]" value="1" @(contWord[9].Contains("1") ? " checked" : "")>Adoration</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[46]" value="1" @(contWord[46].Contains("1") ? " checked" : "")>Care</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[83]" value="1" @(contWord[83].Contains("1") ? " checked" : "")>Courtesy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[120]" value="1" @(contWord[120].Contains("1") ? " checked" : "")>Elation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[157]" value="1" @(contWord[157].Contains("1") ? " checked" : "")>Focus</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[10]" value="1" @(contWord[10].Contains("1") ? " checked" : "")>Adroitness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[47]" value="1" @(contWord[47].Contains("1") ? " checked" : "")>Carefulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[84]" value="1" @(contWord[84].Contains("1") ? " checked" : "")>Craftiness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[121]" value="1" @(contWord[121].Contains("1") ? " checked" : "")>Elegance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[158]" value="1" @(contWord[158].Contains("1") ? " checked" : "")>Fortitude</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[11]" value="1" @(contWord[11].Contains("1") ? " checked" : "")>Adventure</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[48]" value="1" @(contWord[48].Contains("1") ? " checked" : "")>Celebrity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[85]" value="1" @(contWord[85].Contains("1") ? " checked" : "")>Creativity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[122]" value="1" @(contWord[122].Contains("1") ? " checked" : "")>Empathy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[159]" value="1" @(contWord[159].Contains("1") ? " checked" : "")>Frankness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[12]" value="1" @(contWord[12].Contains("1") ? " checked" : "")>Affection</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[49]" value="1" @(contWord[49].Contains("1") ? " checked" : "")>Certainty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[86]" value="1" @(contWord[86].Contains("1") ? " checked" : "")>Credibility</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[123]" value="1" @(contWord[123].Contains("1") ? " checked" : "")>Encouragement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[160]" value="1" @(contWord[160].Contains("1") ? " checked" : "")>Freedom</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[13]" value="1" @(contWord[13].Contains("1") ? " checked" : "")>Affluence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[50]" value="1" @(contWord[50].Contains("1") ? " checked" : "")>Challenge</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[87]" value="1" @(contWord[87].Contains("1") ? " checked" : "")>Cunning</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[124]" value="1" @(contWord[124].Contains("1") ? " checked" : "")>Endurance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[161]" value="1" @(contWord[161].Contains("1") ? " checked" : "")>Friendliness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[14]" value="1" @(contWord[14].Contains("1") ? " checked" : "")>Aggressiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[51]" value="1" @(contWord[51].Contains("1") ? " checked" : "")>Charity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[88]" value="1" @(contWord[88].Contains("1") ? " checked" : "")>Curiosity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[125]" value="1" @(contWord[125].Contains("1") ? " checked" : "")>Energy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[162]" value="1" @(contWord[162].Contains("1") ? " checked" : "")>Frugality</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[15]" value="1" @(contWord[15].Contains("1") ? " checked" : "")>Agility</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[52]" value="1" @(contWord[52].Contains("1") ? " checked" : "")>Charm</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[89]" value="1" @(contWord[89].Contains("1") ? " checked" : "")>Daring</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[126]" value="1" @(contWord[126].Contains("1") ? " checked" : "")>Enjoyment</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[163]" value="1" @(contWord[163].Contains("1") ? " checked" : "")>Fun</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[16]" value="1" @(contWord[16].Contains("1") ? " checked" : "")>Alertness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[53]" value="1" @(contWord[53].Contains("1") ? " checked" : "")>Chastity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[90]" value="1" @(contWord[90].Contains("1") ? " checked" : "")>Decisiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[127]" value="1" @(contWord[127].Contains("1") ? " checked" : "")>Entertainment</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[164]" value="1" @(contWord[164].Contains("1") ? " checked" : "")>Gallantry</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[17]" value="1" @(contWord[17].Contains("1") ? " checked" : "")>Altruism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[54]" value="1" @(contWord[54].Contains("1") ? " checked" : "")>Cheerfulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[91]" value="1" @(contWord[91].Contains("1") ? " checked" : "")>Decorum</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[128]" value="1" @(contWord[128].Contains("1") ? " checked" : "")>Enthusiasm</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[165]" value="1" @(contWord[165].Contains("1") ? " checked" : "")>Generosity</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[18]" value="1" @(contWord[18].Contains("1") ? " checked" : "")>Ambition</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[55]" value="1" @(contWord[55].Contains("1") ? " checked" : "")>Clarity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[92]" value="1" @(contWord[92].Contains("1") ? " checked" : "")>Deference</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[129]" value="1" @(contWord[129].Contains("1") ? " checked" : "")>Excellence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[166]" value="1" @(contWord[166].Contains("1") ? " checked" : "")>Gentility</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[19]" value="1" @(contWord[19].Contains("1") ? " checked" : "")>Amusement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[56]" value="1" @(contWord[56].Contains("1") ? " checked" : "")>Cleanliness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[93]" value="1" @(contWord[93].Contains("1") ? " checked" : "")>Delight</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[130]" value="1" @(contWord[130].Contains("1") ? " checked" : "")>Excitement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[167]" value="1" @(contWord[167].Contains("1") ? " checked" : "")>Giving</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[20]" value="1" @(contWord[20].Contains("1") ? " checked" : "")>Anticipation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[57]" value="1" @(contWord[57].Contains("1") ? " checked" : "")>Clear-mindedness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[94]" value="1" @(contWord[94].Contains("1") ? " checked" : "")>Dependability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[131]" value="1" @(contWord[131].Contains("1") ? " checked" : "")>Exhilaration</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[168]" value="1" @(contWord[168].Contains("1") ? " checked" : "")>Grace</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[21]" value="1" @(contWord[21].Contains("1") ? " checked" : "")>Appreciation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[58]" value="1" @(contWord[58].Contains("1") ? " checked" : "")>Cleverness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[95]" value="1" @(contWord[95].Contains("1") ? " checked" : "")>Depth</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[132]" value="1" @(contWord[132].Contains("1") ? " checked" : "")>Expectancy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[169]" value="1" @(contWord[169].Contains("1") ? " checked" : "")>Gratitude</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[22]" value="1" @(contWord[22].Contains("1") ? " checked" : "")>Approachability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[59]" value="1" @(contWord[59].Contains("1") ? " checked" : "")>Closeness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[96]" value="1" @(contWord[96].Contains("1") ? " checked" : "")>Desire</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[133]" value="1" @(contWord[133].Contains("1") ? " checked" : "")>Expediency</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[170]" value="1" @(contWord[170].Contains("1") ? " checked" : "")>Gregariousness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[23]" value="1" @(contWord[23].Contains("1") ? " checked" : "")>Articulacy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[60]" value="1" @(contWord[60].Contains("1") ? " checked" : "")>Comfort</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[97]" value="1" @(contWord[97].Contains("1") ? " checked" : "")>Determination</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[134]" value="1" @(contWord[134].Contains("1") ? " checked" : "")>Experience</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[171]" value="1" @(contWord[171].Contains("1") ? " checked" : "")>Growth</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[24]" value="1" @(contWord[24].Contains("1") ? " checked" : "")>Assertiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[61]" value="1" @(contWord[61].Contains("1") ? " checked" : "")>Commitment</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[98]" value="1" @(contWord[98].Contains("1") ? " checked" : "")>Devotion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[135]" value="1" @(contWord[135].Contains("1") ? " checked" : "")>Expertise</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[172]" value="1" @(contWord[172].Contains("1") ? " checked" : "")>Guidance</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[25]" value="1" @(contWord[25].Contains("1") ? " checked" : "")>Assurance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[62]" value="1" @(contWord[62].Contains("1") ? " checked" : "")>Compassion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[99]" value="1" @(contWord[99].Contains("1") ? " checked" : "")>Devoutness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[136]" value="1" @(contWord[136].Contains("1") ? " checked" : "")>Exploration</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[173]" value="1" @(contWord[173].Contains("1") ? " checked" : "")>Happiness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[26]" value="1" @(contWord[26].Contains("1") ? " checked" : "")>Attentiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[63]" value="1" @(contWord[63].Contains("1") ? " checked" : "")>Completion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[100]" value="1" @(contWord[100].Contains("1") ? " checked" : "")>Dexterity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[137]" value="1" @(contWord[137].Contains("1") ? " checked" : "")>Expressiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[174]" value="1" @(contWord[174].Contains("1") ? " checked" : "")>Harmony</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[27]" value="1" @(contWord[27].Contains("1") ? " checked" : "")>Attractiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[64]" value="1" @(contWord[64].Contains("1") ? " checked" : "")>Composure</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[101]" value="1" @(contWord[101].Contains("1") ? " checked" : "")>Dignity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[138]" value="1" @(contWord[138].Contains("1") ? " checked" : "")>Extravagance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[175]" value="1" @(contWord[175].Contains("1") ? " checked" : "")>Health</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[28]" value="1" @(contWord[28].Contains("1") ? " checked" : "")>Audacity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[65]" value="1" @(contWord[65].Contains("1") ? " checked" : "")>Concentration</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[102]" value="1" @(contWord[102].Contains("1") ? " checked" : "")>Diligence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[139]" value="1" @(contWord[139].Contains("1") ? " checked" : "")>Extroversion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[176]" value="1" @(contWord[176].Contains("1") ? " checked" : "")>Heart</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[29]" value="1" @(contWord[29].Contains("1") ? " checked" : "")>Availability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[66]" value="1" @(contWord[66].Contains("1") ? " checked" : "")>Confidence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[103]" value="1" @(contWord[103].Contains("1") ? " checked" : "")>Direction</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[140]" value="1" @(contWord[140].Contains("1") ? " checked" : "")>Exuberance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[177]" value="1" @(contWord[177].Contains("1") ? " checked" : "")>Helpfulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[30]" value="1" @(contWord[30].Contains("1") ? " checked" : "")>Awareness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[67]" value="1" @(contWord[67].Contains("1") ? " checked" : "")>Conformity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[104]" value="1" @(contWord[104].Contains("1") ? " checked" : "")>Directness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[141]" value="1" @(contWord[141].Contains("1") ? " checked" : "")>Fairness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[178]" value="1" @(contWord[178].Contains("1") ? " checked" : "")>Heroism</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[31]" value="1" @(contWord[31].Contains("1") ? " checked" : "")>Awe</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[68]" value="1" @(contWord[68].Contains("1") ? " checked" : "")>Congruency</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[105]" value="1" @(contWord[105].Contains("1") ? " checked" : "")>Discipline</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[142]" value="1" @(contWord[142].Contains("1") ? " checked" : "")>Faith</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[179]" value="1" @(contWord[179].Contains("1") ? " checked" : "")>Holiness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[32]" value="1" @(contWord[32].Contains("1") ? " checked" : "")>Balance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[69]" value="1" @(contWord[69].Contains("1") ? " checked" : "")>Connection</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[106]" value="1" @(contWord[106].Contains("1") ? " checked" : "")>Discovery</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[143]" value="1" @(contWord[143].Contains("1") ? " checked" : "")>Fame</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[180]" value="1" @(contWord[180].Contains("1") ? " checked" : "")>Honesty</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[33]" value="1" @(contWord[33].Contains("1") ? " checked" : "")>Beauty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[70]" value="1" @(contWord[70].Contains("1") ? " checked" : "")>Consciousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[107]" value="1" @(contWord[107].Contains("1") ? " checked" : "")>Discretion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[144]" value="1" @(contWord[144].Contains("1") ? " checked" : "")>Family</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[181]" value="1" @(contWord[181].Contains("1") ? " checked" : "")>Honor</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[34]" value="1" @(contWord[34].Contains("1") ? " checked" : "")>Being the best</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[71]" value="1" @(contWord[71].Contains("1") ? " checked" : "")>Consistency</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[108]" value="1" @(contWord[108].Contains("1") ? " checked" : "")>Diversity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[145]" value="1" @(contWord[145].Contains("1") ? " checked" : "")>Fascination</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[182]" value="1" @(contWord[182].Contains("1") ? " checked" : "")>Hopefulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[35]" value="1" @(contWord[35].Contains("1") ? " checked" : "")>Belonging</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[72]" value="1" @(contWord[72].Contains("1") ? " checked" : "")>Contentment</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[109]" value="1" @(contWord[109].Contains("1") ? " checked" : "")>Dominance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[146]" value="1" @(contWord[146].Contains("1") ? " checked" : "")>Fashion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[183]" value="1" @(contWord[183].Contains("1") ? " checked" : "")>Hospitality</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[36]" value="1" @(contWord[36].Contains("1") ? " checked" : "")>Benevolence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[73]" value="1" @(contWord[73].Contains("1") ? " checked" : "")>Continuity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[110]" value="1" @(contWord[110].Contains("1") ? " checked" : "")>Dreaming</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[147]" value="1" @(contWord[147].Contains("1") ? " checked" : "")>Fearlessness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[184]" value="1" @(contWord[184].Contains("1") ? " checked" : "")>Humility</td>
+</tr>
+</table>
+
+    <DIV id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t2">
+            <TR></TR><TR></TR>
+        </TABLE>
+    </DIV>
+</DIV>
+
+<DIV id="page_15">
+    <DIV id="dimg1">
+    </DIV>
+    <DIV id="id_1">
+        <P class="p15 ft0">JMA: Career RoadMap Four</P>
+        <P class="p16 ft6">Your Internal Compass (Continued)</P>
+    </DIV>
+
+<table>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[185]" value="1" @(contWord[185].Contains("1") ? " checked" : "")>Humor</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[224]" value="1" @(contWord[224].Contains("1") ? " checked" : "")>Mastery</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[263]" value="1" @(contWord[263].Contains("1") ? " checked" : "")>Practicality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[302]" value="1" @(contWord[302].Contains("1") ? " checked" : "")>Security</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[341]" value="1" @(contWord[341].Contains("1") ? " checked" : "")>Thoroughness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[186]" value="1" @(contWord[186].Contains("1") ? " checked" : "")>Hygiene</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[225]" value="1" @(contWord[225].Contains("1") ? " checked" : "")>Maturity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[264]" value="1" @(contWord[264].Contains("1") ? " checked" : "")>Pragmatism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[303]" value="1" @(contWord[303].Contains("1") ? " checked" : "")>Self-control</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[342]" value="1" @(contWord[342].Contains("1") ? " checked" : "")>Thoughtfulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[187]" value="1" @(contWord[187].Contains("1") ? " checked" : "")>Imagination</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[226]" value="1" @(contWord[226].Contains("1") ? " checked" : "")>Meekness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[265]" value="1" @(contWord[265].Contains("1") ? " checked" : "")>Precision</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[304]" value="1" @(contWord[304].Contains("1") ? " checked" : "")>Selflessness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[343]" value="1" @(contWord[343].Contains("1") ? " checked" : "")>Thrift</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[188]" value="1" @(contWord[188].Contains("1") ? " checked" : "")>Impact</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[227]" value="1" @(contWord[227].Contains("1") ? " checked" : "")>Mellowness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[266]" value="1" @(contWord[266].Contains("1") ? " checked" : "")>Preparedness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[305]" value="1" @(contWord[305].Contains("1") ? " checked" : "")>Self-reliance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[344]" value="1" @(contWord[344].Contains("1") ? " checked" : "")>Tidiness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[189]" value="1" @(contWord[189].Contains("1") ? " checked" : "")>Impartiality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[228]" value="1" @(contWord[228].Contains("1") ? " checked" : "")>Meticulousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[267]" value="1" @(contWord[267].Contains("1") ? " checked" : "")>Presence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[306]" value="1" @(contWord[306].Contains("1") ? " checked" : "")>Sensitivity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[345]" value="1" @(contWord[345].Contains("1") ? " checked" : "")>Timeliness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[190]" value="1" @(contWord[190].Contains("1") ? " checked" : "")>Independence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[229]" value="1" @(contWord[229].Contains("1") ? " checked" : "")>Mindfulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[268]" value="1" @(contWord[268].Contains("1") ? " checked" : "")>Privacy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[307]" value="1" @(contWord[307].Contains("1") ? " checked" : "")>Sensuality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[346]" value="1" @(contWord[346].Contains("1") ? " checked" : "")>Traditionalism</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[191]" value="1" @(contWord[191].Contains("1") ? " checked" : "")>Industry</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[230]" value="1" @(contWord[230].Contains("1") ? " checked" : "")>Modesty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[269]" value="1" @(contWord[269].Contains("1") ? " checked" : "")>Proactivity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[308]" value="1" @(contWord[308].Contains("1") ? " checked" : "")>Serenity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[347]" value="1" @(contWord[347].Contains("1") ? " checked" : "")>Tranquility</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[192]" value="1" @(contWord[192].Contains("1") ? " checked" : "")>Ingenuity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[231]" value="1" @(contWord[231].Contains("1") ? " checked" : "")>Motivation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[270]" value="1" @(contWord[270].Contains("1") ? " checked" : "")>Professionalism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[309]" value="1" @(contWord[309].Contains("1") ? " checked" : "")>Service</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[348]" value="1" @(contWord[348].Contains("1") ? " checked" : "")>Transcendence</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[193]" value="1" @(contWord[193].Contains("1") ? " checked" : "")>Inquisitiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[232]" value="1" @(contWord[232].Contains("1") ? " checked" : "")>Mysteriousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[271]" value="1" @(contWord[271].Contains("1") ? " checked" : "")>Prosperity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[310]" value="1" @(contWord[310].Contains("1") ? " checked" : "")>Sexuality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[349]" value="1" @(contWord[349].Contains("1") ? " checked" : "")>Trust</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[194]" value="1" @(contWord[194].Contains("1") ? " checked" : "")>Insightfulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[233]" value="1" @(contWord[233].Contains("1") ? " checked" : "")>Nature</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[272]" value="1" @(contWord[272].Contains("1") ? " checked" : "")>Prudence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[311]" value="1" @(contWord[311].Contains("1") ? " checked" : "")>Sharing</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[350]" value="1" @(contWord[350].Contains("1") ? " checked" : "")>Trustworthiness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[195]" value="1" @(contWord[195].Contains("1") ? " checked" : "")>Inspiration</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[234]" value="1" @(contWord[234].Contains("1") ? " checked" : "")>Neatness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[273]" value="1" @(contWord[273].Contains("1") ? " checked" : "")>Punctuality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[312]" value="1" @(contWord[312].Contains("1") ? " checked" : "")>Shrewdness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[351]" value="1" @(contWord[351].Contains("1") ? " checked" : "")>Truth</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[196]" value="1" @(contWord[196].Contains("1") ? " checked" : "")>Integrity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[235]" value="1" @(contWord[235].Contains("1") ? " checked" : "")>Nerve</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[274]" value="1" @(contWord[274].Contains("1") ? " checked" : "")>Purity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[313]" value="1" @(contWord[313].Contains("1") ? " checked" : "")>Significance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[352]" value="1" @(contWord[352].Contains("1") ? " checked" : "")>Understanding</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[197]" value="1" @(contWord[197].Contains("1") ? " checked" : "")>Intelligence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[236]" value="1" @(contWord[236].Contains("1") ? " checked" : "")>Obedience</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[275]" value="1" @(contWord[275].Contains("1") ? " checked" : "")>Realism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[314]" value="1" @(contWord[314].Contains("1") ? " checked" : "")>Silence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[353]" value="1" @(contWord[353].Contains("1") ? " checked" : "")>Unflappability</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[198]" value="1" @(contWord[198].Contains("1") ? " checked" : "")>Intensity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[237]" value="1" @(contWord[237].Contains("1") ? " checked" : "")>Open-mindedness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[276]" value="1" @(contWord[276].Contains("1") ? " checked" : "")>Reason</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[315]" value="1" @(contWord[315].Contains("1") ? " checked" : "")>Silliness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[354]" value="1" @(contWord[354].Contains("1") ? " checked" : "")>Uniqueness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[199]" value="1" @(contWord[199].Contains("1") ? " checked" : "")>Intimacy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[238]" value="1" @(contWord[238].Contains("1") ? " checked" : "")>Openness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[277]" value="1" @(contWord[277].Contains("1") ? " checked" : "")>Reasonableness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[316]" value="1" @(contWord[316].Contains("1") ? " checked" : "")>Simplicity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[355]" value="1" @(contWord[355].Contains("1") ? " checked" : "")>Unity</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[200]" value="1" @(contWord[200].Contains("1") ? " checked" : "")>Intrepidness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[239]" value="1" @(contWord[239].Contains("1") ? " checked" : "")>Optimism</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[278]" value="1" @(contWord[278].Contains("1") ? " checked" : "")>Recognition</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[317]" value="1" @(contWord[317].Contains("1") ? " checked" : "")>Sincerity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[356]" value="1" @(contWord[356].Contains("1") ? " checked" : "")>Usefulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[201]" value="1" @(contWord[201].Contains("1") ? " checked" : "")>Introversion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[240]" value="1" @(contWord[240].Contains("1") ? " checked" : "")>Order</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[279]" value="1" @(contWord[279].Contains("1") ? " checked" : "")>Recreation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[318]" value="1" @(contWord[318].Contains("1") ? " checked" : "")>Skillfulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[357]" value="1" @(contWord[357].Contains("1") ? " checked" : "")>Utility</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[202]" value="1" @(contWord[202].Contains("1") ? " checked" : "")>Intuition</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[241]" value="1" @(contWord[241].Contains("1") ? " checked" : "")>Organization</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[280]" value="1" @(contWord[280].Contains("1") ? " checked" : "")>Refinement</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[319]" value="1" @(contWord[319].Contains("1") ? " checked" : "")>Solidarity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[358]" value="1" @(contWord[358].Contains("1") ? " checked" : "")>Valor</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[203]" value="1" @(contWord[203].Contains("1") ? " checked" : "")>Intuitiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[242]" value="1" @(contWord[242].Contains("1") ? " checked" : "")>Originality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[281]" value="1" @(contWord[281].Contains("1") ? " checked" : "")>Reflection</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[320]" value="1" @(contWord[320].Contains("1") ? " checked" : "")>Solitude</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[359]" value="1" @(contWord[359].Contains("1") ? " checked" : "")>Variety</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[204]" value="1" @(contWord[204].Contains("1") ? " checked" : "")>Inventiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[243]" value="1" @(contWord[243].Contains("1") ? " checked" : "")>Outlandishness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[282]" value="1" @(contWord[282].Contains("1") ? " checked" : "")>Relaxation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[321]" value="1" @(contWord[321].Contains("1") ? " checked" : "")>Soundness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[360]" value="1" @(contWord[360].Contains("1") ? " checked" : "")>Victory</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[205]" value="1" @(contWord[205].Contains("1") ? " checked" : "")>Investing</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[244]" value="1" @(contWord[244].Contains("1") ? " checked" : "")>Outrageousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[283]" value="1" @(contWord[283].Contains("1") ? " checked" : "")>Reliability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[322]" value="1" @(contWord[322].Contains("1") ? " checked" : "")>Speed</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[361]" value="1" @(contWord[361].Contains("1") ? " checked" : "")>Vigor</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[206]" value="1" @(contWord[206].Contains("1") ? " checked" : "")>Joy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[245]" value="1" @(contWord[245].Contains("1") ? " checked" : "")>Passion</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[284]" value="1" @(contWord[284].Contains("1") ? " checked" : "")>Religiousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[323]" value="1" @(contWord[323].Contains("1") ? " checked" : "")>Spirit</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[362]" value="1" @(contWord[362].Contains("1") ? " checked" : "")>Virtue</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[207]" value="1" @(contWord[207].Contains("1") ? " checked" : "")>Judiciousness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[246]" value="1" @(contWord[246].Contains("1") ? " checked" : "")>Peace</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[285]" value="1" @(contWord[285].Contains("1") ? " checked" : "")>Resilience</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[324]" value="1" @(contWord[324].Contains("1") ? " checked" : "")>Spirituality</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[363]" value="1" @(contWord[363].Contains("1") ? " checked" : "")>Vision</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[208]" value="1" @(contWord[208].Contains("1") ? " checked" : "")>Justice</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[247]" value="1" @(contWord[247].Contains("1") ? " checked" : "")>Perceptiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[286]" value="1" @(contWord[286].Contains("1") ? " checked" : "")>Resolution</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[325]" value="1" @(contWord[325].Contains("1") ? " checked" : "")>Spontaneity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[364]" value="1" @(contWord[364].Contains("1") ? " checked" : "")>Vitality</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[209]" value="1" @(contWord[209].Contains("1") ? " checked" : "")>Keenness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[248]" value="1" @(contWord[248].Contains("1") ? " checked" : "")>Perfection</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[287]" value="1" @(contWord[287].Contains("1") ? " checked" : "")>Resolve</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[326]" value="1" @(contWord[326].Contains("1") ? " checked" : "")>Spunk</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[365]" value="1" @(contWord[365].Contains("1") ? " checked" : "")>Vivacity</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[210]" value="1" @(contWord[210].Contains("1") ? " checked" : "")>Kindness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[249]" value="1" @(contWord[249].Contains("1") ? " checked" : "")>Perkiness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[288]" value="1" @(contWord[288].Contains("1") ? " checked" : "")>Resourcefulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[327]" value="1" @(contWord[327].Contains("1") ? " checked" : "")>Stability</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[366]" value="1" @(contWord[366].Contains("1") ? " checked" : "")>Warmth</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[211]" value="1" @(contWord[211].Contains("1") ? " checked" : "")>Knowledge</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[250]" value="1" @(contWord[250].Contains("1") ? " checked" : "")>Perseverance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[289]" value="1" @(contWord[289].Contains("1") ? " checked" : "")>Respect</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[328]" value="1" @(contWord[328].Contains("1") ? " checked" : "")>Stealth</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[367]" value="1" @(contWord[367].Contains("1") ? " checked" : "")>Watchfulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[212]" value="1" @(contWord[212].Contains("1") ? " checked" : "")>Leadership</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[251]" value="1" @(contWord[251].Contains("1") ? " checked" : "")>Persistence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[290]" value="1" @(contWord[290].Contains("1") ? " checked" : "")>Rest</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[329]" value="1" @(contWord[329].Contains("1") ? " checked" : "")>Stillness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[368]" value="1" @(contWord[368].Contains("1") ? " checked" : "")>Wealth</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[213]" value="1" @(contWord[213].Contains("1") ? " checked" : "")>Learning</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[252]" value="1" @(contWord[252].Contains("1") ? " checked" : "")>Persuasiveness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[291]" value="1" @(contWord[291].Contains("1") ? " checked" : "")>Restraint</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[330]" value="1" @(contWord[330].Contains("1") ? " checked" : "")>Strength</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[369]" value="1" @(contWord[369].Contains("1") ? " checked" : "")>Willfulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[214]" value="1" @(contWord[214].Contains("1") ? " checked" : "")>Liberation</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[253]" value="1" @(contWord[253].Contains("1") ? " checked" : "")>Philanthropy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[292]" value="1" @(contWord[292].Contains("1") ? " checked" : "")>Reverence</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[331]" value="1" @(contWord[331].Contains("1") ? " checked" : "")>Structure</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[370]" value="1" @(contWord[370].Contains("1") ? " checked" : "")>Willingness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[215]" value="1" @(contWord[215].Contains("1") ? " checked" : "")>Liberty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[254]" value="1" @(contWord[254].Contains("1") ? " checked" : "")>Piety</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[293]" value="1" @(contWord[293].Contains("1") ? " checked" : "")>Richness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[332]" value="1" @(contWord[332].Contains("1") ? " checked" : "")>Success</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[371]" value="1" @(contWord[371].Contains("1") ? " checked" : "")>Winning</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[216]" value="1" @(contWord[216].Contains("1") ? " checked" : "")>Liveliness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[255]" value="1" @(contWord[255].Contains("1") ? " checked" : "")>Playfulness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[294]" value="1" @(contWord[294].Contains("1") ? " checked" : "")>Rigor</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[333]" value="1" @(contWord[333].Contains("1") ? " checked" : "")>Support</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[372]" value="1" @(contWord[372].Contains("1") ? " checked" : "")>Wisdom</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[217]" value="1" @(contWord[217].Contains("1") ? " checked" : "")>Logic</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[256]" value="1" @(contWord[256].Contains("1") ? " checked" : "")>Pleasantness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[295]" value="1" @(contWord[295].Contains("1") ? " checked" : "")>Ritual</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[334]" value="1" @(contWord[334].Contains("1") ? " checked" : "")>Supremacy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[373]" value="1" @(contWord[373].Contains("1") ? " checked" : "")>Wittiness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[218]" value="1" @(contWord[218].Contains("1") ? " checked" : "")>Longevity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[257]" value="1" @(contWord[257].Contains("1") ? " checked" : "")>Pleasure</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[296]" value="1" @(contWord[296].Contains("1") ? " checked" : "")>Sacredness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[335]" value="1" @(contWord[335].Contains("1") ? " checked" : "")>Surprise</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[374]" value="1" @(contWord[374].Contains("1") ? " checked" : "")>Wonder</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[219]" value="1" @(contWord[219].Contains("1") ? " checked" : "")>Looking good</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[258]" value="1" @(contWord[258].Contains("1") ? " checked" : "")>Poise</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[297]" value="1" @(contWord[297].Contains("1") ? " checked" : "")>Sacrifice</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[336]" value="1" @(contWord[336].Contains("1") ? " checked" : "")>Sympathy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[375]" value="1" @(contWord[375].Contains("1") ? " checked" : "")>Youthfulness</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[220]" value="1" @(contWord[220].Contains("1") ? " checked" : "")>Love</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[259]" value="1" @(contWord[259].Contains("1") ? " checked" : "")>Polish</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[298]" value="1" @(contWord[298].Contains("1") ? " checked" : "")>Sagacity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[337]" value="1" @(contWord[337].Contains("1") ? " checked" : "")>Synergy</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[376]" value="1" @(contWord[376].Contains("1") ? " checked" : "")>Zeal</td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[221]" value="1" @(contWord[221].Contains("1") ? " checked" : "")>Loyalty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[260]" value="1" @(contWord[260].Contains("1") ? " checked" : "")>Popularity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[299]" value="1" @(contWord[299].Contains("1") ? " checked" : "")>Saintliness</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[338]" value="1" @(contWord[338].Contains("1") ? " checked" : "")>Teamwork</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[377]" value="1" @(contWord[377].Contains("1") ? " checked" : "")>Other
+        <input type="text" id="smallFont" name="ansQ39a" value="@ansQ39a"></td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[222]" value="1" @(contWord[222].Contains("1") ? " checked" : "")>Majesty</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[261]" value="1" @(contWord[261].Contains("1") ? " checked" : "")>Potency</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[300]" value="1" @(contWord[300].Contains("1") ? " checked" : "")>Sanguinity</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[339]" value="1" @(contWord[339].Contains("1") ? " checked" : "")>Temperance</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[377]" value="1" @(contWord[377].Contains("1") ? " checked" : "")>Other
+        <input type="text" id="smallFont" name="ansQ39b" value="@ansQ39b"></td>
+</tr>
+<tr>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[223]" value="1" @(contWord[223].Contains("1") ? " checked" : "")>Making a difference</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[262]" value="1" @(contWord[262].Contains("1") ? " checked" : "")>Power</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[301]" value="1" @(contWord[301].Contains("1") ? " checked" : "")>Satisfaction</td>
+    <td id="small"><input type="checkbox" id="smallFont" name="contWord[340]" value="1" @(contWord[340].Contains("1") ? " checked" : "")>Thankfulness</td>
+</tr>
+</table>
+
+    <div id="id_2">
+        <TABLE cellpadding=0 cellspacing=0 class="t2">
+            <TR></TR><TR></TR>
+        </TABLE>
+    </div>
+</DIV>
+
+<DIV id="page_16">
+<DIV id="dimg1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">16</P></TD>
+</TR>
+</TABLE>
+<P class="p41 ft6">Your Internal Compass (Continued)</P>
+<P class="p70 ft38">Review the words you marked on the previous two pages. Indicate those that are especially important to you.</P>
+<P class="p71 ft48">Now, review this list of words. Trim this list down to ten words or phrases and list them below.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t10">
+<tr>
+    <td width="15">1.</td><td><input type="text" id="formColor" name="ansQ40a" value="@ansQ40a" size="40"></td>
+    <td width="15">6.</td><td><input type="text" id="formColor" name="ansQ40f" value="@ansQ40f" size="40"></td>
+</tr>
+<tr>
+    <td width="15">2.</td><td><input type="text" id="formColor" name="ansQ40b" value="@ansQ40b" size="40"></td>
+    <td width="15">7.</td><td><input type="text" id="formColor" name="ansQ40g" value="@ansQ40g" size="40"></td>
+</tr>
+<tr>
+    <td width="15">3.</td><td><input type="text" id="formColor" name="ansQ40c" value="@ansQ40c" size="40"></td>
+    <td width="15">8.</td><td><input type="text" id="formColor" name="ansQ40h" value="@ansQ40h" size="40"></td>
+</tr>
+<tr>
+    <td width="15">4.</td><td><input type="text" id="formColor" name="ansQ40d" value="@ansQ40d" size="40"></td>
+    <td width="15">9.</td><td><input type="text" id="formColor" name="ansQ40i" value="@ansQ40i" size="40"></td>
+</tr>
+<tr>
+    <td width="15">5.</td><td><input type="text" id="formColor" name="ansQ40e" value="@ansQ40e" size="40"></td>
+    <td width="15">10.</td><td><input type="text" id="formColor" name="ansQ40j" value="@ansQ40j" size="40"></td>
+</tr>
+</TABLE>
+<P class="p74 ft38">Do these ten words or phrases represent you as you are now, someone you aspire to be, or something you aspire to do?</P>
+</DIV>
+<input type="text" id="formColor" name="ansQ41" value="@ansQ41" size="100">
+<DIV id="id_2">
+<DIV id="id_2_1">
+<P class="p69 ft7">Cross the word out if:</P>
+<P class="p75 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">You are doing it to get other needs met.</SPAN></P>
+<P class="p75 ft7"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft22">You are doing it for someone else.</SPAN></P>
+<P class="p76 ft50"><SPAN class="ft7">&#8226;</SPAN><SPAN class="ft49">It's an identity that has been given to you by your parents, siblings, friends, etc.</SPAN></P>
+</DIV>
+<DIV id="id_2_2">
+<P class="p69 ft7">Keep the word if:</P>
+<P class="p77 ft50"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft52">There's a visceral reaction to or feeling of warmth from the word itself.</SPAN></P>
+<P class="p78 ft50"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft52">You lose track of time because you're so engaged in it.</SPAN></P>
+<P class="p37 ft7"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft53">You've always connected to it.</SPAN></P>
+<P class="p75 ft7"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft53">It has always been exciting to you.</SPAN></P>
+<P class="p79 ft50"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft52">You're really excited by it, but you're afraid to pursue it.</SPAN></P>
+<P class="p80 ft38"><SPAN class="ft51">&#8226;</SPAN><SPAN class="ft54">It comes up for you often and you've had to put it out of your mind.</SPAN></P>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_17">
+<DIV id="dimg1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">17</P></TD>
+</TR>
+</TABLE>
+<P class="p41 ft6">Your Internal Compass (Continued)</P>
+<P class="p81 ft38">From those words or phrases that remain, choose the five that most accurately capture your essence.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t10">
+<tr>
+    <td width="15">1.</td><td><input type="text" id="formColor" name="ansQ42a" value="@ansQ42a" size="60"></td>
+</tr>
+<tr>
+    <td width="15">2.</td><td><input type="text" id="formColor" name="ansQ42b" value="@ansQ42b" size="60"></td>
+</tr>
+<tr>
+    <td width="15">3.</td><td><input type="text" id="formColor" name="ansQ42c" value="@ansQ42c" size="60"></td>
+</tr>
+<tr>
+    <td width="15">4.</td><td><input type="text" id="formColor" name="ansQ42d" value="@ansQ42d" size="60"></td>
+</tr>
+<tr>
+    <td width="15">5.</td><td><input type="text" id="formColor" name="ansQ42e" value="@ansQ42e" size="60"></td>
+</tr>
+</TABLE>
+<P class="p83 ft38">These are your essential values. This list may change over time, but for right now, these are the values that are consciously or unconsciously guiding you.</P>
+<P class="p84 ft7">How are these values currently expressed in your career?</P>
+</DIV>
+<input type="text" id="formColor" name="ansQ43" value="@ansQ43" size="100">
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_18">
+<DIV id="dimg1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td6"><P class="p5 ft0">JMA: Career RoadMap Four</P></TD>
+	<TD class="tr2 td7"><P class="p7 ft0">18</P></TD>
+</TR>
+</TABLE>
+<P class="p85 ft55">This is a proprietary document that is intended for your personal use only.</P>
+<P class="p86 ft50">This product, the Career RoadMap series, as well as any coaching information and materials disclosed and provided by Jody Michael Associates (JMA) during our work together, including, but not limited to, processes, products, methods, frameworks, tools, strategies and workshops, are confidential and protected by copyright laws.</P>
+<P class="p87 ft50">This means that this material, and all materials received in our work together, cannot be shared with others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form. It is not to be used for any coaching or consultative purpose.</P>
+<P class="p88 ft50">Over 90 percent of our new clients are referred by current clients. If you ever want to refer us to your colleagues and organizations, we would be pleased to provide you with non-confidential information to help facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact JMA. Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach this agreement, you will be liable and will pay to JMA the reasonable attorney's fees and costs JMA incurred as a result of your breach.</P>
+<P class="p89 ft50">If you have received this document and are not a client of Jody Michael Associates, then you are not the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and will be held liable. If you have received this material in error, and are not an intended recipient, please notify us immediately by email or phone and delete the original material.</P>
+<P class="p90 ft9">Sources</P>
+<P class="p82 ft7"><SPAN class="ft56">1</SPAN>Values List, Living More, LLC, 2008.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</html>

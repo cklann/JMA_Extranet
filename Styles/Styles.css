@@ -1,0 +1,270 @@
+#topBar
+{
+    background-color: #8bc129;
+    margin-top: -25px;
+    margin-left: -8px;
+    width: 110%;
+    height: 50px;
+    text-align: left;
+    font-size: small;
+    padding-left: 5px;
+    line-height: 3.0em;
+}
+
+body
+{
+    font-family: 'Futura-Book', Arial, sans-serif;
+    font-size: medium;
+    color: #696969;
+    background-color: white;
+}
+
+#bigText
+{
+    font-family: 'Futura-Book', Arial, sans-serif;
+    font-size: 26px;
+    color: #696969;
+    background-color: white;
+    text-align: center;
+}
+
+#logo
+{
+    margin-left: 40%;
+}
+
+#top
+{
+    border-style: none;
+    font-family: 'Futura-Book', Arial, sans-serif;
+    font-size: medium;
+    color: #696969;
+    background-color: white;
+}
+
+#regularGreen
+{
+    color: white;
+    background-color: #8bc129;
+    border-radius: 0px 0px 0 0;
+    padding: 0;
+    text-align: left;
+}
+
+#main
+{
+    padding: 10px;
+    background-color: white;
+    border-radius: 0 0 4px 4px;
+}
+
+h1
+{
+    font-family: 'Futura-Book', Arial, sans-serif;
+    font-size: x-large;
+    border-bottom: 3px solid #8bc129;
+    color: #696969;
+    background-color: white;
+}
+
+#footer
+{
+    text-align: center;
+    color: #696969;
+    background-color: white;
+    font-size: small;
+    padding: 0;
+}
+
+#regularFooter
+{
+    color: #8bc129;
+    background-color: white;
+    font-weight: bold;
+    font-size: small;
+    text-decoration-color: #8bc129;
+    padding: 0;
+}
+
+#jmaLink
+{
+    font-family: 'Futura-Book', Arial, sans-serif;
+    font-weight: bold;
+    text-decoration-line: underline;
+    text-decoration-color: #8bc129;
+    color: #8bc129;
+    text-align: center;
+    padding: 20px 10px 10px 10px;
+}
+
+#block
+{
+    background-color: #f5f5f5;
+    border-top: 20px solid #c0c0c0;
+    padding-left: 10px;
+    padding-bottom: 5px;
+}
+
+#blocksmall
+{
+    background-color: #f5f5f5;
+    border-top: 20px solid #c0c0c0;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    width: 475px;
+}
+
+#report
+{
+    background-color: #f5f5f5;
+    border-top: 20px solid #c0c0c0;
+    padding-left: 10px;
+    padding-bottom: 5px;
+    font-size: small;
+}
+
+#adminList
+{
+    color: blue;
+    background-color: white;
+    text-decoration-line: none;
+    padding-left: 0px;
+    margin-left: 0px;
+    line-height: 1.7em;
+}
+
+
+#ulCR
+{
+    background-color: #f5f5f5;
+    padding: 0px;
+    position: relative;
+    margin: 0;
+}
+
+#liCR
+{
+    line-height: 1.7em;
+    background-color: #f5f5f5;
+}
+
+#talents
+{
+    margin-left: 15px;
+}
+
+#users
+{
+    margin-left: 0px;
+    padding-left: 0px;
+    border: none;
+    line-height: 1.7em;
+    color: #696969;
+    font-size: small;
+}
+
+#edit
+{
+    border: none;
+    padding: 0px;
+    margin-left: 0px;
+    line-height: 1.7em;
+    font-size: small;
+    color: blue;
+    background-color: #f5f5f5;
+}
+
+#select_Yes
+{
+    color: #8bc129;
+    text-decoration: bold;
+}
+
+#select_No
+{
+    color: #696969;
+    text-decoration: none;
+}
+
+/* Tabs at the top of the screen */
+ul
+{
+    padding: 0px;
+    position: relative;
+    margin: 0;
+    background-color: white;
+}
+
+li
+{
+    display: inline;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+a:link, a:visited
+{
+    background-color: #808080;
+    padding: 10px 5px;
+    text-decoration: none;
+    line-height: 3.0em;
+    color: white;
+    border-radius: 6px 6px 0 0;
+}
+
+a:hover, a:active
+{
+    background-color: #8bc129;
+    color: black;
+}
+
+/* Drop-down menus */
+.dropv, .dropv ul
+{
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.dropv a
+{
+    width: 250px;
+    line-height: 1.0em;
+    border-radius: 6px 6px 0 0;
+}
+
+.dropv li
+{
+    float: left;
+    padding: 0px 8px 2px 0px;
+}
+
+.dropv li ul
+{
+    position: absolute;
+    margin-top: 5px;
+    padding: 0px 0px 0px 0px;
+    width: 250px;
+    left: -9999px;
+}
+
+.dropv li:hover ul
+{
+    left: auto;
+}
+
+.dropv li ul li a
+{
+    color: #ffffff;
+    background-color: #808080;
+    text-decoration: none;
+    display: block;
+    text-transform: none;
+    border-radius: 0px 0px 0 0;
+}
+
+.dropv li ul li a:hover
+{
+    background-color: #8bc129;
+    color: black;
+}

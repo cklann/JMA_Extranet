@@ -1,0 +1,35 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>Edit Module Name</h1>
+    var oldName=Request["moduleName"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from Modules where moduleName LIKE @0";
+        var query=db.QuerySingle(SQLSELECT, oldName);
+
+        var newName=query.moduleName;
+
+        if(IsPost) {
+            newName=Request["newName"].As<string>("");
+            var SQLUPDATE1="update Modules set oldModuleName=@1 where moduleName=@0";
+            var SQLUPDATE2="update Modules set moduleName=@1 where moduleName=@0";
+            db.Execute(SQLUPDATE1, oldName, oldName);
+            db.Execute(SQLUPDATE2, oldName, newName);
+            Response.Redirect("~/Account/Modules.cshtml");
+        }
+
+        <form action="" method="post">
+
+            <div id="block">
+                <p>Current module name:&nbsp;@oldName</p>
+                <p>New module name:&nbsp;<input type="text" name="newName" size="50" value="@newName"></p>
+            </div><br>
+
+            <p><input type="submit" value="Submit New Name"></p>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

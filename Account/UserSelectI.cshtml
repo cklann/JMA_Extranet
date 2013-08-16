@@ -1,0 +1,30 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>View Inactive Client Profiles</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var sqlQ="select * from UserProfile where Status='Inactive' order by UserNameLF";
+        var data=db.Query(sqlQ);
+
+        <div id="block">
+            <table id="users">
+                <tr>
+                    <th width="30px"></th>
+                    <th valign="bottom" width="125px">User Name</th>
+                    <th valign="bottom" width="100px">Status</th>
+                </tr>
+                @foreach(var row in data) {
+                    <tr>
+                        <td><a id="edit" href="UserUpdate.cshtml?UserNameLF=@row.UserNameLF">Edit</a></td>
+                        <td align="center">@row.UserNameLF</td>
+                        <td align="center">@row.Status</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    } else {
+        <p>Please login.</p>
+    }
+}

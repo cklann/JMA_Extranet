@@ -1,0 +1,92 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var thisUser=Request["UserNameFL"];
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from MoodMinder where UserNameFL LIKE @0";
+        var query=db.QuerySingle(SQLSELECT, thisUser);
+
+        // Current time
+        var year=DateTime.UtcNow.Year;
+        var month=DateTime.UtcNow.Month;
+        var day=DateTime.UtcNow.Day;
+        var hour=DateTime.UtcNow.Hour-5;
+        var minute=DateTime.UtcNow.Minute;
+        var second=DateTime.UtcNow.Second;
+        DateTime nowTime = new DateTime(year, month, day, hour, minute, second);
+
+        // MoodMinder variables
+        var mmCurrentMood="";
+        var mmSelfOrEvent="";
+        var mmEnergyLevel="";
+        var mmThoughts="";
+        var mmDateTime="";
+
+        // All moods (used for drop-down list)
+        var SQLSELECTM="select * from AllMoods order by Mood";
+        var queryM=db.Query(SQLSELECTM);
+
+        if(IsPost) {
+            mmCurrentMood=Request["formCurrentMood"];
+            mmSelfOrEvent=Request["formSelfOrEvent"];
+            mmEnergyLevel=Request["formEnergyLevel"];
+            mmThoughts=Request["formThoughts"];
+            mmDateTime=Request["formDateTime"];
+
+            var SQLINSERT="insert into MoodMinder (UserNameFL, CurrentMood, SelfOrEvent, EnergyLevel, Thoughts, DateTime) " +
+                          "values (@0, @1, @2, @3, @4, @5)";
+            db.Execute(SQLINSERT, thisUser, mmCurrentMood, mmSelfOrEvent, mmEnergyLevel, mmThoughts, mmDateTime);
+            Response.Redirect("~/Index.cshtml");
+        }
+
+        <br><br><h1>Add Your Current Mood to the MoodMinder</h1>
+
+        <form action="" method="post">
+
+            <div id="blocksmall">
+                <p>My current mood is:&nbsp;
+                <select name="formCurrentMood">
+                    @foreach (var row in queryM) {
+                        <option value="@row.Mood">@row.Mood</option>
+                    }
+                </select></p>
+
+                <p>This mood is:&nbsp;
+                <select name="formSelfOrEvent">
+                    <option value="Self-generated">Self-generated</option>
+                    <option value="Event-driven">Event-driven</option>
+                </select></p>
+
+                <p>My energy level is:<br>
+                <select name="formEnergyLevel">
+                    <option value="Level 1">
+                        1: Victim (How did this happen to me? Woe is me.)</option>
+                    <option value="Level 2">
+                        2: Combative (I'm right, you're wrong.)</option>
+                    <option value="Level 3">
+                        3: Avoiding (Not dealing; Pollyannaish)</option>
+                    <option value="Level 4">
+                        4: Caretaker (How can I help you; selfless; love)</option>
+                    <option value="Level 5">
+                        5: Curiosity (Lemons into lemonade; everything is opportunity)</option>
+                    <option value="Level 6">
+                        6: Visionary (No judgment; accepting what is)</option>
+                    <option value="Level 7">
+                        7: Creating (I am; passion; unconditional love; transcendence)</option>
+                </select></p>
+
+                <p>Thoughts generating this mood:<br>
+                <textarea rows="3" cols="54" name="formThoughts"></textarea></p>
+                
+                <p>Date and time:&nbsp;
+                <input type="text" name="formDateTime" size="25" value="@nowTime"></p>
+
+                <p><input type="submit" value="Submit Responses"></p>
+            </div><br>
+        </form>
+    } else {
+        <p>Please login.</p>
+    }
+}

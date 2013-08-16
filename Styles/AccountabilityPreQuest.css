@@ -1,0 +1,80 @@
+body {margin-top: 0px;margin-left: 0px;}
+
+#page_1 {position:relative; overflow: hidden;margin: 378px 0px 35px 49px;padding: 0px;border: none;width: 767px;height: 643px;}
+#page_1 #id_1 {border:none;margin: 61px 0px 0px 232px;padding: 0px;border:none;width: 535px;overflow: hidden;}
+#page_1 #id_2 {border:none;margin: 502px 0px 0px 45px;padding: 0px;border:none;width: 674px;overflow: hidden;}
+#page_1 #dimg1 {position:absolute;top:0px;left:0px;z-index:-1;width:717px;height:643px;}
+#page_1 #dimg1 #img1 {width:717px;height:643px;}
+#page_2 {position:relative; overflow: hidden;margin: 45px 0px 35px 48px;padding: 0px;border: none;width: 768px;height: 976px;}
+#page_2 #id_1 {border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 768px;overflow: hidden;}
+#page_2 #id_2 {border:none;margin: 134px 0px 0px 46px;padding: 0px;border:none;width: 674px;overflow: hidden;}
+#page_2 #dimg1 {position:absolute;top:28px;left:1px;z-index:-1;width:719px;height:948px;}
+#page_2 #dimg1 #img1 {width:719px;height:948px;}
+#page_3 {position:relative; overflow: hidden;margin: 45px 0px 35px 48px;padding: 0px;border: none;width: 768px;height: 976px;}
+#page_3 #id_1 {border:none;margin: 0px 0px 0px 0px;padding: 0px;border:none;width: 768px;overflow: hidden;}
+#page_3 #id_2 {border:none;margin: 167px 0px 0px 46px;padding: 0px;border:none;width: 674px;overflow: hidden;}
+#page_3 #dimg1 {position:absolute;top:28px;left:1px;z-index:-1;width:719px;height:948px;}
+#page_3 #dimg1 #img1 {width:719px;height:948px;}
+
+.dclr {clear:both;float:none;height:1px;margin:0px;padding:0px;overflow:hidden;}
+
+.ft0{font: 32px 'Futura-Book';color: #3b3b3b;line-height: 36px;}
+.ft1{font: 16px 'Futura-Book';color: #3b3b3b;line-height: 18px;}
+.ft2{font: 12px 'Futura-Book';color: #3b3b3b;line-height: 15px;}
+.ft3{font: 9px 'Futura-Book';color: #3b3b3b;line-height: 12px;}
+.ft4{font: 21px 'Futura-Book';color: #298428;line-height: 24px;}
+.ft5{font: 15px 'Georgia';color: #3b3b3b;line-height: 22px;}
+.ft6{font: bold 15px 'Georgia';color: #3b3b3b;line-height: 22px;}
+.ft7{font: 19px 'Futura-Book';color: #298428;line-height: 22px;}
+.ft8{font: bold 14px 'Georgia';color: #3b3b3b;line-height: 17px;}
+.ft9{font: bold 15px 'Georgia';color: #3b3b3b;margin-left: 20px;line-height: 21px;}
+.ft10{font: 15px 'Georgia';color: #3b3b3b;line-height: 21px;}
+.ft11{font: 15px 'Georgia';color: #3b3b3b;line-height: 18px;}
+.ft12{font: bold 15px 'Georgia';color: #3b3b3b;line-height: 18px;}
+.ft13{font: bold 15px 'Georgia';color: #3b3b3b;margin-left: 18px;line-height: 18px;}
+.ft14{font: bold 15px 'Georgia';color: #3b3b3b;margin-left: 18px;line-height: 21px;}
+.ft15{font: bold 15px 'Georgia';color: #3b3b3b;margin-left: 20px;line-height: 22px;}
+.ft16{font: bold 15px 'Georgia';color: #3b3b3b;margin-left: 18px;line-height: 23px;}
+.ft17{font: 15px 'Georgia';color: #3b3b3b;line-height: 23px;}
+
+.p0{text-align: left;margin-top: 0px;margin-bottom: 0px;}
+.p1{text-align: left;padding-left: 1px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p2{text-align: left;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p3{text-align: left;padding-left: 32px;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p4{text-align: right;margin-top: 0px;margin-bottom: 0px;white-space: nowrap;}
+.p5{text-align: left;margin-top: 28px;margin-bottom: 0px;}
+.p6{text-align: left;padding-right: 51px;margin-top: 5px;margin-bottom: 0px;}
+.p7{text-align: left;margin-top: 18px;margin-bottom: 0px;}
+.p8{text-align: justify;padding-left: 32px;padding-right: 48px;margin-top: 4px;margin-bottom: 0px;text-indent: -32px;}
+.p9{text-align: left;margin-top: 112px;margin-bottom: 0px;}
+.p10{text-align: justify;margin-top: 4px;margin-bottom: 0px;}
+.p11{text-align: justify;padding-left: 32px;padding-right: 91px;margin-top: 114px;margin-bottom: 0px;text-indent: -32px;}
+.p12{text-align: justify;margin-top: 112px;margin-bottom: 0px;}
+.p13{text-align: justify;margin-top: 114px;margin-bottom: 0px;}
+.p14{text-align: justify;padding-left: 32px;padding-right: 48px;margin-top: 7px;margin-bottom: 0px;text-indent: -32px;}
+.p15{text-align: left;margin-top: 124px;margin-bottom: 0px;}
+.p16{text-align: justify;margin-top: 6px;margin-bottom: 0px;}
+.p17{text-align: justify;padding-left: 32px;padding-right: 48px;margin-top: 125px;margin-bottom: 0px;text-indent: -32px;}
+.p18{text-align: justify;padding-left: 32px;padding-right: 48px;margin-top: 122px;margin-bottom: 0px;text-indent: -32px;}
+.p19{text-align: justify;margin-top: 122px;margin-bottom: 0px;}
+
+.td0{padding: 0px;margin: 0px;width: 301px;vertical-align: bottom;}
+.td1{padding: 0px;margin: 0px;width: 178px;vertical-align: bottom;}
+.td2{padding: 0px;margin: 0px;width: 195px;vertical-align: bottom;}
+.td3{padding: 0px;margin: 0px;width: 420px;vertical-align: bottom;}
+.td4{padding: 0px;margin: 0px;width: 297px;vertical-align: bottom;}
+
+.tr0{height: 23px;}
+.tr1{height: 16px;}
+.tr2{height: 20px;}
+
+.t0{width: 674px;font: 12px 'Futura-Book';color: #3b3b3b;}
+.t1{width: 717px;margin-left: 1px;font: 16px 'Futura-Book';color: #3b3b3b;}
+    
+#formColor{font:15px 'Georgia';color:black;background-color:#87f48b;margin-left: 31px; width: 680px;}
+#fixedPos1{position:fixed;width:120px;height:25px;margin-left:275px;margin-top:10px;
+           white-space:pre-wrap;background-color:#cecece;}
+#fixedPos2{position:fixed;width:120px;height:25px;margin-left:440px;margin-top:10px;
+           white-space:pre-wrap;background-color:#cecece;}
+#bottomBar{background-color: white;margin-top:200px;margin-left: -10px;width: 110%;
+        height: 200px;position:fixed;z-index: 10;}

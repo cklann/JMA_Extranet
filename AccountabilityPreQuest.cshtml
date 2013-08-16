@@ -1,0 +1,141 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/AccountabilityPreQuest.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from Accountability where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        var ansQ1=answers.Q1;
+        var ansQ2=answers.Q2;
+        var ansQ3=answers.Q3;
+        var ansQ4=answers.Q4;
+        var ansQ5=answers.Q5;
+        var ansQ6=answers.Q6;
+        var ansQ7=answers.Q7;
+        var ansQ8=answers.Q8;
+        var ansQ9=answers.Q9;
+        var ansQ10=answers.Q10;
+
+        if (IsPost) {
+            ansQ1=Request["ansQ1"].As<string>("");
+            ansQ2=Request["ansQ2"].As<string>("");
+            ansQ3=Request["ansQ3"].As<string>("");
+            ansQ4=Request["ansQ4"].As<string>("");
+            ansQ5=Request["ansQ5"].As<string>("");
+            ansQ6=Request["ansQ6"].As<string>("");
+            ansQ7=Request["ansQ7"].As<string>("");
+            ansQ8=Request["ansQ8"].As<string>("");
+            ansQ9=Request["ansQ9"].As<string>("");
+            ansQ10=Request["ansQ10"].As<string>("");
+
+            var SQLUPDATE="update Accountability set Q1=@1, Q2=@2, Q3=@3, Q4=@4, Q5=@5, " +
+                "Q6=@6, Q7=@7, Q8=@8, Q9=@9, Q10=@10 " +
+                "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, ansQ1, ansQ2, ansQ3, ansQ4,
+                ansQ5, ansQ6, ansQ7, ansQ8, ansQ9, ansQ10);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Accountability1x1.jpg" id="img1">
+</DIV>
+<DIV class="dclr"></DIV>
+<DIV id="id_1">
+<P class="p0 ft0">GETTING RESULTS</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_2">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Accountability2x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft1">JMA: Getting Results</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft1">2</P></TD>
+</TR>
+</TABLE>
+<P class="p5 ft4">Workshop Preparation Exercise: Getting Results</P>
+<P class="p6 ft6">Please complete this exercise before arriving to the workshop. <SPAN class="ft5">This is a confidential exercise that will not be turned in. It will not be shared with others, it is completely personal. Please feel free to be completely honest with yourself about the experiences you will explore below.</SPAN></P>
+<P class="p7 ft7">A. Successful: A result that I am proud I achieved or obtained</P>
+<P class="p8 ft10"><SPAN class="ft8">1.</SPAN><SPAN class="ft9">Result: </SPAN>Please write a successful result you have achieved. It can be a professional goal or result you’ve obtained or something personal you worked hard to achieve and have reached.</P>
+<input type="text" id="formColor" name="ansQ1" value="@ansQ1">
+<P class="p9 ft11">Now, think about how you got to that result and write your answers to the following questions:</P>
+<P class="p10 ft11"><SPAN class="ft12">2.</SPAN><SPAN class="ft13">Behavior: </SPAN>What types of actions did you take that contributed to achieving your result?</P>
+<input type="text" id="formColor" name="ansQ2" value="@ansQ2">
+<P class="p11 ft10"><SPAN class="ft12">3.</SPAN><SPAN class="ft14">Mood: </SPAN>What type of mood states, emotions or feelings were prominent throughout the process that contributed to your end result?</P>
+<input type="text" id="formColor" name="ansQ3" value="@ansQ3">
+<P class="p12 ft11"><SPAN class="ft12">4.</SPAN><SPAN class="ft13">Thoughts: </SPAN>What were prominent thoughts you had throughout this experience?</P>
+<input type="text" id="formColor" name="ansQ4" value="@ansQ4">
+<P class="p13 ft11"><SPAN class="ft12">5.</SPAN><SPAN class="ft13">Story: </SPAN>What is the story you tell yourself and/or others about your result?</P>
+<input type="text" id="formColor" name="ansQ5" value="@ansQ5">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_3">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Accountability3x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft1">JMA: Getting Results</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft1">3</P></TD>
+</TR>
+</TABLE>
+<P class="p5 ft7">B. Unsuccessful: A result that I am disappointed I failed to achieve or attain</P>
+<P class="p14 ft5"><SPAN class="ft8">1.</SPAN><SPAN class="ft15">Result: </SPAN>Please write an unsuccessful result that you are disappointed you failed to achieve. It can be a professional goal or result you failed to obtain or a personal goal you attempted and did not reach.</P>
+<input type="text" id="formColor" name="ansQ6" value="@ansQ6">
+<P class="p15 ft11">Now, think about how you got to that result and write your answers to the following questions:</P>
+<P class="p16 ft11"><SPAN class="ft12">2.</SPAN><SPAN class="ft13">Behavior: </SPAN>What types of actions did you take or not take that contributed to your end result?</P>
+<input type="text" id="formColor" name="ansQ7" value="@ansQ7">
+<P class="p17 ft17"><SPAN class="ft12">3.</SPAN><SPAN class="ft16">Mood: </SPAN>What mood states, emotions or feelings were prominent throughout the process that contributed to your end result?</P>
+<input type="text" id="formColor" name="ansQ8" value="@ansQ8">
+<P class="p18 ft17"><SPAN class="ft12">4.</SPAN><SPAN class="ft16">Thoughts: </SPAN>What prominent thoughts did you experience throughout the process that contributed to your end result?</P>
+<input type="text" id="formColor" name="ansQ9" value="@ansQ9">
+<P class="p19 ft11"><SPAN class="ft12">5.</SPAN><SPAN class="ft13">Story: </SPAN>What is the story you tell yourself and/or others about your result?</P>
+<input type="text" id="formColor" name="ansQ10" value="@ansQ10">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</HTML>

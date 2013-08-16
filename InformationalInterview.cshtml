@@ -1,0 +1,162 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/InformationalInterview.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from InformationalInterview where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        var intDate1=answers.intDate1;
+
+
+        if (IsPost) {
+            intDate1=Request["intDate1"];
+
+            var SQLUPDATE="update InformationalInterview set intDate1=@1 " +
+                "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, intDate1);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Informational_Interview_Report1x1.jpg" id="img1">
+</DIV>
+
+
+<DIV class="dclr"></DIV>
+<DIV id="id_1">
+<P class="p0 ft0">JODY MICHAEL ASSOCIATES</P>
+<P class="p1 ft1">Informational Interview <NOBR>Follow-Up</NOBR> Report #1</P>
+
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat1">
+    <tr>
+        <td id="leftRightTop">Date</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="intDate1" value="@intDate1"></td>
+        <td id="middle">&nbsp;</td>
+        <td id="leftRightTop">Referred by</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+    </tr>
+    <tr>
+        <td id="leftRightTop">Organization</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+        <td id="middle">&nbsp;</td>
+        <td id="leftRightTop">Job Title</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+    </tr>
+    <tr>
+        <td id="leftRightTop">Name</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+        <td id="middle">&nbsp;</td>
+        <td id="leftRightTop">Phone Number</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+    </tr>
+    <tr>
+        <td id="leftRightTop">Address</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+        <td id="middle">&nbsp;</td>
+        <td id="leftRightTop">Date of Meeting</td>
+        <td id="rightTop"><input type="text" id="formColor" size="30" name="" value=""></td>
+    </tr>
+    <tr>
+        <td id="leftRightBottom">&nbsp;</td>
+        <td id="rightBottom"><input type="text" id="formColor" size="30" name="" value=""></td>
+        <td id="middle">&nbsp;</td>
+        <td id="leftTopBottom">Length of Meeting</td>
+        <td id="all"><input type="text" id="formColor" size="30" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Purpose of meeting<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">What did you learn about the person you met? (Background, interests, etc.)<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Did you learn anything that confirmed or modified your career objective?<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Problems and needs of company or industry:<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Referrals' (new contacts) name, function, background:<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Next steps:<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Evaluation of meeting:<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<br>
+<TABLE cellpadding=0 cellspacing=0 id="tableFormat2">
+    <tr>
+        <td id="allBig">Other information gained:<br>
+        <input type="text" id="formColor" size="104" name="" value=""></td>
+    </tr>
+</table>
+
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</HTML>

@@ -1,0 +1,43 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    var db=Database.Open("JMA");
+    var queryU=db.QuerySingle("select * from UserProfile where Email LIKE @0", WebSecurity.CurrentUserName);
+    var thisUser=queryU.UserNameFL;
+
+    // Find earliest date
+    var queryD=db.Query("select * from MoodMinder where UserNameFL=@0", thisUser);
+    var start=DateTime.Now;
+    foreach (var row in queryD) {
+        if (row.DateTime<start) {
+            start=row.DateTime;
+        }
+    }
+
+    var end=start.AddDays(14);
+    var query=db.Query("select * from MoodMinder where UserNameFL=@0 and DateTime>=@1 and DateTime<@2 order by SelfOrEvent",
+        thisUser, start, end);
+
+    Dictionary<string,int> selfOrEventList=new Dictionary<string,int>();
+    Dictionary<string,string> selfOrEventListS=new Dictionary<string,string>();
+
+    // List of all self-generated or event-driven moods
+    foreach (var row in query) {
+        if (selfOrEventList.ContainsKey(row.SelfOrEvent)) {
+            selfOrEventList[row.SelfOrEvent]++;
+        } else {
+            selfOrEventList.Add(row.SelfOrEvent,1);
+        }
+    }
+
+    // Convert self-generated or event-driven counts to strings
+    foreach (KeyValuePair<string,int> pair in selfOrEventList) {
+        selfOrEventListS.Add(pair.Key,pair.Value.ToString());
+    }
+
+    var myChart = new Chart(width: 600, height: 400) 
+        .AddTitle("Self-Generated vs. Event-Driven Moods for the First Two Weeks") 
+        .AddSeries(chartType: "Pie",
+            xValue: selfOrEventListS.Keys, 
+            yValues: selfOrEventListS.Values) 
+        .Write();
+}

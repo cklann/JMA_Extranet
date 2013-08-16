@@ -1,0 +1,7 @@
+﻿@{
+    if (WebSecurity.IsAuthenticated) {
+        Response.Redirect("~/Account/Welcome.cshtml");
+    } else {
+        Response.Redirect("~/Account/Login.cshtml");
+    }
+}

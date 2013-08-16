@@ -1,0 +1,34 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>View/Edit/Add Modules</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var sqlM="select * from Modules";
+        var dataM=db.Query(sqlM);
+
+        if (IsPost) {
+            Response.Redirect("~/Account/AddModule.cshtml");
+        }
+
+        <div id="block">
+            <table>
+                @foreach (var row in dataM) {
+                    <tr>
+                        <td width="200px">@row.moduleName</td>
+                        <td width="50px"><a id="edit" href="UpdateModule.cshtml?moduleName=@row.moduleName">Edit</a></td>
+                        <td width="50px"><a id="edit" href="DeleteModule.cshtml?moduleName=@row.moduleName">Delete</a></td>
+                    </tr>
+                }
+            </table>
+
+        <form action="" method="post">
+            <p><input type="submit" value="Add New Module"></p>
+        </form>
+
+        </div>
+    } else {
+        <p>Please login.</p>
+    }
+}

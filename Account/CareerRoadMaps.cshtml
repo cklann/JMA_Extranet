@@ -1,0 +1,33 @@
+﻿@{
+    Layout="~/Layout.cshtml";
+    <br><br><h1>View/Edit/Add Career RoadMaps</h1>
+
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var sqlC="select * from CareerRoadMaps";
+        var dataC=db.Query(sqlC);
+
+        if (IsPost) {
+            Response.Redirect("~/Account/AddCareerRoadMap.cshtml");
+        }
+
+        <div id="block">
+            <table>
+                @foreach (var row in dataC) {
+                    <tr>
+                        <td width="200px">@row.CareerRoadMap</td>
+                        <td width="50px"><a id="edit" href="UpdateCareerRoadMap.cshtml?CareerRoadMap=@row.CareerRoadMap">Edit</a></td>
+                    </tr>
+                }
+            </table>
+
+        <form action="" method="post">
+            <p><input type="submit" value="Add New Career RoadMap"></p>
+        </form>
+
+        </div>
+    } else {
+        <p>Please login.</p>
+    }
+}

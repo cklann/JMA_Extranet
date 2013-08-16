@@ -1,0 +1,815 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+<link rel="stylesheet" href="~/Styles/CareerRoadMap3.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var SQLSELECT="select * from CareerRoadMap3 where Email LIKE @0";
+        var db=Database.Open("JMA");
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        // Mile 1: What
+        var ansQ1a=answers.Q1a;             // Agriculture and Related Sciences        var ansQ1b=answers.Q1b;             // Agriculture and Related Sciences        var ansQ2a=answers.Q2a;             // Architecture and Planning        var ansQ2b=answers.Q2b;             // Architecture and Planning        var ansQ3a=answers.Q3a;             // Area, Ethnic, Cultural and Gender Studies        var ansQ3b=answers.Q3b;             // Area, Ethnic, Cultural and Gender Studies        var ansQ4a=answers.Q4a;             // Arts, Visual and Performing        var ansQ4b=answers.Q4b;             // Arts, Visual and Performing        var ansQ5a=answers.Q5a;             // Biological and Biomedical Sciences        var ansQ5b=answers.Q5b;             // Biological and Biomedical Sciences        var ansQ6a=answers.Q6a;             // Business        var ansQ6b=answers.Q6b;             // Business        var ansQ7a=answers.Q7a;             // Communication and Journalism        var ansQ7b=answers.Q7b;             // Communication and Journalism        var ansQ8a=answers.Q8a;             // Communications Technologies        var ansQ8b=answers.Q8b;             // Communications Technologies        var ansQ9a=answers.Q9a;             // Computer and Information Sciences        var ansQ9b=answers.Q9b;             // Computer and Information Sciences        var ansQ10a=answers.Q10a;           // Construction Trades        var ansQ10b=answers.Q10b;           // Construction Trades        var ansQ11a=answers.Q11a;           // Education        var ansQ11b=answers.Q11b;           // Education        var ansQ12a=answers.Q12a;           // Engineering        var ansQ12b=answers.Q12b;           // Engineering        var ansQ13a=answers.Q13a;           // Engineering Technologies        var ansQ13b=answers.Q13b;           // Engineering Technologies        var ansQ14a=answers.Q14a;           // English Language and Literature        var ansQ14b=answers.Q14b;           // English Language and Literature        var ansQ15a=answers.Q15a;           // Family and Consumer Sciences        var ansQ15b=answers.Q15b;           // Family and Consumer Sciences        var ansQ16a=answers.Q16a;           // Health Professions and Related Clinical Sciences        var ansQ16b=answers.Q16b;           // Health Professions and Related Clinical Sciences        var ansQ17a=answers.Q17a;           // History        var ansQ17b=answers.Q17b;           // History        var ansQ18a=answers.Q18a;           // Humanities        var ansQ18b=answers.Q18b;           // Humanities        var ansQ19a=answers.Q19a;           // Languages, Literatures and Linguistics        var ansQ19b=answers.Q19b;           // Languages, Literatures and Linguistics        var ansQ20a=answers.Q20a;           // Law and Legal Studies        var ansQ20b=answers.Q20b;           // Law and Legal Studies        var ansQ21a=answers.Q21a;           // Liberal Arts and Sciences        var ansQ21b=answers.Q21b;           // Liberal Arts and Sciences        var ansQ22a=answers.Q22a;           // Library Science        var ansQ22b=answers.Q22b;           // Library Science        var ansQ23a=answers.Q23a;           // Math and Statistics        var ansQ23b=answers.Q23b;           // Math and Statistics        var ansQ24a=answers.Q24a;           // Mechanic and Repair Technologies        var ansQ24b=answers.Q24b;           // Mechanic and Repair Technologies        var ansQ25a=answers.Q25a;           // Military        var ansQ25b=answers.Q25b;           // Military        var ansQ26a=answers.Q26a;           // Natural Resources and Conservation        var ansQ26b=answers.Q26b;           // Natural Resources and Conservation        var ansQ27a=answers.Q27a;           // Parks, Recreation and Fitness        var ansQ27b=answers.Q27b;           // Parks, Recreation and Fitness        var ansQ28a=answers.Q28a;           // Personal and Culinary Services        var ansQ28b=answers.Q28b;           // Personal and Culinary Services        var ansQ29a=answers.Q29a;           // Philosophy and Religion        var ansQ29b=answers.Q29b;           // Philosophy and Religion        var ansQ30a=answers.Q30a;           // Physical Sciences        var ansQ30b=answers.Q30b;           // Physical Sciences        var ansQ31a=answers.Q31a;           // Psychology        var ansQ31b=answers.Q31b;           // Psychology        var ansQ32a=answers.Q32a;           // Public Administration and Social Services        var ansQ32b=answers.Q32b;           // Public Administration and Social Services        var ansQ33a=answers.Q33a;           // Science Technologies        var ansQ33b=answers.Q33b;           // Science Technologies        var ansQ34a=answers.Q34a;           // Security and Protective Services        var ansQ34b=answers.Q34b;           // Security and Protective Services        var ansQ35a=answers.Q35a;           // Social Sciences        var ansQ35b=answers.Q35b;           // Social Sciences        var ansQ36a=answers.Q36a;           // Theological Studies and Religious Vocations        var ansQ36b=answers.Q36b;           // Theological Studies and Religious Vocations        var ansQ37a=answers.Q37a;           // Transportation and Materials Moving        var ansQ37b=answers.Q37b;           // Transportation and Materials Moving        var ansQ38a=answers.Q38a;           // Other        var ansQ38b=answers.Q38b;           // Other        var ansQ38c=answers.Q38c;           // Other        var ansQ39a=answers.Q39a;           // Other        var ansQ39b=answers.Q39b;           // Other        var ansQ39c=answers.Q39c;           // Other        var ansQ40a=answers.Q40a;           // Other        var ansQ40b=answers.Q40b;           // Other        var ansQ40c=answers.Q40c;           // Other        var ansQ41a=answers.Q41a;           // Fields you are moved to make a contribution to        var ansQ41b=answers.Q41b;        var ansQ41c=answers.Q41c;        var ansQ41d=answers.Q41d;        var ansQ41e=answers.Q41e;        var ansQ42=answers.Q42;             // Ah-ha box        // Mile 2: How        var ansQ43a=answers.Q43a;           // Adapt        var ansQ43b=answers.Q43b;           // Advocate        var ansQ43c=answers.Q43c;           // Analyze        var ansQ43d=answers.Q43d;           // Build        var ansQ43e=answers.Q43e;           // Calculate        var ansQ43f=answers.Q43f;           // Clarify        var ansQ43g=answers.Q43g;           // Coach        var ansQ43h=answers.Q43h;           // Collaborate        var ansQ43i=answers.Q43i;           // Communicate        var ansQ43j=answers.Q43j;           // Compete        var ansQ43k=answers.Q43k;           // Complete        var ansQ43l=answers.Q43l;           // Comprehend        var ansQ43m=answers.Q43m;           // Connect        var ansQ43n=answers.Q43n;           // Coordinate        var ansQ43o=answers.Q43o;           // Counsel        var ansQ43p=answers.Q43p;           // Deconstruct        var ansQ43q=answers.Q43q;           // Defend        var ansQ43r=answers.Q43r;           // Design        var ansQ43s=answers.Q43s;           // Direct        var ansQ43t=answers.Q43t;           // Envision        var ansQ43u=answers.Q43u;           // Evaluate        var ansQ43v=answers.Q43v;           // Express        var ansQ43w=answers.Q43w;           // Implement        var ansQ43x=answers.Q43x;           // Influence        var ansQ43y=answers.Q43y;           // Inform        var ansQ43z=answers.Q43z;           // Innovate        var ansQ43aa=answers.Q43aa;         // Inspire        var ansQ43ab=answers.Q43ab;         // Invent        var ansQ43ac=answers.Q43ac;         // Investigate        var ansQ43ad=answers.Q43ad;         // Lead        var ansQ43ae=answers.Q43ae;         // Mediate        var ansQ43af=answers.Q43af;         // Motivate        var ansQ43ag=answers.Q43ag;         // Multitask        var ansQ43ah=answers.Q43ah;         // Nurture        var ansQ43ai=answers.Q43ai;         // Organize        var ansQ43aj=answers.Q43aj;         // Perform        var ansQ43ak=answers.Q43ak;         // Persist        var ansQ43al=answers.Q43al;         // Persuade        var ansQ43am=answers.Q43am;         // Plan        var ansQ43an=answers.Q43an;         // Problem solve        var ansQ43ao=answers.Q43ao;         // Produce        var ansQ43ap=answers.Q43ap;         // Reduce        var ansQ43aq=answers.Q43aq;         // Research        var ansQ43ar=answers.Q43ar;         // Sell        var ansQ43as=answers.Q43as;         // Shape        var ansQ43at=answers.Q43at;         // Specialize        var ansQ43au=answers.Q43au;         // Teach        var ansQ43av=answers.Q43av;         // Visualize        var ansQ43aw=answers.Q43aw;         // Other        var ansQ43ax=answers.Q43ax;         // Other (text)        var ansQ43ay=answers.Q43ay;         // Other        var ansQ43az=answers.Q43az;         // Other (text)        // Whom        var ansQ44a=answers.Q44a;           // Who you'd like to surrround yourself with        var ansQ44b=answers.Q44b;        var ansQ44c=answers.Q44c;        var ansQ44d=answers.Q44d;        var ansQ45a=answers.Q45a;           // Who you would like to serve        var ansQ45b=answers.Q45b;        var ansQ45c=answers.Q45c;        var ansQ45d=answers.Q45d;        // Where        var ansQ46=answers.Q46;             // Scope or scale of services you want to provide        // Purpose        var ansQ47=answers.Q47;             // General statement that describes your work        var ansQ48a=answers.Q48a;           // Possible career role #1        var ansQ48b=answers.Q48b;           // Possible career role #2        var ansQ48c=answers.Q48c;           // Possible career role #3        // Freedom to roam        var ansQ49a=answers.Q49a;        var ansQ49b=answers.Q49b;        var ansQ49c=answers.Q49c;        var ansQ49d=answers.Q49d;        var ansQ49e=answers.Q49e;        var ansQ49f=answers.Q49f;        var ansQ49g=answers.Q49g;        var ansQ49h=answers.Q49h;        var ansQ49i=answers.Q49i;        var ansQ49j=answers.Q49j;
+        var ansQ49k=answers.Q49k;
+        var ansQ49l=answers.Q49l;
+        var ansQ49m=answers.Q49m;
+        var ansQ49n=answers.Q49n;
+
+        if(IsPost) {
+            ansQ1a=Request["ansQ1a"].As<string>("");            ansQ1b=Request["ansQ1b"].As<string>("");            ansQ2a=Request["ansQ2a"].As<string>("");            ansQ2b=Request["ansQ2b"].As<string>("");            ansQ3a=Request["ansQ3a"].As<string>("");            ansQ3b=Request["ansQ3b"].As<string>("");            ansQ4a=Request["ansQ4a"].As<string>("");            ansQ4b=Request["ansQ4b"].As<string>("");            ansQ5a=Request["ansQ5a"].As<string>("");            ansQ5b=Request["ansQ5b"].As<string>("");            ansQ6a=Request["ansQ6a"].As<string>("");            ansQ6b=Request["ansQ6b"].As<string>("");            ansQ7a=Request["ansQ7a"].As<string>("");            ansQ7b=Request["ansQ7b"].As<string>("");            ansQ8a=Request["ansQ8a"].As<string>("");            ansQ8b=Request["ansQ8b"].As<string>("");            ansQ9a=Request["ansQ9a"].As<string>("");            ansQ9b=Request["ansQ9b"].As<string>("");            ansQ10a=Request["ansQ10a"].As<string>("");            ansQ10b=Request["ansQ10b"].As<string>("");            ansQ11a=Request["ansQ11a"].As<string>("");            ansQ11b=Request["ansQ11b"].As<string>("");            ansQ12a=Request["ansQ12a"].As<string>("");            ansQ12b=Request["ansQ12b"].As<string>("");            ansQ13a=Request["ansQ13a"].As<string>("");            ansQ13b=Request["ansQ13b"].As<string>("");            ansQ14a=Request["ansQ14a"].As<string>("");            ansQ14b=Request["ansQ14b"].As<string>("");            ansQ15a=Request["ansQ15a"].As<string>("");            ansQ15b=Request["ansQ15b"].As<string>("");            ansQ16a=Request["ansQ16a"].As<string>("");            ansQ16b=Request["ansQ16b"].As<string>("");            ansQ17a=Request["ansQ17a"].As<string>("");            ansQ17b=Request["ansQ17b"].As<string>("");            ansQ18a=Request["ansQ18a"].As<string>("");            ansQ18b=Request["ansQ18b"].As<string>("");            ansQ19a=Request["ansQ19a"].As<string>("");            ansQ19b=Request["ansQ19b"].As<string>("");            ansQ20a=Request["ansQ20a"].As<string>("");            ansQ20b=Request["ansQ20b"].As<string>("");            ansQ21a=Request["ansQ21a"].As<string>("");            ansQ21b=Request["ansQ21b"].As<string>("");            ansQ22a=Request["ansQ22a"].As<string>("");            ansQ22b=Request["ansQ22b"].As<string>("");            ansQ23a=Request["ansQ23a"].As<string>("");            ansQ23b=Request["ansQ23b"].As<string>("");            ansQ24a=Request["ansQ24a"].As<string>("");            ansQ24b=Request["ansQ24b"].As<string>("");            ansQ25a=Request["ansQ25a"].As<string>("");            ansQ25b=Request["ansQ25b"].As<string>("");            ansQ26a=Request["ansQ26a"].As<string>("");            ansQ26b=Request["ansQ26b"].As<string>("");            ansQ27a=Request["ansQ27a"].As<string>("");            ansQ27b=Request["ansQ27b"].As<string>("");            ansQ28a=Request["ansQ28a"].As<string>("");            ansQ28b=Request["ansQ28b"].As<string>("");            ansQ29a=Request["ansQ29a"].As<string>("");            ansQ29b=Request["ansQ29b"].As<string>("");            ansQ30a=Request["ansQ30a"].As<string>("");            ansQ30b=Request["ansQ30b"].As<string>("");            ansQ31a=Request["ansQ31a"].As<string>("");            ansQ31b=Request["ansQ31b"].As<string>("");            ansQ32a=Request["ansQ32a"].As<string>("");            ansQ32b=Request["ansQ32b"].As<string>("");            ansQ33a=Request["ansQ33a"].As<string>("");            ansQ33b=Request["ansQ33b"].As<string>("");            ansQ34a=Request["ansQ34a"].As<string>("");            ansQ34b=Request["ansQ34b"].As<string>("");            ansQ35a=Request["ansQ35a"].As<string>("");            ansQ35b=Request["ansQ35b"].As<string>("");            ansQ36a=Request["ansQ36a"].As<string>("");            ansQ36b=Request["ansQ36b"].As<string>("");            ansQ37a=Request["ansQ37a"].As<string>("");            ansQ37b=Request["ansQ37b"].As<string>("");            ansQ38a=Request["ansQ38a"].As<string>("");            ansQ38b=Request["ansQ38b"].As<string>("");            ansQ38c=Request["ansQ38c"].As<string>("");            ansQ39a=Request["ansQ39a"].As<string>("");            ansQ39b=Request["ansQ39b"].As<string>("");            ansQ39c=Request["ansQ39c"].As<string>("");            ansQ40a=Request["ansQ40a"].As<string>("");            ansQ40b=Request["ansQ40b"].As<string>("");            ansQ40c=Request["ansQ40c"].As<string>("");            ansQ41a=Request["ansQ41a"].As<string>("");            ansQ41b=Request["ansQ41b"].As<string>("");            ansQ41c=Request["ansQ41c"].As<string>("");            ansQ41d=Request["ansQ41d"].As<string>("");            ansQ41e=Request["ansQ41e"].As<string>("");            ansQ42=Request["ansQ42"].As<string>("");            ansQ43a=Request["ansQ43a"].As<string>("");            ansQ43b=Request["ansQ43b"].As<string>("");            ansQ43c=Request["ansQ43c"].As<string>("");            ansQ43d=Request["ansQ43d"].As<string>("");            ansQ43e=Request["ansQ43e"].As<string>("");            ansQ43f=Request["ansQ43f"].As<string>("");            ansQ43g=Request["ansQ43g"].As<string>("");            ansQ43h=Request["ansQ43h"].As<string>("");            ansQ43i=Request["ansQ43i"].As<string>("");            ansQ43j=Request["ansQ43j"].As<string>("");            ansQ43k=Request["ansQ43k"].As<string>("");            ansQ43l=Request["ansQ43l"].As<string>("");            ansQ43m=Request["ansQ43m"].As<string>("");            ansQ43n=Request["ansQ43n"].As<string>("");            ansQ43o=Request["ansQ43o"].As<string>("");            ansQ43p=Request["ansQ43p"].As<string>("");            ansQ43q=Request["ansQ43q"].As<string>("");            ansQ43r=Request["ansQ43r"].As<string>("");            ansQ43s=Request["ansQ43s"].As<string>("");            ansQ43t=Request["ansQ43t"].As<string>("");            ansQ43u=Request["ansQ43u"].As<string>("");            ansQ43v=Request["ansQ43v"].As<string>("");            ansQ43w=Request["ansQ43w"].As<string>("");            ansQ43x=Request["ansQ43x"].As<string>("");            ansQ43y=Request["ansQ43y"].As<string>("");            ansQ43z=Request["ansQ43z"].As<string>("");            ansQ43aa=Request["ansQ43aa"].As<string>("");            ansQ43ab=Request["ansQ43ab"].As<string>("");            ansQ43ac=Request["ansQ43ac"].As<string>("");            ansQ43ad=Request["ansQ43ad"].As<string>("");            ansQ43ae=Request["ansQ43ae"].As<string>("");            ansQ43af=Request["ansQ43af"].As<string>("");            ansQ43ag=Request["ansQ43ag"].As<string>("");            ansQ43ah=Request["ansQ43ah"].As<string>("");            ansQ43ai=Request["ansQ43ai"].As<string>("");            ansQ43aj=Request["ansQ43aj"].As<string>("");            ansQ43ak=Request["ansQ43ak"].As<string>("");            ansQ43al=Request["ansQ43al"].As<string>("");            ansQ43am=Request["ansQ43am"].As<string>("");            ansQ43an=Request["ansQ43an"].As<string>("");            ansQ43ao=Request["ansQ43ao"].As<string>("");            ansQ43ap=Request["ansQ43ap"].As<string>("");            ansQ43aq=Request["ansQ43aq"].As<string>("");            ansQ43ar=Request["ansQ43ar"].As<string>("");            ansQ43as=Request["ansQ43as"].As<string>("");            ansQ43at=Request["ansQ43at"].As<string>("");            ansQ43au=Request["ansQ43au"].As<string>("");            ansQ43av=Request["ansQ43av"].As<string>("");            ansQ43aw=Request["ansQ43aw"].As<string>("");            ansQ43ax=Request["ansQ43ax"].As<string>("");            ansQ43ay=Request["ansQ43ay"].As<string>("");            ansQ43az=Request["ansQ43az"].As<string>("");            ansQ44a=Request["ansQ44a"].As<string>("");            ansQ44b=Request["ansQ44b"].As<string>("");            ansQ44c=Request["ansQ44c"].As<string>("");            ansQ44d=Request["ansQ44d"].As<string>("");            ansQ45a=Request["ansQ45a"].As<string>("");            ansQ45b=Request["ansQ45b"].As<string>("");            ansQ45c=Request["ansQ45c"].As<string>("");            ansQ45d=Request["ansQ45d"].As<string>("");            ansQ46=Request["ansQ46"].As<string>("");            ansQ47=Request["ansQ47"].As<string>("");            ansQ48a=Request["ansQ48a"].As<string>("");            ansQ48b=Request["ansQ48b"].As<string>("");            ansQ48c=Request["ansQ48c"].As<string>("");            ansQ49a=Request["ansQ49a"].As<string>("");            ansQ49b=Request["ansQ49b"].As<string>("");            ansQ49c=Request["ansQ49c"].As<string>("");            ansQ49d=Request["ansQ49d"].As<string>("");            ansQ49e=Request["ansQ49e"].As<string>("");            ansQ49f=Request["ansQ49f"].As<string>("");            ansQ49g=Request["ansQ49g"].As<string>("");            ansQ49h=Request["ansQ49h"].As<string>("");            ansQ49i=Request["ansQ49i"].As<string>("");            ansQ49j=Request["ansQ49j"].As<string>("");
+            ansQ49k=Request["ansQ49k"].As<string>("");
+            ansQ49l=Request["ansQ49l"].As<string>("");
+            ansQ49m=Request["ansQ49m"].As<string>("");
+            ansQ49n=Request["ansQ49n"].As<string>("");
+
+            var SQLUPDATE="update CareerRoadMap3 set Q1a=@1, Q1b=@2, Q2a=@3, Q2b=@4, Q3a=@5, Q3b=@6, Q4a=@7, Q4b=@8, " +
+                          "Q5a=@9, Q5b=@10, Q6a=@11, Q6b=@12, Q7a=@13, Q7b=@14, Q8a=@15, Q8b=@16, Q9a=@17, Q9b=@18, " +                          "Q10a=@19, Q10b=@20, Q11a=@21, Q11b=@22, Q12a=@23, Q12b=@24, Q13a=@25, Q13b=@26, Q14a=@27, " +                          "Q14b=@28, Q15a=@29, Q15b=@30, Q16a=@31, Q16b=@32, Q17a=@33, Q17b=@34, Q18a=@35, Q18b=@36, " +                          "Q19a=@37, Q19b=@38, Q20a=@39, Q20b=@40, Q21a=@41, Q21b=@42, Q22a=@43, Q22b=@44, Q23a=@45, " +                          "Q23b=@46, Q24a=@47, Q24b=@48, Q25a=@49, Q25b=@50, Q26a=@51, Q26b=@52, Q27a=@53, Q27b=@54, " +                          "Q28a=@55, Q28b=@56, Q29a=@57, Q29b=@58, Q30a=@59, Q30b=@60, Q31a=@61, Q31b=@62, Q32a=@63, " +                          "Q32b=@64, Q33a=@65, Q33b=@66, Q34a=@67, Q34b=@68, Q35a=@69, Q35b=@70, Q36a=@71, Q36b=@72, " +                          "Q37a=@73, Q37b=@74, Q38a=@75, Q38b=@76, Q38c=@77, Q39a=@78, Q39b=@79, Q39c=@80, Q40a=@81, " +                          "Q40b=@82, Q40c=@83, Q41a=@84, Q41b=@85, Q41c=@86, Q41d=@87, Q41e=@88, Q42=@89, Q43a=@90, " +                          "Q43aa=@91, Q43ab=@92, Q43ac=@93, Q43ad=@94, Q43ae=@95, Q43af=@96, Q43ag=@97, Q43ah=@98, " +                          "Q43ai=@99, Q43aj=@100, Q43ak=@101, Q43al=@102, Q43am=@103, Q43an=@104, Q43ao=@105, " +                          "Q43ap=@106, Q43aq=@107, Q43ar=@108, Q43as=@109, Q43at=@110, Q43au=@111, Q43av=@112, " +                          "Q43aw=@113, Q43ax=@114, Q43ay=@115, Q43az=@116, Q43b=@117, Q43c=@118, Q43d=@119, Q43e=@120, " +                          "Q43f=@121, Q43g=@122, Q43h=@123, Q43i=@124, Q43j=@125, Q43k=@126, Q43l=@127, Q43m=@128, " +                          "Q43n=@129, Q43o=@130, Q43p=@131, Q43q=@132, Q43r=@133, Q43s=@134, Q43t=@135, Q43u=@136, " +                          "Q43v=@137, Q43w=@138, Q43x=@139, Q43y=@140, Q43z=@141, Q44a=@142, Q44b=@143, Q44c=@144, " +                          "Q44d=@145, Q45a=@146, Q45b=@147, Q45c=@148, Q45d=@149, Q46=@150, Q47=@151, Q48a=@152, " +                          "Q48b=@153, Q48c=@154, Q49a=@155, Q49b=@156, Q49c=@157, Q49d=@158, Q49e=@159, Q49f=@160, " +                          "Q49g=@161, Q49h=@162, Q49i=@163, Q49j=@164, Q49k=@165, Q49l=@166, Q49m=@167, Q49n=@168 " +
+                          "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, ansQ1a, ansQ1b, ansQ2a, ansQ2b, ansQ3a, ansQ3b, ansQ4a,                           ansQ4b, ansQ5a, ansQ5b, ansQ6a, ansQ6b, ansQ7a, ansQ7b, ansQ8a, ansQ8b,                          ansQ9a, ansQ9b, ansQ10a, ansQ10b, ansQ11a, ansQ11b, ansQ12a, ansQ12b,                          ansQ13a, ansQ13b, ansQ14a, ansQ14b, ansQ15a, ansQ15b, ansQ16a, ansQ16b,                          ansQ17a, ansQ17b, ansQ18a, ansQ18b, ansQ19a, ansQ19b, ansQ20a, ansQ20b,                          ansQ21a, ansQ21b, ansQ22a, ansQ22b, ansQ23a, ansQ23b, ansQ24a, ansQ24b,                          ansQ25a, ansQ25b, ansQ26a, ansQ26b, ansQ27a, ansQ27b, ansQ28a, ansQ28b,                          ansQ29a, ansQ29b, ansQ30a, ansQ30b, ansQ31a, ansQ31b, ansQ32a, ansQ32b,                          ansQ33a, ansQ33b, ansQ34a, ansQ34b, ansQ35a, ansQ35b, ansQ36a, ansQ36b,                          ansQ37a, ansQ37b, ansQ38a, ansQ38b, ansQ38c, ansQ39a, ansQ39b, ansQ39c,                          ansQ40a, ansQ40b, ansQ40c, ansQ41a, ansQ41b, ansQ41c, ansQ41d, ansQ41e,                          ansQ42, ansQ43a, ansQ43aa, ansQ43ab, ansQ43ac, ansQ43ad, ansQ43ae, ansQ43af,                          ansQ43ag, ansQ43ah, ansQ43ai, ansQ43aj, ansQ43ak, ansQ43al, ansQ43am,                          ansQ43an, ansQ43ao, ansQ43ap, ansQ43aq, ansQ43ar, ansQ43as, ansQ43at,                          ansQ43au, ansQ43av, ansQ43aw, ansQ43ax, ansQ43ay, ansQ43az, ansQ43b,                          ansQ43c, ansQ43d, ansQ43e, ansQ43f, ansQ43g, ansQ43h, ansQ43i, ansQ43j,                          ansQ43k, ansQ43l, ansQ43m, ansQ43n, ansQ43o, ansQ43p, ansQ43q, ansQ43r,                          ansQ43s, ansQ43t, ansQ43u, ansQ43v, ansQ43w, ansQ43x, ansQ43y, ansQ43z,                          ansQ44a, ansQ44b, ansQ44c, ansQ44d, ansQ45a, ansQ45b, ansQ45c, ansQ45d,                          ansQ46, ansQ47, ansQ48a, ansQ48b, ansQ48c, ansQ49a, ansQ49b, ansQ49c,                          ansQ49d, ansQ49e, ansQ49f, ansQ49g, ansQ49h, ansQ49i, ansQ49j, ansQ49k,                          ansQ49l, ansQ49m, ansQ49n);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR31x1.jpg" id="img1">
+</DIV>
+
+
+<P class="p1 ft2">CAREER ROADMAP THREE</P>
+<P class="p2 ft3">DISCOVERY</P>
+<P class="p3 ft4">Please note: This is a proprietary document that is intended for your personal use only.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+<DIV id="page_2">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR32x1.jpg" id="img1">
+</DIV>
+
+
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">2</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft6">Congratulations!</P>
+<P class="p9 ft7">The document you hold in your hands, Career RoadMap Three, shows that you have not only completed Career RoadMaps One and Two, but that you are ready to build on that work by focusing on your values and what your work purpose could be.</P>
+<P class="p10 ft6">Walking With a Purpose</P>
+<P class="p11 ft7">Let's take a closer look at your ideal career. Think of it as a combination of your talents, interests and values. Where these areas intersect represents what drives you, excites you and inspires you. During our work together, you will explore your talents, interests and values and, by getting a better sense of each, you will progress toward finding the right job fit for you.</P>
+<P class="p12 ft8">Talents</P>
+<P class="p13 ft8">Core</P>
+<P class="p14 ft8">Driver</P>
+<TABLE cellpadding=0 cellspacing=0 class="t2">
+<TR>
+	<TD class="tr3 td5"><P class="p5 ft8">Values</P></TD>
+	<TD class="tr3 td6"><P class="p5 ft9">Interests</P></TD>
+</TR>
+</TABLE>
+<P class="p15 ft7">We'll begin by considering different aspects of your ideal career, including what, how, whom and where. Imagine each question as a mile marker. The more thought you give to each, the farther you'll advance along your career discovery path.</P>
+<TABLE cellpadding=0 cellspacing=0 class="t3">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+<DIV id="page_3">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR33x1.jpg" id="img1">
+</DIV>
+
+
+<TABLE cellpadding=0 cellspacing=0 class="t4">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">3</P></TD>
+</TR>
+</TABLE>
+<P class="p16 ft10">Mile 1: What</P>
+<P class="p17 ft11">To help determine what you would like to do, consider the fields that interest you. No one field may fit you perfectly, but give some thought to those included in the list below. Identify your level of interest for each, indicating "interested," "neutral" or "not interested." Some fields can have 100 or more careers within them. If you select "interested" or "neutral" for any fields, research them further by visiting bigfuture.collegeboard.org/majors-careers. Use the blank line in the last column to specify the career(s) you might consider within each of those fields.</P><br>
+<TABLE cellpadding=0 cellspacing=0 class="t5b">
+                    <tr>
+                        <td id="cell1">Agriculture and Related Sciences</td>
+                        <td id="cell2"><select name="ansQ1a">
+                            <option value="Interested" @(ansQ1a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ1a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ1a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ1b" size="25" value="@ansQ1b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Architecture and Planning</td>
+                        <td id="cell2"><select name="ansQ2a">
+                            <option value="Interested" @(ansQ2a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ2a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ2a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ2b" size="25" value="@ansQ2b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Area, Ethnic, Cultural and Gender Studies</td>
+                        <td id="cell2"><select name="ansQ3a">
+                            <option value="Interested" @(ansQ3a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ3a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ3a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ3b" size="25" value="@ansQ3b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Arts, Visual and Performing</td>
+                        <td id="cell2"><select name="ansQ4a">
+                            <option value="Interested" @(ansQ4a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ4a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ4a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ4b" size="25" value="@ansQ4b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Biological and Biomedical Sciences</td>
+                        <td id="cell2"><select name="ansQ5a">
+                            <option value="Interested" @(ansQ5a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ5a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ5a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ5b" size="25" value="@ansQ5b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Business</td>
+                        <td id="cell2"><select name="ansQ6a">
+                            <option value="Interested" @(ansQ6a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ6a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ6a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ6b" size="25" value="@ansQ6b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Communication and Journalism</td>
+                        <td id="cell2"><select name="ansQ7a">
+                            <option value="Interested" @(ansQ7a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ7a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ7a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ7b" size="25" value="@ansQ7b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Communications Technologies</td>
+                        <td id="cell2"><select name="ansQ8a">
+                            <option value="Interested" @(ansQ8a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ8a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ8a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ8b" size="25" value="@ansQ8b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Computer and Information Sciences</td>
+                        <td id="cell2"><select name="ansQ9a">
+                            <option value="Interested" @(ansQ9a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ9a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ9a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ9b" size="25" value="@ansQ9b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Construction Trades</td>
+                        <td id="cell2"><select name="ansQ10a">
+                            <option value="Interested" @(ansQ10a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ10a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ10a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ10b" size="25" value="@ansQ10b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Education</td>
+                        <td id="cell2"><select name="ansQ11a">
+                            <option value="Interested" @(ansQ11a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ11a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ11a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ11b" size="25" value="@ansQ11b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Engineering</td>
+                        <td id="cell2"><select name="ansQ12a">
+                            <option value="Interested" @(ansQ12a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ12a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ12a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ12b" size="25" value="@ansQ12b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Engineering Technologies</td>
+                        <td id="cell2"><select name="ansQ13a">
+                            <option value="Interested" @(ansQ13a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ13a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ13a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ13b" size="25" value="@ansQ13b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">English Language and Literature</td>
+                        <td id="cell2"><select name="ansQ14a">
+                            <option value="Interested" @(ansQ14a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ14a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ14a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ14b" size="25" value="@ansQ14b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Family and Consumer Sciences</td>
+                        <td id="cell2"><select name="ansQ15a">
+                            <option value="Interested" @(ansQ15a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ15a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ15a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ15b" size="25" value="@ansQ15b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Health Professions and Related Clinical Sciences</td>
+                        <td id="cell2"><select name="ansQ16a">
+                            <option value="Interested" @(ansQ16a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ16a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ16a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ16b" size="25" value="@ansQ16b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">History</td>
+                        <td id="cell2"><select name="ansQ17a">
+                            <option value="Interested" @(ansQ17a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ17a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ17a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ17b" size="25" value="@ansQ17b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Humanities</td>
+                        <td id="cell2"><select name="ansQ18a">
+                            <option value="Interested" @(ansQ18a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ18a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ18a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ18b" size="25" value="@ansQ18b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Languages, Literatures and Linguistics</td>
+                        <td id="cell2"><select name="ansQ19a">
+                            <option value="Interested" @(ansQ19a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ19a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ19a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ19b" size="25" value="@ansQ19b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Law and Legal Studies</td>
+                        <td id="cell2"><select name="ansQ20a">
+                            <option value="Interested" @(ansQ20a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ20a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ20a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ20b" size="25" value="@ansQ20b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Liberal Arts and Sciences</td>
+                        <td id="cell2"><select name="ansQ21a">
+                            <option value="Interested" @(ansQ21a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ21a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ21a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ21b" size="25" value="@ansQ21b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Library Science</td>
+                        <td id="cell2"><select name="ansQ22a">
+                            <option value="Interested" @(ansQ22a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ22a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ22a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ22b" size="25" value="@ansQ22b"></td>
+                    </tr>
+</TABLE>
+
+<TABLE cellpadding=0 cellspacing=0 class="t6">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+<DIV id="page_4">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR34x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t7">
+<TR>
+	<TD colspan=3 class="tr5 td11"><P class="p4 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr5 td12"><P class="p5 ft14">&nbsp;</P></TD>
+	<TD class="tr5 td9"><P class="p5 ft14">&nbsp;</P></TD>
+	<TD colspan=3 class="tr5 td13"><P class="p18 ft0">4</P></TD>
+</TR>
+</TABLE>
+<br><br>
+<TABLE cellpadding=0 cellspacing=0 class="t5b">
+                    <tr>
+                        <td id="cell1">Math and Statistics</td>
+                        <td id="cell2"><select name="ansQ23a">
+                            <option value="Interested" @(ansQ23a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ23a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ23a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ23b" size="25" value="@ansQ23b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Mechanic and Repair Technologies</td>
+                        <td id="cell2"><select name="ansQ24a">
+                            <option value="Interested" @(ansQ24a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ24a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ24a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ24b" size="25" value="@ansQ24b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Military</td>
+                        <td id="cell2"><select name="ansQ25a">
+                            <option value="Interested" @(ansQ25a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ25a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ25a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ25b" size="25" value="@ansQ25b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Natural Resources and Conservation</td>
+                        <td id="cell2"><select name="ansQ26a">
+                            <option value="Interested" @(ansQ26a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ26a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ26a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ26b" size="25" value="@ansQ26b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Parks, Recreation and Fitness</td>
+                        <td id="cell2"><select name="ansQ27a">
+                            <option value="Interested" @(ansQ27a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ27a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ27a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ27b" size="25" value="@ansQ27b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Personal and Culinary Services</td>
+                        <td id="cell2"><select name="ansQ28a">
+                            <option value="Interested" @(ansQ28a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ28a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ28a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ28b" size="25" value="@ansQ28b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Philosophy and Religion</td>
+                        <td id="cell2"><select name="ansQ29a">
+                            <option value="Interested" @(ansQ29a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ29a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ29a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ29b" size="25" value="@ansQ29b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Physical Sciences</td>
+                        <td id="cell2"><select name="ansQ30a">
+                            <option value="Interested" @(ansQ30a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ30a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ30a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ30b" size="25" value="@ansQ30b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Psychology</td>
+                        <td id="cell2"><select name="ansQ31a">
+                            <option value="Interested" @(ansQ31a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ31a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ31a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ31b" size="25" value="@ansQ31b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Public Administration and Social Services</td>
+                        <td id="cell2"><select name="ansQ32a">
+                            <option value="Interested" @(ansQ32a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ32a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ32a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ32b" size="25" value="@ansQ32b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Science Technologies</td>
+                        <td id="cell2"><select name="ansQ33a">
+                            <option value="Interested" @(ansQ33a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ33a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ33a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ33b" size="25" value="@ansQ33b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Security and Protective Services</td>
+                        <td id="cell2"><select name="ansQ34a">
+                            <option value="Interested" @(ansQ34a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ34a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ34a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ34b" size="25" value="@ansQ34b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Social Sciences</td>
+                        <td id="cell2"><select name="ansQ35a">
+                            <option value="Interested" @(ansQ35a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ35a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ35a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ35b" size="25" value="@ansQ35b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Theological Studies and Religious Vocations</td>
+                        <td id="cell2"><select name="ansQ36a">
+                            <option value="Interested" @(ansQ36a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ36a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ36a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ36b" size="25" value="@ansQ36b"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell1">Transportation and Materials Moving</td>
+                        <td id="cell2"><select name="ansQ37a">
+                            <option value="Interested" @(ansQ37a.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ37a.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ37a.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ37b" size="25" value="@ansQ37b"></td>
+                    </tr>
+</TABLE>
+<table>
+                    <tr>
+                        <td id="cell3">Other</td>
+                        <td id="cell4"><input type="text" id="formColor" name="ansQ38a" value="@ansQ38a"></td>
+                        <td id="cell5"><select name="ansQ38b">
+                            <option value="Interested" @(ansQ38b.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ38b.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ38b.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ38c" size="25" value="@ansQ38c"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell3">Other</td>
+                        <td id="cell4"><input type="text" id="formColor" name="ansQ39a" value="@ansQ39a"></td>
+                        <td id="cell5"><select name="ansQ39b">
+                            <option value="Interested" @(ansQ39b.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ39b.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ39b.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ39c" size="25" value="@ansQ39c"></td>
+                    </tr>
+                    <tr>
+                        <td id="cell3">Other</td>
+                        <td id="cell4"><input type="text" id="formColor" name="ansQ40a" value="@ansQ40a"></td>
+                        <td id="cell5"><select name="ansQ40b">
+                            <option value="Interested" @(ansQ40b.Contains("Interested") ? " selected" : "")>Interested</option>
+                            <option value="Neutral" @(ansQ40b.Contains("Neutral") ? " selected" : "")>Neutral</option>
+                            <option value="Not Interested" @(ansQ40b.Contains("Not Interested") ? " selected" : "")>Not Interested</option>
+                        </select></td>
+                        <td><input type="text" id="formColor" name="ansQ40c" size="25" value="@ansQ40c"></td>
+                    </tr>
+</table>
+
+</DIV>
+<DIV id="id_2">
+<DIV id="id_2_1">
+<P class="p20 ft11">Which chosen fields do you feel moved to potentially make a contribution to?</P>
+<p>1. <input type="text" id="formColor2" name="ansQ41a" size="25" value="@ansQ41a"></p>
+<p>2. <input type="text" id="formColor2" name="ansQ41b" size="25" value="@ansQ41b"></p>
+<p>3. <input type="text" id="formColor2" name="ansQ41c" size="25" value="@ansQ41c"></p>
+<p>4. <input type="text" id="formColor2" name="ansQ41d" size="25" value="@ansQ41d"></p>
+<p>5. <input type="text" id="formColor2" name="ansQ41e" size="25" value="@ansQ41e"></p>
+</DIV>
+<DIV id="id_2_2b">
+<P class="p20b ft12">Aha! Box</P>
+<p><input type="text" id="formColor3" name="ansQ42" size="47" value="@ansQ42"></p>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_5">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR35x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">5</P></TD>
+</TR>
+</TABLE>
+<P class="p21 ft10">Mile 2: How</P>
+<P class="p22 ft11">Each of us tends to take on similar roles across groups and situations. How you interact at your job, with your family and friends, in class, on your sports team, etc. can provide insight into the roles you tend to play. We're not looking to fit you into abox-you are an individual. But it can be helpful to consider the roles you tend to take on. Lean on this information as much or as little as you'd like.</P>
+<P class="p23 ft15">Check the roles you most often assume in the list below. Think of both professional and social settings. You may feel that the role you play varies depending on the situation-check all that apply or add your own.</P>
+<P class="p24 ft12">I am most often the one to:</P>
+<TABLE cellpadding=0 cellspacing=0 class="t9">
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43a" value="1" @(ansQ43a.Contains("1") ? " checked" : "")>Adapt</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43k" value="1" @(ansQ43k.Contains("1") ? " checked" : "")>Complete</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43u" value="1" @(ansQ43u.Contains("1") ? " checked" : "")>Evaluate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ae" value="1" @(ansQ43ae.Contains("1") ? " checked" : "")>Mediate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ao" value="1" @(ansQ43ao.Contains("1") ? " checked" : "")>Produce</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43b" value="1" @(ansQ43b.Contains("1") ? " checked" : "")>Advocate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43l" value="1" @(ansQ43l.Contains("1") ? " checked" : "")>Comprehend</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43v" value="1" @(ansQ43v.Contains("1") ? " checked" : "")>Express</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43af" value="1" @(ansQ43af.Contains("1") ? " checked" : "")>Motivate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ap" value="1" @(ansQ43ap.Contains("1") ? " checked" : "")>Reduce</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43c" value="1" @(ansQ43c.Contains("1") ? " checked" : "")>Analyze</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43m" value="1" @(ansQ43m.Contains("1") ? " checked" : "")>Connect</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43w" value="1" @(ansQ43w.Contains("1") ? " checked" : "")>Implement</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ag" value="1" @(ansQ43ag.Contains("1") ? " checked" : "")>Multitask</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43aq" value="1" @(ansQ43aq.Contains("1") ? " checked" : "")>Research</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43d" value="1" @(ansQ43d.Contains("1") ? " checked" : "")>Build</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43n" value="1" @(ansQ43n.Contains("1") ? " checked" : "")>Coordinate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43x" value="1" @(ansQ43x.Contains("1") ? " checked" : "")>Influence</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ah" value="1" @(ansQ43ah.Contains("1") ? " checked" : "")>Nurture</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ar" value="1" @(ansQ43ar.Contains("1") ? " checked" : "")>Sell</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43e" value="1" @(ansQ43e.Contains("1") ? " checked" : "")>Calculate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43o" value="1" @(ansQ43o.Contains("1") ? " checked" : "")>Counsel</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43y" value="1" @(ansQ43y.Contains("1") ? " checked" : "")>Inform</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ai" value="1" @(ansQ43ai.Contains("1") ? " checked" : "")>Organize</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43as" value="1" @(ansQ43as.Contains("1") ? " checked" : "")>Shape</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43f" value="1" @(ansQ43f.Contains("1") ? " checked" : "")>Clarify</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43p" value="1" @(ansQ43p.Contains("1") ? " checked" : "")>Deconstruct</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43z" value="1" @(ansQ43z.Contains("1") ? " checked" : "")>Innovate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43aj" value="1" @(ansQ43aj.Contains("1") ? " checked" : "")>Perform</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43at" value="1" @(ansQ43at.Contains("1") ? " checked" : "")>Specialize</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43g" value="1" @(ansQ43g.Contains("1") ? " checked" : "")>Coach</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43q" value="1" @(ansQ43q.Contains("1") ? " checked" : "")>Defend</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43aa" value="1" @(ansQ43aa.Contains("1") ? " checked" : "")>Inspire</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ak" value="1" @(ansQ43ak.Contains("1") ? " checked" : "")>Persist</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43au" value="1" @(ansQ43au.Contains("1") ? " checked" : "")>Teach</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43h" value="1" @(ansQ43h.Contains("1") ? " checked" : "")>Collaborate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43r" value="1" @(ansQ43r.Contains("1") ? " checked" : "")>Design</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ab" value="1" @(ansQ43ab.Contains("1") ? " checked" : "")>Invent</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43al" value="1" @(ansQ43al.Contains("1") ? " checked" : "")>Persuade</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43av" value="1" @(ansQ43av.Contains("1") ? " checked" : "")>Visualize</td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43i" value="1" @(ansQ43i.Contains("1") ? " checked" : "")>Communicate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43s" value="1" @(ansQ43s.Contains("1") ? " checked" : "")>Direct</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ac" value="1" @(ansQ43ac.Contains("1") ? " checked" : "")>Investigate</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43am" value="1" @(ansQ43am.Contains("1") ? " checked" : "")>Plan</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43aw" value="1" @(ansQ43aw.Contains("1") ? " checked" : "")>
+        <input type="text" id="formColor" name="ansQ43ax" size="25" value="@ansQ43ax"></td>
+</TR>
+<TR>
+    <td><input type="checkbox" id="formColor" name="ansQ43j" value="1" @(ansQ43j.Contains("1") ? " checked" : "")>Compete</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43t" value="1" @(ansQ43t.Contains("1") ? " checked" : "")>Envision</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ad" value="1" @(ansQ43ad.Contains("1") ? " checked" : "")>Lead</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43an" value="1" @(ansQ43an.Contains("1") ? " checked" : "")>Problem solve</td>
+    <td><input type="checkbox" id="formColor" name="ansQ43ay" value="1" @(ansQ43ay.Contains("1") ? " checked" : "")>
+        <input type="text" id="formColor" name="ansQ43az" size="25" value="@ansQ43az"></td>
+</TR>
+</TABLE>
+</DIV>
+<br><br>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_6">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR36x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">6</P></TD>
+</TR>
+</TABLE>
+<P class="p21 ft10">Mile 3: Whom</P>
+<P class="p25 ft16">Describe the types of individuals (i.e, your coworkers and leaders) you would like to surround yourself with at work, including their characteristics and qualities.</P>
+<p>1. <input type="text" id="formColor" name="ansQ44a" size="50" value="@ansQ44a"></p>
+<p>2. <input type="text" id="formColor" name="ansQ44b" size="50" value="@ansQ44b"></p>
+<p>3. <input type="text" id="formColor" name="ansQ44c" size="50" value="@ansQ44c"></p>
+<p>4. <input type="text" id="formColor" name="ansQ44d" size="50" value="@ansQ44d"></p>
+<P class="p26 ft16">Give some thought to the people you would like to serve in your career. Is that driven by any of the following factors: age, income,mind-set, needs, gender, culture or abilities?</P>
+<P class="p27 ft17">Examples include:</P>
+<P class="p28 ft7"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft18">Young adult women in lower income brackets who could use help discovering their ideal career path.</SPAN></P>
+<P class="p29 ft7"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft18">Small,</SPAN>start-up companies in the Chicagoland area who would benefit from marketing strategy and branding.</P>
+<P class="p30 ft12"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft19">Christians who feel spiritually lost or confused.</SPAN></P>
+<P class="p31 ft7"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft18">People of all ages and income levels who require health and nutrition guidance.</SPAN></P>
+<P class="p32 ft12">Below, describe those you would like to serve.</P>
+<p>1. <input type="text" id="formColor" name="ansQ45a" size="50" value="@ansQ45a"></p>
+<p>2. <input type="text" id="formColor" name="ansQ45b" size="50" value="@ansQ45b"></p>
+<p>3. <input type="text" id="formColor" name="ansQ45c" size="50" value="@ansQ45c"></p>
+<p>4. <input type="text" id="formColor" name="ansQ45d" size="50" value="@ansQ45d"></p>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_7">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR37x1.jpg" id="img1">
+</DIV>
+
+
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">7</P></TD>
+</TR>
+</TABLE>
+<P class="p33 ft10">Mile 4: Where</P>
+<P class="p34 ft20">Now, determine the scope of the impact or the size of the playing field on which you choose to serve. For example, do you want to work with individuals? Small groups? Communities? Nationwide?</P>
+<P class="p35 ft12">Internationally?</P>
+<P class="p36 ft12">Define the scope or scale of the service you would like to provide.</P>
+<p><input type="text" id="formColor4" name="ansQ46" size="65" value="@ansQ46"></p>
+<P class="p37 ft10">Mile 5: Purpose</P>
+<P class="p38 ft11">Review your answers from the previous four sections. Can you create a general statement that describes your work? If so, write it below. This is your work purpose statement. You can come back and revise it at any time.</P>
+<p><input type="text" id="formColor4" name="ansQ47" size="65" value="@ansQ47"></p>
+<P class="p39 ft11">Now, stretch. List three possible career roles that you could employ in the pursuit of your work purpose. None of these are final decisions. They'll just help to guide us in our future work together.</P>
+<P class="p35 ft12">1. <input type="text" id="formColor" name="ansQ48a" size="55" value="@ansQ48a"></P>
+<P class="p40 ft12">2. <input type="text" id="formColor" name="ansQ48b" size="55" value="@ansQ48b"></P>
+<P class="p40 ft12">3. <input type="text" id="formColor" name="ansQ48c" size="55" value="@ansQ48c"></P>
+<TABLE cellpadding=0 cellspacing=0 class="t10">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+<DIV id="page_8">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR38x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t11">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">8</P></TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV id="id_2">
+<DIV id="id_2_1">
+<P class="p20 ft6">Freedom to Roam</P>
+</DIV>
+</DIV>
+<DIV id="id_3">
+<DIV id="id_3_1x">
+<P class="p20 ft21">Imagine jobs, fields or areas that you feel drawn to. Wander through the magazine stand-what calls your attention? Get creative-it doesn't have to be a "job" or have a "title." It could simply be, "I would love</P>
+<P class="p41 ft21">to spend my day convincing people that (fill in the blank) matters" or "I would love to read books about (fill in the blank) all day." Or, it could be specific, like being a policeman or emergency medical technician.</P>
+<P class="p42 ft21">List whatever comes to mind in the first column below. Do not edit or judge. Be open. Explore.</P>
+<P class="p43 ft21">In the second column, rate each idea with a number that quantifies how strongly you feel about it.</P>
+<P class="p44 ft21">Do not intellectually downgrade it because you have reservations, feel that it would be a long shot, or think that you won't make enough money doing it. Just ask yourself, "How excited would</P>
+<P class="p45 ft21">I be to do this?" Use a rating scale of 1 to 10, with 1 signifying, "What was I thinking? I would HATE doing this!" and 10 representing, "This it it! This feels right! I would LOVE to do this!"</P>
+</DIV>
+<DIV id="id_2_2">
+<TABLE cellpadding=0 cellspacing=0 class="t12">
+<TR>
+	<TD class="tr2 td23"><P class="p5 ft17">Idea</P></TD>
+	<TD class="tr2 td24"><P class="p5 ft17">Rating</P></TD>
+</TR>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49a" size="35" value="@ansQ49a"></td>
+    <td><input type="text" id="formColor" name="ansQ49b" size="10" value="@ansQ49b"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49c" size="35" value="@ansQ49c"></td>
+    <td><input type="text" id="formColor" name="ansQ49d" size="10" value="@ansQ49d"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49e" size="35" value="@ansQ49e"></td>
+    <td><input type="text" id="formColor" name="ansQ49f" size="10" value="@ansQ49f"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49g" size="35" value="@ansQ49g"></td>
+    <td><input type="text" id="formColor" name="ansQ49h" size="10" value="@ansQ49h"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49i" size="35" value="@ansQ49i"></td>
+    <td><input type="text" id="formColor" name="ansQ49j" size="10" value="@ansQ49j"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49k" size="35" value="@ansQ49k"></td>
+    <td><input type="text" id="formColor" name="ansQ49l" size="10" value="@ansQ49l"></td>
+</tr>
+<tr>
+    <td><input type="text" id="formColor" name="ansQ49m" size="35" value="@ansQ49m"></td>
+    <td><input type="text" id="formColor" name="ansQ49n" size="10" value="@ansQ49n"></td>
+</tr>
+</TABLE>
+</DIV>
+<DIV id="id_3_2">
+<P class="p46 ft22">"The supreme accomplishment is to blur the line between work and play."</P>
+<P class="p47 ft23">- Arnold Toynbee</P>
+</DIV>
+</DIV>
+<DIV id="id_4">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_9">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR39x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td4"><P class="p7 ft0">9</P></TD>
+</TR>
+</TABLE>
+<P class="p8 ft6">Pulling It All Together</P>
+<P class="p48 ft24">There's no question that choosing a career is going to be one of the most important decisions you will make in your life and, as such, it is often an activity that is fraught with anxiety. There are some key points we want to introduce to you in order to expand your view of choosing a career. While these areas will help you consider it more lightly, we're not minimizing the importance of it.</P>
+<P class="p49 ft17">Helpful suggestions:</P>
+<P class="p50 ft24"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft25">Think of a career as playing a game. The best way to enjoy the game is to remember that it is one. Playing the career game can be distinguished from taking it seriously. If you take it seriously, you're not playing; and if you're playing, you can't take it seriously.</SPAN></P>
+<P class="p51 ft24"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft25">Know that throughout your career, the world will change and the industry will morph. Consider your career an iterative process, building upon itself as you grow and develop. Think</SPAN>holistically—your career is a body of work, not just a series of jobs.</P>
+<P class="p52 ft24"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft25">Expect change. Adapt. Be fluid. It's far less painful than being rigid. You may have held the same job for years, or this may be true at some point in your future. It's important to remember that change will happen all around you. The ability to retool and adapt is vital to any career.</SPAN></P>
+<P class="p53 ft12"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft19">Your job doesn't define you. As a player on the stage of life, play your career role; don't let it play you.</SPAN></P>
+<P class="p54 ft24">Remember, a career role is merely a vehicle through which you express and perform your life's work. It is a tool you should use consciously to progress toward the accomplishment of your objectives. A career role is not an end; it is a means. It is not an achievement; it's a means of achieving.</P>
+<P class="p55 ft27"><SPAN class="ft12">&#8226;</SPAN><SPAN class="ft26">The key to selecting an appropriate career game is to understand yourself, your core driver and your</SPAN>purpose-what you are working for. You formed the beginning of a purpose statement on page 7.</P>
+<P class="p56 ft24">A clear sense of purpose helps you coordinate your visions, values and talents with the social demands of work. When we play the career game without an understanding of our purpose, we leave our gauge of success and failure to the assessments of others.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+<DIV id="page_10">
+<DIV id="dimg1">
+<img alt="A" src="~/Images/JMA_CR310x1.jpg" id="img1">
+</DIV>
+
+
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td25"><P class="p5 ft0">JMA: Career RoadMap Three</P></TD>
+	<TD class="tr2 td26"><P class="p7 ft0">10</P></TD>
+</TR>
+</TABLE>
+<P class="p57 ft28">This is a proprietary document that is intended for your personal use only.</P>
+<P class="p58 ft7">This product, the Career RoadMap series, as well as any coaching information and materials disclosed and provided by Jody Michael Associates (JMA) during our work together, including, but not limited to, processes, products, methods, frameworks, tools, strategies and workshops, are confidential and protected by copyright laws.</P>
+<P class="p59 ft7">This means that this material, and all materials received in our work together, cannot be shared with others in any form. It cannot be reviewed, copied, transmitted or shared via written, verbal, email or any other form. It is not to be used for any coaching or consultative purpose.</P>
+<P class="p60 ft7">Over 90 percent of our new clients are referred by current clients. If you ever want to refer us to your colleagues and organizations, we would be pleased to provide you withnon-confidential information to help facilitate the introduction. If you have any questions about confidentiality or the use of our materials, contact JMA. Any violation will constitute a legal breach and will be prosecuted to the fullest extent of the law. If you breach this agreement, you will be liable and will pay to JMA the reasonable attorney's fees and costs JMA incurred as a result of your breach.</P>
+<P class="p61 ft7">If you have received this document and are not a client of Jody Michael Associates, then you are not the intended recipient. As an unintended recipient, you may not review, copy or distribute this material in any way and will be held liable. If you have received this material in error, and are not an intended recipient, please notify us immediately by email or phone and delete the original material.</P>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t8">
+<TR></TR><TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</HTML>

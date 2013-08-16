@@ -1,0 +1,5 @@
+-- Script Date: 8/12/2013 3:32 PM  - ErikEJ.SqlCeScripting version 3.5.2.31
+SELECT [Email]
+  FROM [UserProfile]
+  WHERE [Module2]='Yes';
+GO

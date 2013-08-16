@@ -1,0 +1,53 @@
+﻿@{
+    Layout="~/LayoutM.cshtml";
+    var thisUser=Request["UserNameFL"];
+}
+
+<br><br><h1></h1>
+<form action="" method="post">
+    <p>Select the time range that you want to display:</p>    <select name="ChartType">        <option value="allDates">All dates</option>        <option value="oneWeek">One week</option>        <option value="twoWeeks">Two weeks</option>        <option value="oneMonth">One month</option>        <option value="twoMonths">Two months</option>    </select>&nbsp;    <input type="submit" name="submit" value="Display Charts">&nbsp;    <input type="submit" name="submit" value="Return to Main Menu"></form>
+
+@{
+    var chartType="";
+    if (IsPost) {
+        if (Request["submit"]=="Return to Main Menu") {
+            Response.Redirect("~/MoodMinderM.cshtml");
+        } else {
+            chartType=Request["ChartType"];
+        }
+    }
+
+    if (chartType=="oneWeek") {
+        <img alt="A" src="MMChart1Wa.cshtml">
+        <img alt="A" src="MMChart1Wb.cshtml"<br>
+        <img alt="A" src="MMChart2Wa.cshtml">
+        <img alt="A" src="MMChart2Wb.cshtml"><br>
+        <img alt="A" src="MMChart3Wa.cshtml">
+        <img alt="A" src="MMChart3Wb.cshtml">
+    } else if (chartType=="twoWeeks") {
+        <img alt="A" src="MMChart1W2a.cshtml">
+        <img alt="A" src="MMChart1W2b.cshtml"><br>
+        <img alt="A" src="MMChart2W2a.cshtml">
+        <img alt="A" src="MMChart2W2b.cshtml"><br>
+        <img alt="A" src="MMChart3W2a.cshtml">
+        <img alt="A" src="MMChart3W2b.cshtml">
+    } else if (chartType=="oneMonth") {
+        <img alt="A" src="MMChart1Ma.cshtml">
+        <img alt="A" src="MMChart1Mb.cshtml"><br>
+        <img alt="A" src="MMChart2Ma.cshtml">
+        <img alt="A" src="MMChart2Mb.cshtml"><br>
+        <img alt="A" src="MMChart3Ma.cshtml">
+        <img alt="A" src="MMChart3Mb.cshtml">
+    } else if (chartType=="twoMonths") {
+        <img alt="A" src="MMChart1M2a.cshtml">
+        <img alt="A" src="MMChart1M2b.cshtml"><br>
+        <img alt="A" src="MMChart2M2a.cshtml">
+        <img alt="A" src="MMChart2M2b.cshtml"><br>
+        <img alt="A" src="MMChart3M2a.cshtml">
+        <img alt="A" src="MMChart3M2b.cshtml">
+    } else {
+        <img alt="A" src="MMChart1.cshtml"><br>
+        <img alt="A" src="MMChart2.cshtml"><br>
+        <img alt="A" src="MMChart3.cshtml">
+    }
+}
