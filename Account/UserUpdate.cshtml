@@ -55,7 +55,6 @@
         var CareerRoadMap9=query.CareerRoadMap9;
         var CareerRoadMap10=query.CareerRoadMap10;
         var JobFactors=query.JobFactors;
-        var InterviewingSupport=query.InterviewingSupport;
         var InformationalInterview=query.InformationalInterview;
 
         if(IsPost) {
@@ -84,19 +83,18 @@
             CareerRoadMap10=Request["CareerRoadMap10"].As<string>("");
 
             JobFactors=Request["JobFactors"].As<string>("");
-            InterviewingSupport=Request["InterviewingSupport"].As<string>("");
             InformationalInterview=Request["InformationalInterview"].As<string>("");
 
             var SQLUPDATE="update UserProfile set Module1=@1, Module2=@2, Module3=@3, Module4=@4, Module5=@5, " +
                 "Module6=@6, Module7=@7, Module8=@8, Module9=@9, Module10=@10, CareerRoadMap1=@11, CareerRoadMap2=@12, " +
                 "CareerRoadMap3=@13, CareerRoadMap4=@14, CareerRoadMap5=@15, CareerRoadMap6=@16, CareerRoadMap7=@17, " +
-                "CareerRoadMap8=@18, CareerRoadMap9=@19, CareerRoadMap10=@20, JobFactors=@21, InterviewingSupport=@22, " +
-                "Status=@23, InformationalInterview=@24 " +
+                "CareerRoadMap8=@18, CareerRoadMap9=@19, CareerRoadMap10=@20, JobFactors=@21, Status=@22, " +
+                "InformationalInterview=@24 " +
                 "where UserNameLF LIKE @0";
             db.Execute(SQLUPDATE, thisUser, Module1, Module2, Module3, Module4, Module5, Module6, Module7, Module8,
                        Module9, Module10, CareerRoadMap1, CareerRoadMap2, CareerRoadMap3, CareerRoadMap4, CareerRoadMap5,
                        CareerRoadMap6, CareerRoadMap7, CareerRoadMap8, CareerRoadMap9, CareerRoadMap10, JobFactors,
-                       InterviewingSupport, Status, InformationalInterview);
+                       Status, InformationalInterview);
             Response.Redirect("~/Account/UserSelect.cshtml");
         }
 
@@ -134,8 +132,8 @@
                             <select name="CareerRoadMap2">                                <option value="No" @(CareerRoadMap2.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap2.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
                         }
                     </td><td>
-                        <div id="column10">Interviewing Support&nbsp;
-                        <select name="InterviewingSupport">                            <option value="No" @(InterviewingSupport.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InterviewingSupport.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                        <div id="column10">Informational Interview&nbsp;
+                        <select name="InterviewingSupport">                            <option value="No" @(InformationalInterview.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InformationalInterview.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
                     </td></tr>
 
                     <tr><td>
@@ -148,11 +146,6 @@
                             <div id="column3">@crm[2]&nbsp;
                             <select name="CareerRoadMap3">                                <option value="No" @(CareerRoadMap3.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap3.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
                         }
-                    </td><td>
-                        <div id="column10">Informational Interview&nbsp;
-                        <select name="InformationalInterview">                            <option value="No" @(InformationalInterview.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InformationalInterview.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
-                    </td></tr>
-
                     <tr><td>
                         @if (countM>=4) {
                             <div id="column4">@module[3]&nbsp;

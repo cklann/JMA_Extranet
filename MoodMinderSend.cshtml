@@ -14,7 +14,10 @@
             endDate=Request["endDate"].As<string>("");
             coach=Request["coach"].As<string>("");
 
-            var sendTo="support.team@jodymichael.com";
+            var sendTo="jody@jodymichael.com";
+            if (coach=="Maura") {
+                sendTo="maura@jodymichael.com";
+            }
         
             // Create report
             var db=Database.Open("JMA");
@@ -39,13 +42,14 @@
                 WebMail.SmtpServer="server.jodymichael.com";
                 WebMail.SmtpPort=587;
                 WebMail.EnableSsl=true;
-                WebMail.UserName=sendTo;
+                WebMail.UserName="support.team@jodymichael.com";
                 WebMail.Password="st0516ST!";
+                WebMail.From="support.team@jodymichael.com";
     
                 var filesList=new string [] { dataFile };
                 
                 WebMail.Send(to: sendTo,
-                        subject: "Att'n " + @coach + ": MoodMinder for " + @WebSecurity.CurrentUserName,
+                        subject: "MoodMinder for " + @WebSecurity.CurrentUserName,
                         body: "File attached",
                         filesToAttach: filesList);
 
@@ -63,8 +67,6 @@
             <p>Coach:&nbsp;<select name="coach">
                 <option name="Jody">Jody</option>
                 <option name="Maura">Maura</option>
-                <option name="Andrew">Andrew</option>
-                <option name="Christine">Christine</option>
             </select></p>
 
             <p><input type="submit" name="submit" value="Send report"></p>

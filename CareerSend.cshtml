@@ -12,7 +12,10 @@
             worksheet=Request["worksheet"].As<string>("");
             coach=Request["coach"].As<string>("");
 
-            var sendTo="support.team@jodymichael.com";
+            var sendTo="jody@jodymichael.com";
+            if (coach=="Maura") {
+                sendTo="maura@jodymichael.com";
+            }
         
             // Create report
             var db=Database.Open("JMA");
@@ -28,22 +31,29 @@
             } else if (worksheet=="Career RoadMap Five") {
                 SQLSELECT="select * from CareerRoadMap5 where Email LIKE @0";
             }
-            
+
             var query=db.Query(SQLSELECT, WebSecurity.CurrentUserName);
 
+            // List of coaches
+            var SQLSELECTC="select * from Coaches";
+            var queryC=db.Query(SQLSELECTC);
+            
             // Send report
             var errorMessage="";
             try {
                 WebMail.SmtpServer="server.jodymichael.com";
                 WebMail.SmtpPort=587;
                 WebMail.EnableSsl=true;
-                WebMail.UserName=sendTo;
+                WebMail.UserName="support.team@jodymichael.com";
                 WebMail.Password="st0516ST!";
     
                 WebMail.Send(to: sendTo,
-                        subject: "Att'n " + @coach + ": " + @worksheet + @WebSecurity.CurrentUserName,
+                        subject: @worksheet + " for " + @WebSecurity.CurrentUserName,
                         body: @thisUser + " has completed " + @worksheet +
-                              ". Please print the " + @worksheet + " and give to " + @coach + ".");
+                              ". Please print the " + @worksheet + " by going to jmaextranet.azurewebsites.net, " +
+                              "select 'View and update active clients' module selections and print clients' " +
+                              "worksheets.' Find " + @thisUser + " in the list of clients and select 'Print' " +
+                              "under the appropriate column.");
 
                 Response.Redirect("~/CareerSuccess.cshtml");
 
@@ -65,8 +75,6 @@
             <p>Coach:&nbsp;<select name="coach">
                 <option name="Jody">Jody</option>
                 <option name="Maura">Maura</option>
-                <option name="Andrew">Andrew</option>
-                <option name="Christine">Christine</option>
             </select></p>
 
             <p><input type="submit" name="submit" value="Send Worksheet"></p>
