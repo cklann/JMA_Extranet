@@ -1,7 +1,6 @@
 ﻿@{
-    var db=Database.Open("JMA");
-    
     // Get list of coaches
+    var db=Database.Open("JMA");
     var coachList=db.Query("select * from Coaches");
 
     // Initialize general page variables
@@ -13,6 +12,7 @@
     var UserNameFL="";
     var UserNameLF="";
     var coachName="";
+    var special="";
 
     // Setup validation
     Validation.RequireField("fName", "You must specify a first name.");
@@ -55,19 +55,31 @@
                     WebSecurity.Login(email, password);
                     UserNameFL=fName+" "+lName;
                     UserNameLF=lName+", "+fName;
+
+                    // Identify the site administrators
+                    if (UserNameFL=="Carol Klann" || UserNameFL=="Cathy Cullen" ||
+                        UserNameFL=="Jody Michael" || UserNameFL=="Kelly Obbish") {
+                        special="A";
+                    }
+
+                    // Identify the coaches
+                    if (email=="maura@jodymichael.com") {
+                        special="C";
+                    }
+
                     var SQLUPDATE="update UserProfile set UserNameFL=@1, UserNameLF=@2, fName=@3, lName=@4, " +
                                   "CareerRoadMap1=@5, CareerRoadMap2=@6, CareerRoadMap3=@7, CareerRoadMap4=@8, " +
                                   "CareerRoadMap5=@9, CareerRoadMap6=@10, CareerRoadMap7=@11, CareerRoadMap8=@12, " +
                                   "CareerRoadMap9=@13, CareerRoadMap10=@14, Module1=@15, Module2=@16, " +
                                   "Module3=@17, Module4=@18, Module5=@19, Module6=@20, Module7=@21, " +
-                                  "Module8=@22, Module9=@23, Module10=@24, Status=@25, Coach=@26 " +
+                                  "Module8=@22, Module9=@23, Module10=@24, Status=@25, Coach=@26, special=@27 " +
                                   "where Email=@0";
                     db.Execute(SQLUPDATE, email, UserNameFL, UserNameLF, fName, lName,
                                   "No", "No", "No", "No", "No", 
                                   "No", "No", "No", "No", "No",
                                   "No", "No", "No", "No", "No",
                                   "No", "No", "No", "No", "No",
-                                  "Active", coachName);
+                                  "Active", coachName, special);
                     db.Execute("insert into CareerRoadMap1 (Email) values (@0)", email);
                     db.Execute("insert into CareerRoadMap2 (Email) values (@0)", email);
                     db.Execute("insert into CareerRoadMap3 (Email) values (@0)", email);
@@ -81,6 +93,7 @@
                     db.Execute("insert into JobFactors (Email) values (@0)", email);
                     db.Execute("insert into Interviewing (Email) values (@0)", email);
                     db.Execute("insert into Accountability (Email) values (@0)", email);
+                    db.Execute("insert into InformationalInterview (Email) values (@0)", email);
                     Response.Redirect("~/Account/RegisterSuccess.cshtml");
                 } catch (System.Web.Security.MembershipCreateUserException e) {
                     ModelState.AddFormError(e.Message);

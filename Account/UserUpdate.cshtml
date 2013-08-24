@@ -32,6 +32,7 @@
         <br><br><h1>Profile for @query.UserNameFL</h1>
 
         var Status=query.Status;
+        var Coach=query.Coach;
 
         var Module1=query.Module1;
         var Module2=query.Module2;
@@ -56,9 +57,11 @@
         var CareerRoadMap10=query.CareerRoadMap10;
         var JobFactors=query.JobFactors;
         var InformationalInterview=query.InformationalInterview;
+        var CompJobApplication=query.CompJobApplication;
 
         if(IsPost) {
             Status=Request["Status"].As<string>("");
+            Coach=Request["Coach"].As<string>("");
 
             Module1=Request["Module1"].As<string>("");
             Module2=Request["Module2"].As<string>("");
@@ -84,17 +87,18 @@
 
             JobFactors=Request["JobFactors"].As<string>("");
             InformationalInterview=Request["InformationalInterview"].As<string>("");
+            CompJobApplication=Request["CompJobApplication"].As<string>("");
 
             var SQLUPDATE="update UserProfile set Module1=@1, Module2=@2, Module3=@3, Module4=@4, Module5=@5, " +
                 "Module6=@6, Module7=@7, Module8=@8, Module9=@9, Module10=@10, CareerRoadMap1=@11, CareerRoadMap2=@12, " +
                 "CareerRoadMap3=@13, CareerRoadMap4=@14, CareerRoadMap5=@15, CareerRoadMap6=@16, CareerRoadMap7=@17, " +
-                "CareerRoadMap8=@18, CareerRoadMap9=@19, CareerRoadMap10=@20, JobFactors=@21, Status=@22, " +
-                "InformationalInterview=@24 " +
+                "CareerRoadMap8=@18, CareerRoadMap9=@19, CareerRoadMap10=@20, JobFactors=@21, " +
+                "InformationalInterview=@22, CompJobApplication=@23, Status=@24, Coach=@25 " +
                 "where UserNameLF LIKE @0";
             db.Execute(SQLUPDATE, thisUser, Module1, Module2, Module3, Module4, Module5, Module6, Module7, Module8,
                        Module9, Module10, CareerRoadMap1, CareerRoadMap2, CareerRoadMap3, CareerRoadMap4, CareerRoadMap5,
                        CareerRoadMap6, CareerRoadMap7, CareerRoadMap8, CareerRoadMap9, CareerRoadMap10, JobFactors,
-                       Status, InformationalInterview);
+                       InformationalInterview, CompJobApplication, Status, Coach);
             Response.Redirect("~/Account/UserSelect.cshtml");
         }
 
@@ -103,7 +107,11 @@
             <div id="block">
                 <p>Status&nbsp;
                 <select name="Status">
-                    <option value="Inactive" @(Status.Contains("Inactive") ? " selected" : "")>Inactive</option>                    <option value="Active" @(Status.Contains("Active") ? " selected" : "")>Active</option>                </select></p>
+                    <option value="Inactive" @(Status.Contains("Inactive") ? " selected" : "")>Inactive</option>                    <option value="Active" @(Status.Contains("Active") ? " selected" : "")>Active</option>                </select><br>
+
+                Coach&nbsp;
+                <select name="Coach">
+                    <option value="Jody" @(Coach.Contains("Jody") ? " selected" : "")>Jody</option>                    <option value="Maura" @(Coach.Contains("Maura") ? " selected" : "")>Maura</option>                </select></p>
 
                 <table>
                     <tr><td width="300px">
@@ -133,7 +141,7 @@
                         }
                     </td><td>
                         <div id="column10">Informational Interview&nbsp;
-                        <select name="InterviewingSupport">                            <option value="No" @(InformationalInterview.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InformationalInterview.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                        <select name="InformationalInterview">                            <option value="No" @(InformationalInterview.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(InformationalInterview.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
                     </td></tr>
 
                     <tr><td>
@@ -146,6 +154,11 @@
                             <div id="column3">@crm[2]&nbsp;
                             <select name="CareerRoadMap3">                                <option value="No" @(CareerRoadMap3.Contains("No") ? " selected" : "")>No</option>                                <option value="Yes" @(CareerRoadMap3.Contains("Yes") ? " selected" : "")>Yes</option>                            </select></div>
                         }
+                    </td><td>
+                        <div id="column10">Comprehensive Job Application&nbsp;
+                        <select name="CompJobApplication">                            <option value="No" @(CompJobApplication.Contains("No") ? " selected" : "")>No</option>                            <option value="Yes" @(CompJobApplication.Contains("Yes") ? " selected" : "")>Yes</option>                        </select></div>
+                    </td></tr>
+
                     <tr><td>
                         @if (countM>=4) {
                             <div id="column4">@module[3]&nbsp;

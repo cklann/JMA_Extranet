@@ -76,5 +76,5 @@ body {margin-top: 0px;margin-left: 0px;}
            white-space:pre-wrap;background-color:#cecece;}
 #fixedPos2{position:fixed;width:120px;height:25px;margin-left:440px;margin-top:10px;
            white-space:pre-wrap;background-color:#cecece;}
-#bottomBar{background-color: white;margin-top:200px;margin-left: -10px;width: 110%;
+#bottomBar{background-color: white;margin-top:240px;margin-left: -10px;width: 110%;
         height: 200px;position:fixed;z-index: 10;}

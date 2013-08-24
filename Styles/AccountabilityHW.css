@@ -121,11 +121,12 @@ body {margin-top: 0px;margin-left: 0px;}
 #formColor1{font:15px 'Georgia';color:black;background-color:#87f48b;margin-left: 31px;width: 680px;}
 #formColor2{background-color:#87f48b;width:140px;}
 #formColor3{background-color:#87f48b;width:10px;}
+#formColor4{font:15px 'Georgia';color:black;background-color:#87f48b;width: 719px;}
 #fixedPos1{position:fixed;width:120px;height:25px;margin-left:275px;margin-top:10px;
            white-space:pre-wrap;background-color:#cecece;}
 #fixedPos2{position:fixed;width:120px;height:25px;margin-left:440px;margin-top:10px;
            white-space:pre-wrap;background-color:#cecece;}
-#bottomBar{background-color: white;margin-top:520px;margin-left: -10px;width: 110%;
+#bottomBar{background-color: white;margin-top:590px;margin-left: -10px;width: 110%;
         height: 200px;position:fixed;z-index: 10;}
 
 #borderAll{border: 2px solid;border-collapse: collapse;text-align: center;font: 13px 'Georgia';

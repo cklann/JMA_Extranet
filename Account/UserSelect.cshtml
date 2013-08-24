@@ -5,6 +5,12 @@
     if (WebSecurity.IsAuthenticated) {
 
         var db=Database.Open("JMA");
+
+        // Identify the user
+        var sqlU="select * from UserProfile where Email LIKE @0";
+        var dataU=db.QuerySingle(sqlU, WebSecurity.CurrentUserName);
+
+        // List of clients
         var sqlQ="select * from UserProfile where Status='Active' order by UserNameLF";
         var data=db.Query(sqlQ);
 
@@ -69,8 +75,10 @@
                     }
                     <th valign="bottom" width="50px">Job Factors</th>
                     <th valign="bottom" width="50px">Informational Interview</th>
+                    <th valign="bottom" width="50px">Comp. Job Application</th>
                 </tr>
                 @foreach(var row in data) {
+                    if (@dataU.special=="A" || (@dataU.special=="C" && @row.Coach==@dataU.FName)) {
                     <tr>
                         <td><a id="edit" href="UserUpdate.cshtml?UserNameLF=@row.UserNameLF">Edit</a></td>
                         <td align="center">@row.UserNameLF</td>
@@ -167,7 +175,9 @@
                         }
                         <td align="center">@row.JobFactors</td>
                         <td align="center">@row.InformationalInterview</td>
+                        <td align="center">@row.CompJobApplication</td>
                     </tr>
+                    }
                 }
             </table>
         </div>

@@ -1,0 +1,31 @@
+cklann999@gmail.com
+6/1/2013 11:20:00 AM, Energetic, Event-driven, Level 5, I don't like "Newsroom" but I'll listen to this program because Terry Gross is asking interesting questions.
+6/3/2013 1:00:00 PM, Relaxed, Self-generated, Level 6, I think everything is in control for this deal that is closing Monday. We should be in good shape.
+6/5/2013 3:00:00 PM, Bored, Self-generated, Level 1, I'm sick of work today. I'm tired. It's boring. What else do I have to get done before I can get out here?
+6/7/2013 5:00:00 PM, Bored, Event-driven, Level 2, Driving home from work. Here I go. Hopefully traffic isn't terrible.
+6/9/2013 8:00:00 PM, Depressed, Event-driven, Level 1, At the hospital visiting my brother's newborn in the intensive care unit. Poor thing. Just got into this world and already has to fight.
+6/11/2013 3:00:00 PM, Frustrated, Event-driven, Level 1, I rarely take naps, and now that I do, the neighbors decide to be loud?
+6/13/2013 3:30:00 PM, Relaxed, Self-generated, Level 4, What should I do now?
+6/15/2013 12:00:00 PM, Engaged, Self-generated, Level 3, OK, I'll finish this task, shower and then head out.
+6/17/2013 12:00:00 PM, Content, Self-generated, Level 6, Nice night out
+6/28/2013 12:00:00 PM, Focused, Self-generated, Level 3, Productive day so far.  What's next?
+6/21/2013 12:00:00 PM, Content, Self-generated, Level 5, What's the game plan for today?
+6/23/2013 12:00:00 PM, Engaged, Self-generated, Level 5, I know what I want to do today; how do I fit it all in?
+6/26/2013 12:00:00 PM, Engaged, Self-generated, Level 3, Gotta work hard during this workout.
+6/30/2013 12:00:00 PM, Annoyed, Event-driven, Level 2, Let me do this work just to get it out of the way.  It's ridiculous that they pretend to need this by Monday.
+7/1/2013 12:00:00 PM, Frustrated, Event-driven, Level 2, We just talked. She knows to expect my call around now, yet she doesn't answer. And this jerk just cut in line.
+7/3/2013 12:00:00 PM, Content, Self-generated, Level 4, I'm hungry. Looking forward to eating and then winding down tonight.
+7/5/2013 12:00:00 PM, Engaged, Self-generated, Level 3, Haven't talked to this guy in a while. This is interesting.
+7/7/2013 12:00:00 PM, Engaged, Event-driven, Level 2, I hope I don't set her off with anything I say.  Always unpredictable.
+7/9/2013 12:00:00 PM, Content, Self-generated, Level 6, It's nice to go out for lunch instead of eating at my desk.
+7/11/2013 12:00:00 PM, Grumpy, Self-generated, Level 1, I'm very tired today. Not enough sleep. I want to go home.
+7/13/2013 12:00:00 PM, Annoyed, Self-generated, Level 2, Let me get this out of the way so that I can get out of here.
+7/15/2013 12:00:00 PM, Pessimistic, Self-generated, Level 1, It takes too much time to unwind and get to bed.
+7/17/2013 12:00:00 PM, Annoyed, Event-driven, Level 3, I'll help this person, even though they didn't bother to include a "please" in their request. And it's not part of my job to help with this stuff anyway. Rude.
+7/19/2013 12:00:00 PM, Bored, Event-driven, Level 1, These people are not funny. I don't have anything in common with them.
+7/21/2013 12:00:00 PM, Content, Event-driven, Level 3, This didn't end up too bad. Lunch started out boring, but got better near the end.
+7/23/2013 12:00:00 PM, Engaged, Event-driven, Level 3, They'd better waive this fee. I won't argue, but this service is entirely replaceable.
+7/25/2013 12:00:00 PM, Pessimistic, Event-driven, Level 2, I really hate this work. I don't trust the team, and this will not end well. I need to cover myself.
+8/6/2013 3:04:41 PM, Happy, Event-driven, Level 3, Here are some sample thoughts.
+8/7/2013 8:51:03 AM, Frustrated, Event-driven, Level 2, Here are some sample thoughts.
+8/15/2013 10:46:21 AM, Frustrated, Self-generated, Level 2, I'm frustrated that this program isn't working.

@@ -8,6 +8,10 @@
         var sqlQ="select * from UserProfile where Status='Inactive' order by UserNameLF";
         var data=db.Query(sqlQ);
 
+        // Identify the user
+        var sqlU="select * from UserProfile where Email LIKE @0";
+        var dataU=db.QuerySingle(sqlU, WebSecurity.CurrentUserName);
+
         <div id="block">
             <table id="users">
                 <tr>
@@ -16,11 +20,13 @@
                     <th valign="bottom" width="100px">Status</th>
                 </tr>
                 @foreach(var row in data) {
-                    <tr>
-                        <td><a id="edit" href="UserUpdate.cshtml?UserNameLF=@row.UserNameLF">Edit</a></td>
-                        <td align="center">@row.UserNameLF</td>
-                        <td align="center">@row.Status</td>
-                    </tr>
+                    if (@dataU.special=="A" || (@dataU.special=="C" && @row.Coach==@dataU.FName)) {
+                        <tr>
+                            <td><a id="edit" href="UserUpdate.cshtml?UserNameLF=@row.UserNameLF">Edit</a></td>
+                            <td align="center">@row.UserNameLF</td>
+                            <td align="center">@row.Status</td>
+                        </tr>
+                    }
                 }
             </table>
         </div>

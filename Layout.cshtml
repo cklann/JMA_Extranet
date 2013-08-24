@@ -23,13 +23,6 @@
                     count++;
                 }
             }
-
-            // Identify the site administrators
-            var Admin=0;
-            if (query.UserNameFL=="Carol Klann" || query.UserNameFL=="Cathy Cullen" ||
-                query.UserNameFL=="Jody Michael" || query.UserNameFL=="Kelly Obbish") {
-                Admin=1;
-            }
         }
 
         <div id="topBar">
@@ -85,6 +78,9 @@
                         @if (@query.InformationalInterview=="Yes") {
                             <li><a href="~/InformationalInterview.cshtml?UserNameFL=@query.UserNameFL">
                                 Informational Interview Follow-Up Report</a></li>
+                        }
+                        @if (@query.CompJobApplication=="Yes") {
+                            <li><a href="~/CompJobApplication.cshtml?UserNameFL=@query.UserNameFL">Comprehensive Job Application</a></li>
                         }
                         @if (@query.CareerRoadMap1=="Yes" || @query.CareerRoadMap2=="Yes" ||
                              @query.CareerRoadMap3=="Yes" || @query.CareerRoadMap4=="Yes" ||
@@ -176,7 +172,7 @@
                 </li>
             }
 
-            @if (@Admin==1) {
+            @if (@query.special=="A" || @query.special=="C") {
                 <li><a href="#">SITE ADMINISTRATION</a>
                     <ul>
                         <li><a href="~/Account/UserSelect.cshtml">View and update active clients' module selections

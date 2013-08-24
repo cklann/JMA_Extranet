@@ -1,0 +1,377 @@
+﻿<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0//EN" "http://www.w3.org/TR/REC-html40/strict.dtd">
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="~/Styles/CompJobApplication.css">
+</head>
+<body>
+
+@{
+    if (WebSecurity.IsAuthenticated) {
+
+        var db=Database.Open("JMA");
+        var SQLSELECT="select * from CompJobApplication where Email LIKE @0";
+        var answers=db.QuerySingle(SQLSELECT, WebSecurity.CurrentUserName);
+
+        var ansQ1=answers.Q1;
+        var ansQ2=answers.Q2;
+        var ansQ3=answers.Q3;
+        var ansQ4=answers.Q4;
+        var ansQ5=answers.Q5;
+        var ansQ6=answers.Q6;
+        var ansQ7=answers.Q7;
+        var ansQ8=answers.Q8;
+        var ansQ9=answers.Q9;
+        var ansQ10=answers.Q10;
+        var ansQ11=answers.Q11;
+        var ansQ12=answers.Q12;
+        var ansQ13=answers.Q13;
+        var ansQ14=answers.Q14;
+        var ansQ15=answers.Q15;
+        var ansQ16=answers.Q16;
+        var ansQ17=answers.Q17;
+        var ansQ18=answers.Q18;
+        var ansQ19=answers.Q19;
+        var ansQ20=answers.Q20;
+        var ansQ21=answers.Q21;
+        var ansQ22=answers.Q22;
+        var ansQ23=answers.Q23;
+        var ansQ24=answers.Q24;
+        var ansQ25=answers.Q25;
+        var ansQ26=answers.Q26;
+        var ansQ27=answers.Q27;
+        var ansOrg1=answers.org1;
+        var ansOffice1=answers.office1;
+        var ansHsCollege1=answers.hsCollege1;
+        var ansOrg2=answers.org2;
+        var ansOffice2=answers.office2;
+        var ansHsCollege2=answers.hsCollege2;
+        var ansOrg3=answers.org3;
+        var ansOffice3=answers.office3;
+        var ansHsCollege3=answers.hsCollege3;
+        var ansOrg4=answers.org4;
+        var ansOffice4=answers.office4;
+        var ansHsCollege4=answers.hsCollege4;
+        var ansOrg5=answers.org5;
+        var ansOffice5=answers.office5;
+        var ansHsCollege5=answers.hsCollege5;
+        var ansOrg6=answers.org6;
+        var ansOffice6=answers.office6;
+        var ansHsCollege6=answers.hsCollege6;
+        var ansOrg7=answers.org7;
+        var ansOffice7=answers.office7;
+        var ansHsCollege7=answers.hsCollege7;
+        var ansQ28=answers.Q28;
+        var ansQ29=answers.Q29;
+        var ansQ30=answers.Q30;
+        var ansQ31=answers.Q31;
+        var ansQ32=answers.Q32;
+
+        if (IsPost) {
+            ansQ1=Request["ansQ1"].As<string>("");
+            ansQ2=Request["ansQ2"].As<string>("");
+            ansQ3=Request["ansQ3"].As<string>("");
+            ansQ4=Request["ansQ4"].As<string>("");
+            ansQ5=Request["ansQ5"].As<string>("");
+            ansQ6=Request["ansQ6"].As<string>("");
+            ansQ7=Request["ansQ7"].As<string>("");
+            ansQ8=Request["ansQ8"].As<string>("");
+            ansQ9=Request["ansQ9"].As<string>("");
+            ansQ10=Request["ansQ10"].As<string>("");
+            ansQ11=Request["ansQ11"].As<string>("");
+            ansQ12=Request["ansQ12"].As<string>("");
+            ansQ13=Request["ansQ13"].As<string>("");
+            ansQ14=Request["ansQ14"].As<string>("");
+            ansQ15=Request["ansQ15"].As<string>("");
+            ansQ16=Request["ansQ16"].As<string>("");
+            ansQ17=Request["ansQ17"].As<string>("");
+            ansQ18=Request["ansQ18"].As<string>("");
+            ansQ19=Request["ansQ19"].As<string>("");
+            ansQ20=Request["ansQ20"].As<string>("");
+            ansQ21=Request["ansQ21"].As<string>("");
+            ansQ22=Request["ansQ22"].As<string>("");
+            ansQ23=Request["ansQ23"].As<string>("");
+            ansQ24=Request["ansQ24"].As<string>("");
+            ansQ25=Request["ansQ25"].As<string>("");
+            ansQ26=Request["ansQ26"].As<string>("");
+            ansQ27=Request["ansQ27"].As<string>("");
+            ansOrg1=Request["ansOrg1"].As<string>("");
+            ansOffice1=Request["ansOffice1"].As<string>("");
+            ansHsCollege1=Request["ansHsCollege1"].As<string>("");
+            ansOrg2=Request["ansOrg2"].As<string>("");
+            ansOffice2=Request["ansOffice2"].As<string>("");
+            ansHsCollege2=Request["ansHsCollege2"].As<string>("");
+            ansOrg3=Request["ansOrg3"].As<string>("");
+            ansOffice3=Request["ansOffice3"].As<string>("");
+            ansHsCollege3=Request["ansHsCollege3"].As<string>("");
+            ansOrg4=Request["ansOrg4"].As<string>("");
+            ansOffice4=Request["ansOffice4"].As<string>("");
+            ansHsCollege4=Request["ansHsCollege4"].As<string>("");
+            ansOrg5=Request["ansOrg5"].As<string>("");
+            ansOffice5=Request["ansOffice5"].As<string>("");
+            ansHsCollege5=Request["ansHsCollege5"].As<string>("");
+            ansOrg6=Request["ansOrg6"].As<string>("");
+            ansOffice6=Request["ansOffice6"].As<string>("");
+            ansHsCollege6=Request["ansHsCollege6"].As<string>("");
+            ansOrg7=Request["ansOrg7"].As<string>("");
+            ansOffice7=Request["ansOffice7"].As<string>("");
+            ansHsCollege7=Request["ansHsCollege7"].As<string>("");
+            ansQ28=Request["ansQ28"].As<string>("");
+            ansQ29=Request["ansQ29"].As<string>("");
+            ansQ30=Request["ansQ30"].As<string>("");
+            ansQ31=Request["ansQ31"].As<string>("");
+            ansQ32=Request["ansQ32"].As<string>("");
+
+            var SQLUPDATE="update CompJobApplication set Q1=@1, Q2=@2, Q3=@3, Q4=@4, Q5=@5, " +                "Q6=@6, Q7=@7, Q8=@8, Q9=@9, Q10=@10, Q11=@11, Q12=@12, Q13=@13, " +                "Q14=@14, Q15=@15, Q16=@16, Q17=@17, Q18=@18, Q19=@19, Q20=@20, Q21=@21, " +                "Q22=@22, Q23=@23, Q24=@24, Q25=@25, Q26=@26, Q27=@27, Org1=@28, " +                "Office1=@29, HsCollege1=@30, Org2=@31, Office2=@32, HsCollege2=@33, Org3=@34, " +                "Office3=@35, HsCollege3=@36, Org4=@37, Office4=@38, HsCollege4=@39, Org5=@40, " +                "Office5=@41, HsCollege5=@42, Org6=@43, Office6=@44, HsCollege6=@45, Org7=@46, " +                "Office7=@47, HsCollege7=@48, Q28=@49, Q29=@50, Q30=@51, Q31=@52, Q32=@53 " +
+                "where Email=@0";
+            db.Execute(SQLUPDATE, WebSecurity.CurrentUserName, ansQ1, ansQ2, ansQ3, ansQ4, ansQ5, ansQ6, ansQ7, ansQ8,                 ansQ9, ansQ10, ansQ11, ansQ12, ansQ13, ansQ14, ansQ15, ansQ16, ansQ17, ansQ18, ansQ19, ansQ20, ansQ21,                 ansQ22, ansQ23, ansQ24, ansQ25, ansQ26, ansQ27, ansOrg1, ansOffice1, ansHsCollege1, ansOrg2, ansOffice2,                 ansHsCollege2, ansOrg3, ansOffice3, ansHsCollege3, ansOrg4, ansOffice4, ansHsCollege4, ansOrg5,                 ansOffice5, ansHsCollege5, ansOrg6, ansOffice6, ansHsCollege6, ansOrg7, ansOffice7, ansHsCollege7, 
+                ansQ28, ansQ29, ansQ30, ansQ31, ansQ32);
+            if (Request["submit"]=="Return Home") {
+                Response.Redirect("~/index.cshtml");
+            }
+        }
+
+<form action="" method="post">
+    <div id="bottomBar">
+        <input type="submit" id="fixedPos1" name="submit" value="Save">
+        <input type="submit" id="fixedPos2" name="submit" value="Return Home">
+    </div>
+
+<DIV id="page_1">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Comprehensive_Job_Application1x1.jpg" id="img1">
+</DIV>
+
+
+<DIV class="dclr"></DIV>
+<DIV id="id_1">
+<P class="p0 ft0">COMPREHENSIVE</P>
+</DIV>
+<DIV id="id_2">
+<P class="p0 ft1">JOB APPLICATION</P>
+</DIV>
+<DIV id="id_3">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_2">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Comprehensive_Job_Application2x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft2">JMA: Comprehensive Job Application</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft2">2</P></TD>
+</TR>
+</TABLE>
+<P class="p5 ft5">Personal Background</P>
+
+        <TABLE cellpadding=0 cellspacing=0 id="tableFormat1">
+            <tr>
+                <td id="leftTop">Where were you born:</td>
+                <td id="top" colspan="2"><input type="text" id="formColor" size="27" name="ansQ1" value="@ansQ1"></td>
+                <td id="leftTop">Raised:</td>
+                <td id="rightTop" colspan="2"><input type="text" id="formColor" size="27" name="ansQ2" value="@ansQ2"></td>
+            </tr>
+            <tr>
+                <td id="leftTop">Father's occupation:</td>
+                <td id="top" colspan="2"><input type="text" id="formColor" size="27" name="ansQ3" value="@ansQ3"></td>
+                <td id="leftTop">Mother's occupation:</td>
+                <td id="rightTop" colspan="2"><input type="text" id="formColor" size="27" name="ansQ4" value="@ansQ4"></td>
+            </tr>
+            <tr>
+                <td id="leftTopBottom" width="150px">Parents living?</td>
+                <td id="topBottom"><select name="@ansQ5">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select></td>
+                <td id="leftTopBottom">Brothers?</td>
+                <td id="topBottom"><select name="@ansQ6">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select></td>
+                <td id="leftTopBottom">Sisters?</td>
+                <td id="topBottomRight"><select name="@ansQ7">
+                    <option value="Yes">Yes</option>
+                    <option value="No">No</option>
+                </select></td>
+            </tr>
+        </table>
+
+<P class="p9 ft6">What personality traits do you have in common with your parents?</P>
+<input type="text" id="formColor2" name="ansQ8" value="@ansQ8">
+<P class="p10 ft9">In what ways did the home environment of your childhood affect your growing up and the kind of person you are today?</P>
+<input type="text" id="formColor2" name="ansQ9" value="@ansQ9">
+<P class="p11 ft6">What early experiences most influenced you today? How so?</P>
+<input type="text" id="formColor2" name="ansQ10" value="@ansQ10">
+<p>Marital status: 
+<select name="@ansQ11">
+    <option value="Single">Single</option>
+    <option value="Engaged">Engaged</option>
+    <option value="Married">Married</option>
+    <option value="Divorced">Divorced</option>
+    <option value="Widowed">Widowed</option>
+    <option value="Remarried">Remarried</option>
+</select></p>
+<p>Number of children:&nbsp;<input type="text" id="formColor" size="20" name="ansQ12" value="@ansQ12">
+Ages of children:&nbsp;<input type="text" id="formColor" size="20" name="ansQ13" value="@ansQ13"></P>
+
+<P class="p14 ft5">Career Goals</P>
+<P class="p15 ft6">Why do you wish to leave your current position (if this applies to you)?</P>
+<input type="text" id="formColor2" name="ansQ14" value="@ansQ14">
+<P class="p16 ft6">What do you want to accomplish in your career in the next ten years?</P>
+<input type="text" id="formColor2" name="ansQ15" value="@ansQ15">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_3">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Comprehensive_Job_Application3x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft2">JMA: Comprehensive Job Application</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft2">3</P></TD>
+</TR>
+</TABLE>
+<P class="p17 ft6">Estimate your chances of accomplishing this goal (% out of 100):</P>
+<input type="text" id="formColor2" name="ansQ16" value="@ansQ16">
+<P class="p18 ft12">As you move toward your ten-year goal, which of your own characteristics and/or personality habits will contribute most to your success?</P>
+<input type="text" id="formColor2" name="ansQ17" value="@ansQ17">
+<P class="p19 ft6">Which of your own characteristics / personal habits are likely to hold you back from your goal?</P>
+<input type="text" id="formColor2" name="ansQ18" value="@ansQ18">
+<P class="p18 ft12">List leadership experiences, company contacts, and social skills that you think would be most helpful to your development.</P>
+<input type="text" id="formColor2" name="ansQ19" value="@ansQ19">
+<P class="p20 ft5">Self Evaluation</P>
+<P class="p15 ft6">List your greatest strengths:</P>
+<input type="text" id="formColor2" name="ansQ20" value="@ansQ20">
+<P class="p21 ft6">List your general limitations and/or weaknesses:</P>
+<input type="text" id="formColor2" name="ansQ21" value="@ansQ21">
+<P class="p22 ft6">Name five adjectives that describe the kind of person you are:</P>
+<input type="text" id="formColor2" name="ansQ22" value="@ansQ22">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_4">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Comprehensive_Job_Application4x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft2">JMA: Comprehensive Job Application</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft2">4</P></TD>
+</TR>
+</TABLE>
+<P class="p17 ft6">What probability do you give yourself of becoming an outstanding achiever in your field (out of 100)?</P>
+<input type="text" id="formColor2" name="ansQ23" value="@ansQ23">
+<P class="p16 ft6">How do you think people see you that is different from whom you really are?</P>
+<input type="text" id="formColor2" name="ansQ24" value="@ansQ24">
+<P class="p15a ft5">Professional and Social Information</P>
+<P class="p16a ft6">List civic, professional, and business organization memberships and offices you hold:</P>
+<input type="text" id="formColor2" name="ansQ25" value="@ansQ25">
+<P class="p16 ft6">What social activities do you participate in?</P>
+<input type="text" id="formColor2" name="ansQ26" value="@ansQ26">
+<P class="p16 ft6">List organizations, clubs and sports that you participated in during your school years:</P>
+<input type="text" id="formColor2" name="ansQ27" value="@ansQ27">
+<TABLE cellpadding=0 cellspacing=0 class="t4">
+<TR>
+	<TD class="tr0 td29"><P class="p6 ft6">Organization</P></TD>
+	<TD class="tr0 td30"><P class="p7 ft6">Offices held</P></TD>
+	<TD class="tr0 td31"><P class="p8 ft6">HS or College</P></TD>
+</TR>
+<TR>
+	<TD class="tr7 td19"><P class="p2 ft13"><input type="text" id="formColor3" name="ansOrg1" value="@ansOrg1"></P></TD>
+	<TD class="tr7 td32"><P class="p2 ft13"><input type="text" id="formColor3" name="ansOffice1" value="@ansOffice1"></P></TD>
+	<TD class="tr7 td11"><P class="p2 ft13"><input type="text" id="formColor3" name="ansHsCollege1" value="@ansHsCollege1"></P></TD>
+</TR>
+<TR>
+	<TD class="tr8 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg2" value="@ansOrg2"></P></TD>
+	<TD class="tr8 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice2" value="@ansOffice2"></P></TD>
+	<TD class="tr8 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege2" value="@ansHsCollege2"></P></TD>
+</TR>
+<TR>
+	<TD class="tr9 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg3" value="@ansOrg3"></P></TD>
+	<TD class="tr9 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice3" value="@ansOffice3"></P></TD>
+	<TD class="tr9 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege3" value="@ansHsCollege3"></P></TD>
+</TR>
+<TR>
+	<TD class="tr9 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg4" value="@ansOrg4"></P></TD>
+	<TD class="tr9 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice4" value="@ansOffice4"></P></TD>
+	<TD class="tr9 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege4" value="@ansHsCollege4"></P></TD>
+</TR>
+<TR>
+	<TD class="tr8 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg5" value="@ansOrg5"></P></TD>
+	<TD class="tr8 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice5" value="@ansOffice5"></P></TD>
+	<TD class="tr8 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege5" value="@ansHsCollege5"></P></TD>
+</TR>
+<TR>
+	<TD class="tr9 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg6" value="@ansOrg6"></P></TD>
+	<TD class="tr9 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice6" value="@ansOffice6"></P></TD>
+	<TD class="tr9 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege6" value="@ansHsCollege6"></P></TD>
+</TR>
+<TR>
+	<TD class="tr9 td19"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOrg7" value="@ansOrg7"></P></TD>
+	<TD class="tr9 td32"><P class="p2 ft7"><input type="text" id="formColor3" name="ansOffice7" value="@ansOffice7"></P></TD>
+	<TD class="tr9 td11"><P class="p2 ft7"><input type="text" id="formColor3" name="ansHsCollege7" value="@ansHsCollege7"></P></TD>
+</TR>
+</TABLE>
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+
+<DIV id="page_5">
+<DIV id="dimg1">
+<IMG src="~/Images/JMA_Comprehensive_Job_Application5x1.jpg" id="img1">
+</DIV>
+<DIV id="id_1">
+<TABLE cellpadding=0 cellspacing=0 class="t1">
+<TR>
+	<TD class="tr2 td3"><P class="p2 ft2">JMA: Comprehensive Job Application</P></TD>
+	<TD class="tr2 td4"><P class="p4 ft2">5</P></TD>
+</TR>
+</TABLE>
+<P class="p17 ft6">What business and professional magazines or journals do you read regularly?</P>
+<input type="text" id="formColor2" name="ansQ28" value="@ansQ28">
+<P class="p16 ft6">What are your aspirations in relation to life outside of work?</P>
+<input type="text" id="formColor2" name="ansQ29" value="@ansQ29">
+<P class="p16 ft6">List your leisure interests and hobbies:</P>
+<input type="text" id="formColor2" name="ansQ30" value="@ansQ30">
+<P class="p16 ft6">How have you balanced the demands between your career and personal life?</P>
+<input type="text" id="formColor2" name="ansQ31" value="@ansQ31">
+<P class="p16 ft6">What do you do to relax after a typical day?</P>
+<input type="text" id="formColor2" name="ansQ32" value="@ansQ32">
+</DIV>
+<DIV id="id_2">
+<TABLE cellpadding=0 cellspacing=0 class="t0">
+<TR></TR>
+</TABLE>
+</DIV>
+</DIV>
+</form>
+
+} else {
+    <p><a href="~/Account/Login.cshtml">Please login.</a></p>
+}
+}
+
+</body>
+</HTML>
